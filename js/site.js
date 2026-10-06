@@ -117,8 +117,8 @@
     // simpler: rebuild explicitly in order
     html = '<div class="nav__inner">' +
       '<a class="brand" href="index.html">' +
-      '<span class="brand__mark">DS</span>' +
-      '<span><span class="brand__name">DS Lab</span><br/><span class="brand__sub">Mohan Babu University</span></span>' +
+      '<span class="brand__mark">' + icon("flask") + "</span>" +
+      '<span><span class="brand__name">DS Lab</span><span class="brand__sub">Mohan Babu University</span></span>' +
       "</a>" +
       '<nav class="nav__links" aria-label="Primary">';
     pages.forEach(function (p) {
@@ -136,7 +136,7 @@
     html += "</nav>" +
       '<div class="nav__right">' +
       '<label class="searchbox" for="site-search">' + icon("search") +
-      '<input class="searchbox__input" id="site-search" type="search" placeholder="Search experiments, tools…" autocomplete="off" aria-label="Search the site"/></label>' +
+      '<input class="searchbox__input" id="site-search" type="search" placeholder="Search…" autocomplete="off" aria-label="Search the site"/></label>' +
       '<button class="iconbtn iconbtn--search" id="msearch-btn" aria-label="Open search">' + icon("search") + "</button>" +
       '<button class="iconbtn iconbtn--moon" onclick="DSLAB_TOGGLE_THEME()" aria-label="Switch to dark theme">' + icon("moon") + "</button>" +
       '<button class="iconbtn iconbtn--sun" onclick="DSLAB_TOGGLE_THEME()" aria-label="Switch to light theme">' + icon("sun") + "</button>" +

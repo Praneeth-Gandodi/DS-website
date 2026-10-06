@@ -1,0 +1,348 @@
+- generic [active] [ref=e1]:
+  - banner:
+    - generic [ref=e2]:
+      - link "DS Lab Mohan Babu University" [ref=e3] [cursor=pointer]:
+        - /url: index.html
+        - generic [ref=e7]:
+          - text: DS Lab
+          - generic [ref=e8]: Mohan Babu University
+      - navigation "Primary" [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: index.html
+        - generic [ref=e11]:
+          - link "EXP" [ref=e12] [cursor=pointer]:
+            - /url: experiments.html
+          - button [ref=e13] [cursor=pointer]
+        - link "Modules" [ref=e16] [cursor=pointer]:
+          - /url: modules.html
+        - link "Tools" [ref=e17] [cursor=pointer]:
+          - /url: tools.html
+      - generic [ref=e18]:
+        - searchbox "Search the site" [ref=e23]
+        - button "Switch to light theme" [ref=e312] [cursor=pointer]
+  - main [ref=e27]:
+    - generic [ref=e30]:
+      - generic [ref=e31]:
+        - generic [ref=e32]: Data Science Lab · Experiment Record
+        - heading [level=1] [ref=e33]:
+          - text: The lab record,
+          - emphasis [ref=e34]: alive
+          - text: — every experiment readable and runnable.
+        - paragraph [ref=e35]: Five completed experiments from the Data Science lab at Mohan Babu University, preserved as notebooks with the exact saved outputs from execution.
+        - generic [ref=e36]:
+          - link "Browse experiments" [ref=e37] [cursor=pointer]:
+            - /url: experiments.html
+          - link "Jump to a lab" [ref=e38] [cursor=pointer]:
+            - /url: "#experiments"
+          - link "Lab record PDF" [ref=e39] [cursor=pointer]:
+            - /url: assets/pdf/lab-record.pdf
+        - generic [ref=e40]:
+          - generic [ref=e41]:
+            - paragraph [ref=e42]: "5"
+            - paragraph [ref=e43]: experiments
+          - generic [ref=e44]:
+            - paragraph [ref=e45]: "16"
+            - paragraph [ref=e46]: parts
+          - generic [ref=e47]:
+            - paragraph [ref=e48]: "13"
+            - paragraph [ref=e49]: saved charts
+      - complementary [ref=e50]:
+        - article "Student ID card" [ref=e51]:
+          - paragraph [ref=e52]: Mohan Babu University
+          - generic [ref=e53]:
+            - generic [ref=e54]: GPK
+            - generic [ref=e56]:
+              - heading "GANDODI PRANEETH KUMAR" [level=2] [ref=e57]
+              - generic [ref=e58]: 24102A030124
+          - generic [ref=e59]:
+            - generic [ref=e60]:
+              - paragraph [ref=e61]: Section
+              - paragraph [ref=e62]: DS2
+            - generic [ref=e63]:
+              - paragraph [ref=e64]: Subject
+              - paragraph [ref=e65]: Data Science Lab
+            - generic [ref=e66]:
+              - paragraph [ref=e67]: Faculty
+              - paragraph [ref=e68]: Bosubabu
+            - generic [ref=e69]:
+              - paragraph [ref=e70]: Designation
+              - paragraph [ref=e71]: Assistant Professor
+          - generic [ref=e72]:
+            - link "LinkedIn profile" [ref=e73] [cursor=pointer]:
+              - /url: https://www.linkedin.com/in/your-handle
+            - link "GitHub profile" [ref=e78] [cursor=pointer]:
+              - /url: https://github.com/Praneeth-Gandodi
+          - generic [ref=e81]:
+            - generic [ref=e82]: DS LAB · 2026
+            - generic [ref=e83]: Praneeth
+    - generic [ref=e85]:
+      - generic [ref=e86]:
+        - generic [ref=e87]:
+          - paragraph [ref=e88]: Experiments
+          - heading "Five labs, completed." [level=2] [ref=e89]
+          - paragraph [ref=e90]: Each card is one experiment. Pick a part — A, B, C — and it opens as a notebook where you can edit the code and run it to see the saved result.
+        - link "All details" [ref=e91] [cursor=pointer]:
+          - /url: experiments.html
+      - generic [ref=e92]:
+        - article [ref=e93]:
+          - generic [ref=e94]:
+            - generic [ref=e95]: EXP-1
+            - generic [ref=e96]: "1"
+          - heading [level=3] [ref=e97]:
+            - link "Data Import & Export" [ref=e98] [cursor=pointer]:
+              - /url: lab.html?exp=1
+          - paragraph [ref=e99]: Read tabular data from CSV, JSON and Excel, build DataFrames from Python objects, and write multi-sheet workbooks back out.
+          - generic [ref=e100]:
+            - generic [ref=e101]: pandas
+            - generic [ref=e102]: csv
+            - generic [ref=e103]: json
+            - generic [ref=e104]: openpyxl
+          - generic [ref=e105]:
+            - link "EXP-1 part A — Reading CSV & plain text" [ref=e106] [cursor=pointer]:
+              - /url: lab.html?exp=1&part=a
+              - text: A
+            - link "EXP-1 part B — Python objects & JSON" [ref=e107] [cursor=pointer]:
+              - /url: lab.html?exp=1&part=b
+              - text: B
+            - link "EXP-1 part C — Excel workbooks" [ref=e108] [cursor=pointer]:
+              - /url: lab.html?exp=1&part=c
+              - text: C
+            - generic [ref=e109]: 3 parts
+        - article [ref=e110]:
+          - generic [ref=e111]:
+            - generic [ref=e112]: EXP-2
+            - generic [ref=e113]: "2"
+          - heading [level=3] [ref=e114]:
+            - link "Data from APIs & SQL" [ref=e115] [cursor=pointer]:
+              - /url: lab.html?exp=2
+          - paragraph [ref=e116]: "Pull live records from a REST API and manage a SQLite database: tables, inserts, updates and deletes, read straight into DataFrames."
+          - generic [ref=e117]:
+            - generic [ref=e118]: requests
+            - generic [ref=e119]: sqlite3
+            - generic [ref=e120]: sql
+            - generic [ref=e121]: pandas
+          - generic [ref=e122]:
+            - link "EXP-2 part A — Fetching data from an API" [ref=e123] [cursor=pointer]:
+              - /url: lab.html?exp=2&part=a
+              - text: A
+            - link "EXP-2 part B — SQLite databases with pandas" [ref=e124] [cursor=pointer]:
+              - /url: lab.html?exp=2&part=b
+              - text: B
+            - generic [ref=e125]: 2 parts
+        - article [ref=e126]:
+          - generic [ref=e127]:
+            - generic [ref=e128]: EXP-3
+            - generic [ref=e129]: "3"
+          - heading [level=3] [ref=e130]:
+            - link "Data Cleaning & Preprocessing" [ref=e131] [cursor=pointer]:
+              - /url: lab.html?exp=3
+          - paragraph [ref=e132]: Detect and handle missing values, map categories to numeric codes, rename columns and flag outliers in generated data.
+          - generic [ref=e133]:
+            - generic [ref=e134]: pandas
+            - generic [ref=e135]: numpy
+            - generic [ref=e136]: cleaning
+          - generic [ref=e137]:
+            - link "EXP-3 part A — Handling missing values" [ref=e138] [cursor=pointer]:
+              - /url: lab.html?exp=3&part=a
+              - text: A
+            - link "EXP-3 part B — Mapping & renaming columns" [ref=e139] [cursor=pointer]:
+              - /url: lab.html?exp=3&part=b
+              - text: B
+            - link "EXP-3 part C — Outlier detection" [ref=e140] [cursor=pointer]:
+              - /url: lab.html?exp=3&part=c
+              - text: C
+            - generic [ref=e141]: 3 parts
+        - article [ref=e142]:
+          - generic [ref=e143]:
+            - generic [ref=e144]: EXP-4
+            - generic [ref=e145]: "4"
+          - heading [level=3] [ref=e146]:
+            - link "Hierarchical Indexing (MultiIndex)" [ref=e147] [cursor=pointer]:
+              - /url: lab.html?exp=4
+          - paragraph [ref=e148]: Build MultiIndex objects from arrays and tuples, select across levels with .loc, and reshape data with stack and unstack.
+          - generic [ref=e149]:
+            - generic [ref=e150]: pandas
+            - generic [ref=e151]: multiindex
+            - generic [ref=e152]: reshape
+          - generic [ref=e153]:
+            - link "EXP-4 part A — MultiIndex from arrays" [ref=e154] [cursor=pointer]:
+              - /url: lab.html?exp=4&part=a
+              - text: A
+            - link "EXP-4 part B — Stack & unstack" [ref=e155] [cursor=pointer]:
+              - /url: lab.html?exp=4&part=b
+              - text: B
+            - generic [ref=e156]: 2 parts
+        - article [ref=e157]:
+          - generic [ref=e158]:
+            - generic [ref=e159]: EXP-5
+            - generic [ref=e160]: "5"
+          - heading [level=3] [ref=e161]:
+            - link "Data Visualization with Matplotlib & Seaborn" [ref=e162] [cursor=pointer]:
+              - /url: lab.html?exp=5
+          - paragraph [ref=e163]: Explore the iris dataset, then answer questions A–E with line plots, bar charts, histograms, KDE curves, scatter and box plots.
+          - generic [ref=e164]:
+            - generic [ref=e165]: matplotlib
+            - generic [ref=e166]: seaborn
+            - generic [ref=e167]: eda
+          - generic [ref=e168]:
+            - link "EXP-5 part EDA — Iris dataset — quick EDA" [ref=e169] [cursor=pointer]:
+              - /url: lab.html?exp=5&part=warmup
+              - text: EDA
+            - link "EXP-5 part A — Subplots — monthly sales & expenses" [ref=e170] [cursor=pointer]:
+              - /url: lab.html?exp=5&part=a
+              - text: A
+            - link "EXP-5 part B — Bar plots — grouped & stacked" [ref=e171] [cursor=pointer]:
+              - /url: lab.html?exp=5&part=b
+              - text: B
+            - link "EXP-5 part C — Histogram & KDE" [ref=e172] [cursor=pointer]:
+              - /url: lab.html?exp=5&part=c
+              - text: C
+            - link "EXP-5 part D — Scatter — study hours vs marks" [ref=e173] [cursor=pointer]:
+              - /url: lab.html?exp=5&part=d
+              - text: D
+            - link "EXP-5 part E — Box plot — marks by department" [ref=e174] [cursor=pointer]:
+              - /url: lab.html?exp=5&part=e
+              - text: E
+            - generic [ref=e175]: 6 parts
+    - generic [ref=e177]:
+      - generic [ref=e178]:
+        - generic [ref=e179]:
+          - paragraph [ref=e180]: Modules
+          - heading "What each lab covers" [level=2] [ref=e181]
+          - paragraph [ref=e182]: The course modules behind the experiments — each with a syllabus sheet PDF on the Modules page.
+        - link "All modules" [ref=e183] [cursor=pointer]:
+          - /url: modules.html
+      - generic [ref=e184]:
+        - article [ref=e185]:
+          - generic [ref=e186]: "1"
+          - heading "Data Acquisition & I/O" [level=3] [ref=e187]
+          - list [ref=e188]:
+            - listitem [ref=e189]: CSV & TSV files with pandas
+            - listitem [ref=e190]: JSON — files, strings, URLs
+            - listitem [ref=e191]: Excel workbooks & openpyxl
+            - listitem [ref=e192]: DataFrames from Python dicts
+          - generic [ref=e193]:
+            - link "Syllabus PDF" [ref=e194] [cursor=pointer]:
+              - /url: assets/pdf/module-1.pdf
+            - generic [ref=e195]: EXP-1
+        - article [ref=e196]:
+          - generic [ref=e197]: "2"
+          - heading "Web & Database Data" [level=3] [ref=e198]
+          - list [ref=e199]:
+            - listitem [ref=e200]: The requests library & REST APIs
+            - listitem [ref=e201]: SQLite basics with the sqlite3 module
+            - listitem [ref=e202]: read_sql_query into DataFrames
+          - generic [ref=e203]:
+            - link "Syllabus PDF" [ref=e204] [cursor=pointer]:
+              - /url: assets/pdf/module-2.pdf
+            - generic [ref=e205]: EXP-2
+        - article [ref=e206]:
+          - generic [ref=e207]: "3"
+          - heading "Cleaning & Preprocessing" [level=3] [ref=e208]
+          - list [ref=e209]:
+            - listitem [ref=e210]: isna, dropna & fillna
+            - listitem [ref=e211]: Mapping categories to codes
+            - listitem [ref=e212]: Renaming columns
+            - listitem [ref=e213]: Flagging outliers
+          - generic [ref=e214]:
+            - link "Syllabus PDF" [ref=e215] [cursor=pointer]:
+              - /url: assets/pdf/module-3.pdf
+            - generic [ref=e216]: EXP-3
+        - article [ref=e217]:
+          - generic [ref=e218]: "4"
+          - heading "Hierarchical Indexing" [level=3] [ref=e219]
+          - list [ref=e220]:
+            - listitem [ref=e221]: MultiIndex from arrays & tuples
+            - listitem [ref=e222]: Selecting across levels with .loc
+            - listitem [ref=e223]: Reshaping with stack & unstack
+          - generic [ref=e224]:
+            - link "Syllabus PDF" [ref=e225] [cursor=pointer]:
+              - /url: assets/pdf/module-4.pdf
+            - generic [ref=e226]: EXP-4
+        - article [ref=e227]:
+          - generic [ref=e228]: "5"
+          - heading "Data Visualization" [level=3] [ref=e229]
+          - list [ref=e230]:
+            - listitem [ref=e231]: Matplotlib figures & subplots
+            - listitem [ref=e232]: Seaborn statistical plots
+            - listitem [ref=e233]: "Distributions: histogram & KDE"
+            - listitem [ref=e234]: "Comparisons: bars & box plots"
+          - generic [ref=e235]:
+            - link "Syllabus PDF" [ref=e236] [cursor=pointer]:
+              - /url: assets/pdf/module-5.pdf
+            - generic [ref=e237]: EXP-5
+    - generic [ref=e240]:
+      - generic [ref=e241]:
+        - heading "Ready to open the notebooks?" [level=2] [ref=e242]
+        - paragraph [ref=e243]: Every part opens as a Jupyter-style notebook — edit cells, run, see the saved outputs.
+      - generic [ref=e244]:
+        - link "Open experiments" [ref=e245] [cursor=pointer]:
+          - /url: experiments.html
+        - link "See the toolkit" [ref=e246] [cursor=pointer]:
+          - /url: tools.html
+  - contentinfo [ref=e247]:
+    - generic [ref=e248]:
+      - generic [ref=e249]:
+        - generic [ref=e250]:
+          - link "DS DS Lab Mohan Babu University" [ref=e251] [cursor=pointer]:
+            - /url: index.html
+            - generic [ref=e252]: DS
+            - generic [ref=e253]:
+              - text: DS Lab
+              - generic [ref=e254]: Mohan Babu University
+          - paragraph [ref=e255]: A living experiment record for the Data Science lab — 5 experiments, every part readable and runnable.
+        - generic [ref=e256]:
+          - paragraph [ref=e257]: Experiments
+          - list [ref=e258]:
+            - listitem [ref=e259]:
+              - link "EXP-1 — Data Import & Export" [ref=e260] [cursor=pointer]:
+                - /url: lab.html?exp=1
+            - listitem [ref=e261]:
+              - link "EXP-2 — Data from APIs & SQL" [ref=e262] [cursor=pointer]:
+                - /url: lab.html?exp=2
+            - listitem [ref=e263]:
+              - link "EXP-3 — Data Cleaning & Preprocessing" [ref=e264] [cursor=pointer]:
+                - /url: lab.html?exp=3
+            - listitem [ref=e265]:
+              - link "EXP-4 — Hierarchical Indexing (MultiIndex)" [ref=e266] [cursor=pointer]:
+                - /url: lab.html?exp=4
+            - listitem [ref=e267]:
+              - link "EXP-5 — Data Visualization with Matplotlib & Seaborn" [ref=e268] [cursor=pointer]:
+                - /url: lab.html?exp=5
+        - generic [ref=e269]:
+          - paragraph [ref=e270]: Pages
+          - list [ref=e271]:
+            - listitem [ref=e272]:
+              - link "Home" [ref=e273] [cursor=pointer]:
+                - /url: index.html
+            - listitem [ref=e274]:
+              - link "Experiments" [ref=e275] [cursor=pointer]:
+                - /url: experiments.html
+            - listitem [ref=e276]:
+              - link "Modules" [ref=e277] [cursor=pointer]:
+                - /url: modules.html
+            - listitem [ref=e278]:
+              - link "Tools" [ref=e279] [cursor=pointer]:
+                - /url: tools.html
+        - generic [ref=e280]:
+          - paragraph [ref=e281]: Toolkit
+          - list [ref=e282]:
+            - listitem [ref=e283]:
+              - link "Jupyter Notebook" [ref=e284] [cursor=pointer]:
+                - /url: tools.html#tool-jupyter
+            - listitem [ref=e285]:
+              - link "Anaconda Distribution" [ref=e286] [cursor=pointer]:
+                - /url: tools.html#tool-anaconda
+            - listitem [ref=e287]:
+              - link "Google Colab" [ref=e288] [cursor=pointer]:
+                - /url: tools.html#tool-colab
+            - listitem [ref=e289]:
+              - link "VS Code" [ref=e290] [cursor=pointer]:
+                - /url: tools.html#tool-vscode
+            - listitem [ref=e291]:
+              - link "pandas" [ref=e292] [cursor=pointer]:
+                - /url: tools.html#tool-pandas
+      - generic [ref=e293]:
+        - generic [ref=e294]: © 2026 GANDODI PRANEETH KUMAR · Roll 24102A030124 · Section DS2
+        - generic [ref=e295]: Faculty — Bosubabu, Assistant Professor
+  - status

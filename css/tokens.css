@@ -1,116 +1,131 @@
 /* ============================================================
    DS Lab — design tokens
-   Light academic paper theme + dark companion.
+   Light theme adopted from the Tars reference (purple accent,
+   soft off-white paper) + dark companion. Tars palette only.
    ============================================================ */
 
 :root {
-  /* type */
-  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
-  --font-body: "Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+  /* type — Spline Sans display · Noto Sans body · JetBrains Mono code */
+  --font-display: "Spline Sans", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Noto Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
 
-  /* surfaces — cool paper, not cream */
-  --paper: #f5f7f9;
+  /* gradient trio (Tars) */
+  --grad: linear-gradient(90deg, #f97316 0%, #a855f7 50%, #3b82f6 100%);
+  --grad-chip: linear-gradient(135deg, rgba(249, 115, 22, 0.18) 0%, rgba(168, 85, 247, 0.22) 100%);
+
+  /* surfaces — soft off-white */
+  --paper: #f6f8f7;
   --surface: #ffffff;
-  --surface-2: #edf1f5;
-  --surface-3: #e4eaf0;
+  --surface-2: #f3f4f6;
+  --surface-3: #e5e7eb;
 
-  /* ink */
-  --ink: #17222d;
-  --ink-2: #4e5f72;
-  --ink-3: #8794a3;
+  /* ink — slate */
+  --ink: #111827;
+  --ink-2: #4b5563;
+  --ink-3: #9ca3af;
 
   /* lines */
-  --line: #e1e7ee;
-  --line-strong: #ccd6e0;
+  --line: #e5e7eb;
+  --line-strong: #d1d5db;
 
-  /* accent — lab teal */
-  --accent: #0e7a63;
-  --accent-ink: #0a5c4b;
-  --accent-soft: #e2f0eb;
-  --accent-line: #b5d8cd;
+  /* accent — purple */
+  --accent: #a855f7;
+  --accent-ink: #7e22ce;
+  --accent-soft: #f5edfd;
+  --accent-line: #e2cff8;
 
   /* status */
-  --danger: #b3372f;
-  --danger-soft: #f9eae8;
-  --danger-line: #e7c2be;
+  --danger: #b91c1c;
+  --danger-soft: #fee2e2;
+  --danger-line: #fecaca;
 
-  /* id card */
-  --card-bg: #101b26;
-  --card-bg-2: #1a2c3d;
-  --card-ink: #f2f6f9;
-  --card-ink-2: #9fb2c4;
+  /* id card — dark slate, like Tars surface-dark */
+  --card-bg: #0b0f19;
+  --card-bg-2: #1f2937;
+  --card-ink: #f8fafc;
+  --card-ink-2: #9ca3af;
+
+  /* nav pill */
+  --nav-bg: rgba(255, 255, 255, 0.72);
+  --nav-border: #e5e7eb;
 
   /* code (light) */
-  --code-bg: #fbfcfe;
-  --code-ink: #24313f;
-  --code-kw: #7c3aed;
-  --code-st: #0e7490;
+  --code-bg: #ffffff;
+  --code-ink: #1f2937;
+  --code-kw: #ea580c;
+  --code-st: #9333ea;
   --code-nu: #b45309;
-  --code-cm: #94a1b0;
-  --code-fn: #0f5aa8;
+  --code-cm: #6b7280;
+  --code-fn: #2563eb;
   --code-de: #b45309;
   --out-bg: #ffffff;
 
   /* geometry */
-  --r-s: 8px;
-  --r-m: 12px;
-  --r-l: 18px;
+  --r-s: 10px;
+  --r-m: 14px;
+  --r-l: 20px;
 
   /* elevation */
-  --sh-s: 0 1px 2px rgba(23, 34, 45, 0.05);
-  --sh-m: 0 2px 6px rgba(23, 34, 45, 0.06), 0 12px 32px -18px rgba(23, 34, 45, 0.18);
-  --sh-l: 0 4px 12px rgba(23, 34, 45, 0.08), 0 32px 64px -32px rgba(23, 34, 45, 0.28);
-  --ring: 0 0 0 3px rgba(14, 122, 99, 0.28);
+  --sh-s: 0 1px 2px rgba(17, 24, 39, 0.06);
+  --sh-m: 0 2px 6px rgba(17, 24, 39, 0.06), 0 16px 36px -20px rgba(17, 24, 39, 0.2);
+  --sh-l: 0 4px 12px rgba(17, 24, 39, 0.08), 0 32px 64px -32px rgba(17, 24, 39, 0.3);
+  --sh-pill: 0 8px 30px rgba(17, 24, 39, 0.1), 0 2px 8px rgba(17, 24, 39, 0.06);
+  --ring: 0 0 0 3px rgba(168, 85, 247, 0.3);
 
   /* layout */
-  --nav-h: 64px;
+  --nav-top: 20px;
+  --nav-space: 104px;
   --wrap: 1180px;
 
   color-scheme: light;
 }
 
 [data-theme="dark"] {
-  --paper: #0c1218;
-  --surface: #121a23;
-  --surface-2: #1a2531;
-  --surface-3: #223040;
+  --paper: #0b0f19;
+  --surface: #111827;
+  --surface-2: #1f2937;
+  --surface-3: #374151;
 
-  --ink: #e7edf4;
-  --ink-2: #a3b2c4;
-  --ink-3: #6d7d90;
+  --ink: #f8fafc;
+  --ink-2: #cbd5e1;
+  --ink-3: #9ca3af;
 
-  --line: #223041;
-  --line-strong: #334559;
+  --line: #1f2937;
+  --line-strong: #374151;
 
-  --accent: #38c39e;
-  --accent-ink: #5cd4b4;
-  --accent-soft: #12332c;
-  --accent-line: #1f4d41;
+  --accent: #c084fc;
+  --accent-ink: #d8b4fe;
+  --accent-soft: #251a38;
+  --accent-line: #4c2a6e;
 
-  --danger: #e5766c;
-  --danger-soft: #341e1c;
-  --danger-line: #5c312c;
+  --danger: #f87171;
+  --danger-soft: #2a1416;
+  --danger-line: #57262a;
 
-  --card-bg: #16202c;
-  --card-bg-2: #1c2b3a;
-  --card-ink: #f2f6f9;
-  --card-ink-2: #9fb2c4;
+  --card-bg: #0b0f19;
+  --card-bg-2: #16203a;
+  --card-ink: #f8fafc;
+  --card-ink-2: #9ca3af;
 
-  --code-bg: #0e151d;
-  --code-ink: #d7e0ea;
-  --code-kw: #c398f0;
-  --code-st: #6fcab8;
-  --code-nu: #e0aa62;
-  --code-cm: #5d6f82;
-  --code-fn: #82aaff;
-  --code-de: #e0aa62;
-  --out-bg: #0e151d;
+  --nav-bg: rgba(17, 24, 39, 0.72);
+  --nav-border: #1f2937;
+
+  --code-bg: #0b0f19;
+  --code-ink: #e5e7eb;
+  --code-kw: #fb923c;
+  --code-st: #c084fc;
+  --code-nu: #fbbf24;
+  --code-cm: #6b7280;
+  --code-fn: #93c5fd;
+  --code-de: #fbbf24;
+  --out-bg: #0b0f19;
 
   --sh-s: 0 1px 2px rgba(0, 0, 0, 0.4);
   --sh-m: 0 2px 6px rgba(0, 0, 0, 0.45), 0 12px 32px -18px rgba(0, 0, 0, 0.55);
   --sh-l: 0 4px 12px rgba(0, 0, 0, 0.5), 0 32px 64px -32px rgba(0, 0, 0, 0.7);
-  --ring: 0 0 0 3px rgba(56, 195, 158, 0.3);
+  --sh-pill: 0 8px 30px rgba(0, 0, 0, 0.45), 0 2px 8px rgba(0, 0, 0, 0.3);
+  --ring: 0 0 0 3px rgba(192, 132, 252, 0.35);
 
   color-scheme: dark;
 }
