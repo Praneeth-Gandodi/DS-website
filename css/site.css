@@ -618,42 +618,51 @@ body:not([data-theme="dark"]) .iconbtn--sun {
 
 .hero__title {
   font-family: var(--font-display);
-  font-size: clamp(34px, 5vw, 54px);
-  line-height: 1.08;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  margin-top: 20px;
-  max-width: 620px;
+  font-size: clamp(26px, 3.4vw, 38px);
+  line-height: 1.14;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-top: 16px;
+  max-width: 560px;
 }
 
 .hero__title em {
   font-style: italic;
-  color: var(--accent-ink);
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--accent);
 }
 
 .hero__desc {
-  margin-top: 16px;
-  max-width: 560px;
-  font-size: 16.5px;
+  margin-top: 12px;
+  max-width: 520px;
+  font-size: 15px;
   color: var(--ink-2);
 }
 
-/* home hero layout */
+/* home hero layout — compact identity band, card leads */
 .homehero {
-  padding: calc(var(--nav-space) + 24px) 0 26px;
+  padding: calc(var(--nav-space) + 6px) 0 8px;
 }
 
 .homehero__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 390px;
-  gap: 56px;
+  grid-template-columns: 380px minmax(0, 1fr);
+  gap: 44px;
   align-items: center;
+}
+
+.homehero .idcard {
+  margin: 0;
+  max-width: none;
 }
 
 .homehero__stats {
   display: flex;
   gap: 0;
-  margin-top: 34px;
+  margin-top: 22px;
   border: 1px solid var(--line);
   border-radius: var(--r-m);
   background: var(--surface);
@@ -664,7 +673,7 @@ body:not([data-theme="dark"]) .iconbtn--sun {
 
 .stat {
   flex: 1;
-  padding: 14px 18px;
+  padding: 11px 16px;
 }
 
 .stat + .stat {
@@ -673,13 +682,13 @@ body:not([data-theme="dark"]) .iconbtn--sun {
 
 .stat__num {
   font-family: var(--font-mono);
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
   color: var(--ink);
 }
 
 .stat__label {
-  font-size: 12px;
+  font-size: 11.5px;
   color: var(--ink-3);
   margin-top: 1px;
 }
@@ -735,110 +744,117 @@ body:not([data-theme="dark"]) .iconbtn--sun {
 /* ---------- ID card (signature) ---------- */
 .idcard {
   position: relative;
-  background: linear-gradient(150deg, var(--card-bg-2) 0%, var(--card-bg) 62%);
+  background: linear-gradient(160deg, #161b2c 0%, #0b0f19 70%);
   color: var(--card-ink);
-  border-radius: 22px;
-  padding: 24px 26px 20px;
+  border-radius: var(--r-l);
+  padding: 20px 22px 16px;
   box-shadow: var(--sh-l);
   overflow: hidden;
   max-width: 400px;
 }
 
 .idcard::before {
-  /* guilloche-style wave texture */
+  /* guilloche-style arc texture, purple tinted */
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='14' viewBox='0 0 140 14'%3E%3Cpath d='M0 7 Q 17.5 0 35 7 T 70 7 T 105 7 T 140 7' fill='none' stroke='%23ffffff' stroke-opacity='0.05' stroke-width='1.1'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='14' viewBox='0 0 140 14'%3E%3Cpath d='M0 7 Q 17.5 0 35 7 T 70 7 T 105 7 T 140 7' fill='none' stroke='%23a855f7' stroke-opacity='0.09' stroke-width='1.1'/%3E%3C/svg%3E");
   background-size: 140px 14px;
   pointer-events: none;
 }
 
 .idcard::after {
-  /* punch slot like a physical badge */
+  /* top accent stripe + punch slot combined: stripe */
   content: "";
   position: absolute;
-  top: 14px;
-  right: 26px;
-  width: 44px;
-  height: 7px;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.45);
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.6);
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--grad);
 }
 
 .idcard__uni {
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-family: var(--font-mono);
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--card-ink-2);
 }
 
+.idcard__yr {
+  font-size: 9.5px;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.12em;
+}
+
 .idcard__head {
-  position: relative;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   margin-top: 16px;
 }
 
 .idcard__photoWrap {
   position: relative;
-  width: 84px;
-  height: 96px;
+  width: 76px;
+  height: 88px;
   flex: none;
-  border-radius: 12px;
-  background: linear-gradient(165deg, #22374c 0%, #16273a 100%);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--r-s);
+  background: linear-gradient(165deg, #2a2440 0%, #171326 100%);
+  border: 1px solid rgba(168, 85, 247, 0.35);
   display: grid;
   place-items: center;
   overflow: hidden;
 }
 
 .idcard__photo {
-  width: 58%;
-  height: 58%;
+  width: 54%;
+  height: 54%;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: linear-gradient(140deg, #2e7d6a 0%, #1c5848 100%);
-  color: #eafff7;
+  background: var(--grad);
+  color: #fff;
   font-family: var(--font-display);
-  font-size: 21px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
   letter-spacing: 0.02em;
 }
 
 .idcard__uname {
   font-family: var(--font-display);
-  font-size: 21.5px;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: 0.005em;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.22;
+  letter-spacing: -0.005em;
 }
 
 .idcard__uroll {
   display: inline-block;
-  margin-top: 7px;
+  margin-top: 8px;
   font-family: var(--font-mono);
-  font-size: 12.5px;
+  font-size: 12px;
   letter-spacing: 0.1em;
-  color: #cfe0d9;
-  background: rgba(56, 195, 158, 0.12);
-  border: 1px solid rgba(56, 195, 158, 0.35);
+  color: #e9d5ff;
+  background: rgba(168, 85, 247, 0.14);
+  border: 1px solid rgba(168, 85, 247, 0.4);
   border-radius: 7px;
   padding: 3px 9px;
 }
 
 .idcard__rows {
-  position: relative;
   margin-top: 18px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 11px 18px;
+  gap: 12px 18px;
+  padding: 14px 0 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
 }
 
 .idcard__row {
@@ -847,7 +863,7 @@ body:not([data-theme="dark"]) .iconbtn--sun {
 
 .idcard__k {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 9.5px;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -855,7 +871,7 @@ body:not([data-theme="dark"]) .iconbtn--sun {
 }
 
 .idcard__v {
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--card-ink);
   margin-top: 2px;
@@ -865,35 +881,40 @@ body:not([data-theme="dark"]) .iconbtn--sun {
 }
 
 .idcard__social {
-  position: relative;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 9px;
-  margin-top: 20px;
-  padding-top: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  margin-top: 14px;
+}
+
+.idcard__handles {
+  display: flex;
+  gap: 8px;
 }
 
 .socialbtn {
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   display: grid;
   place-items: center;
   border-radius: 9px;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: var(--card-ink-2);
-  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
 }
 
 .socialbtn:hover {
-  background: rgba(56, 195, 158, 0.2);
-  color: #d9fff2;
+  background: rgba(168, 85, 247, 0.22);
+  border-color: rgba(168, 85, 247, 0.4);
+  color: #f3e8ff;
   transform: translateY(-2px);
 }
 
 .socialbtn svg {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
 }
 
 /* fix: linkedin rect needs fill for proper look at stroke style */
@@ -902,25 +923,23 @@ body:not([data-theme="dark"]) .iconbtn--sun {
 }
 
 .idcard__foot {
-  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 16px;
+  margin-top: 12px;
   font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.1em;
+  font-size: 10px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.38);
 }
 
 .idcard__sig {
-  font-style: italic;
-  font-family: var(--font-display);
-  font-size: 15px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-style: normal;
   color: rgba(255, 255, 255, 0.55);
-  text-transform: none;
-  letter-spacing: 0;
+  letter-spacing: 0.12em;
 }
 
 /* ---------- experiment cards ---------- */
@@ -2096,10 +2115,13 @@ body:not([data-theme="dark"]) .iconbtn--sun {
 
   .homehero__grid {
     grid-template-columns: 1fr;
+    gap: 24px;
   }
 
   .homehero .idcard {
+    max-width: 400px;
     margin: 0 auto;
+    width: 100%;
   }
 
   .labgrid {
