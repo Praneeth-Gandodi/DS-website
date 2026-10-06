@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notebook — DS Lab</title>
+  <meta name="description" content="Jupyter-style notebook view of a lab experiment part with saved outputs." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230e7a63'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EDS%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+  <header id="site-nav"></header>
+
+  <!-- lab page content is rendered by js/lab.js into #lab-shell -->
+  <div id="lab-shell"></div>
+  <div id="notfound-slot"></div>
+
+  <footer id="site-foot"></footer>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="data/labs.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/lab.js"></script>
+</body>
+</html>

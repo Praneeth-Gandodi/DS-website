@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tools — DS Lab</title>
+  <meta name="description" content="The data science toolkit behind the lab record — environments, editors, libraries and data tools." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230e7a63'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EDS%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+  <header id="site-nav"></header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <span class="hero__eyebrow">Toolkit</span>
+        <h1 class="hero__title">The tools behind <em>the record</em>.</h1>
+        <p class="hero__desc">Everything the Data Science lab runs on — from Jupyter and pandas to SQLite browsers and Git. Each card links to the official docs.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:10px">
+      <div class="wrap">
+        <div class="toolgroup">
+          <p class="toolgroup__title">Environments</p>
+          <div class="toolgrid" id="tools-env"></div>
+        </div>
+        <div class="toolgroup">
+          <p class="toolgroup__title">Editors</p>
+          <div class="toolgrid" id="tools-editors"></div>
+        </div>
+        <div class="toolgroup">
+          <p class="toolgroup__title">Libraries</p>
+          <div class="toolgrid" id="tools-libraries"></div>
+        </div>
+        <div class="toolgroup">
+          <p class="toolgroup__title">Data &amp; versioning</p>
+          <div class="toolgrid" id="tools-data"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-foot"></footer>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="data/labs.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/tools.js"></script>
+</body>
+</html>

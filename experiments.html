@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Experiments — DS Lab</title>
+  <meta name="description" content="The full Data Science lab index — every experiment and every part, openable as a runnable notebook." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230e7a63'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EDS%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+  <header id="site-nav"></header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <span class="hero__eyebrow">Lab index</span>
+        <h1 class="hero__title">All experiments, <em>every part</em>.</h1>
+        <p class="hero__desc">The complete record — five experiments split into parts. Open any part to get its notebook with the exact saved outputs from the executed lab.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:10px">
+      <div class="wrap">
+        <div id="exp-blocks"></div>
+
+        <div class="cta">
+          <div>
+            <h2 class="cta__title">Jump back in</h2>
+            <p class="cta__sub">Open the first notebook, or browse what each lab covers on the Modules page.</p>
+          </div>
+          <div class="cta__actions">
+            <a class="btn btn--primary" href="lab.html?exp=1&part=a">Open EXP-1 · A</a>
+            <a class="btn btn--ghost" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.2);color:var(--card-ink)" href="modules.html">See modules</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-foot"></footer>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="data/labs.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/experiments.js"></script>
+</body>
+</html>

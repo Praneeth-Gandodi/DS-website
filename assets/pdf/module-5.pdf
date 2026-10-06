@@ -1,0 +1,48 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 6 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+6 0 obj
+<< /Length 775 >>
+stream
+BT /F2 20 Tf 64 780 Td (Module 5 - Data Visualization) Tj ET
+BT /F1 11 Tf 64 754 Td (Data Science Lab - syllabus sheet) Tj ET
+64 740 m 531 740 l S
+BT /F1 10.5 Tf 76 716 Td (-  Matplotlib figures & subplots) Tj ET
+BT /F1 10.5 Tf 76 700 Td (-  Seaborn statistical plots) Tj ET
+BT /F1 10.5 Tf 76 684 Td (-  Distributions: histogram & KDE) Tj ET
+BT /F1 10.5 Tf 76 668 Td (-  Comparisons: bars & box plots) Tj ET
+BT /F1 10.5 Tf 64 652 Td () Tj ET
+BT /F2 13 Tf 64 630 Td (Covered by) Tj ET
+BT /F1 10.5 Tf 64 614 Td (EXP-5 ? see the Experiments page.) Tj ET
+BT /F1 10.5 Tf 64 598 Td () Tj ET
+BT /F1 10.5 Tf 64 582 Td (Use this sheet as the reference for the unit while revising the experiment.) Tj ET
+BT /F1 9 Tf 64 46 Td (Mohan Babu University  -  Department of Data Science) Tj ET
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000000321 00000 n 
+0000000396 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+1222
+%%EOF

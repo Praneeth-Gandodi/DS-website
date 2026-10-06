@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DS Lab — GANDODI PRANEETH KUMAR · Mohan Babu University</title>
+  <meta name="description" content="Data Science Lab experiment record — 5 experiments, notebooks with saved outputs, modules and toolkit." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230e7a63'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EDS%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+  <header id="site-nav"></header>
+
+  <main>
+    <section class="homehero">
+      <div class="wrap">
+        <div class="homehero__grid">
+          <div>
+            <span class="hero__eyebrow">Data Science Lab · Experiment Record</span>
+            <h1 class="hero__title">The lab record, <em>alive</em> — every experiment readable and runnable.</h1>
+            <p class="hero__desc">Five completed experiments from the Data Science lab at Mohan Babu University, preserved as notebooks with the exact saved outputs from execution.</p>
+            <div style="display:flex;gap:12px;margin-top:26px;flex-wrap:wrap">
+              <a class="btn btn--primary" href="experiments.html">Browse experiments</a>
+              <a class="btn btn--ghost" href="#experiments">Jump to a lab</a>
+              <a class="btn btn--ghost" href="assets/pdf/lab-record.pdf" target="_blank" rel="noopener">Lab record PDF</a>
+            </div>
+            <div class="homehero__stats">
+              <div class="stat"><p class="stat__num" id="stat-labs">—</p><p class="stat__label">experiments</p></div>
+              <div class="stat"><p class="stat__num" id="stat-parts">—</p><p class="stat__label">parts</p></div>
+              <div class="stat"><p class="stat__num" id="stat-charts">13</p><p class="stat__label">saved charts</p></div>
+            </div>
+          </div>
+          <aside>
+            <article class="idcard" aria-label="Student ID card">
+              <p class="idcard__uni">Mohan Babu University</p>
+              <div class="idcard__head">
+                <div class="idcard__photoWrap">
+                  <div class="idcard__photo">GPK</div>
+                </div>
+                <div>
+                  <h2 class="idcard__uname">GANDODI PRANEETH KUMAR</h2>
+                  <span class="idcard__uroll">24102A030124</span>
+                </div>
+              </div>
+              <div class="idcard__rows">
+                <div class="idcard__row"><p class="idcard__k">Section</p><p class="idcard__v">DS2</p></div>
+                <div class="idcard__row"><p class="idcard__k">Subject</p><p class="idcard__v">Data Science Lab</p></div>
+                <div class="idcard__row"><p class="idcard__k">Faculty</p><p class="idcard__v">Bosubabu</p></div>
+                <div class="idcard__row"><p class="idcard__k">Designation</p><p class="idcard__v">Assistant Professor</p></div>
+              </div>
+              <div class="idcard__social">
+                <a class="socialbtn" href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener" aria-label="LinkedIn profile">in</a>
+                <a class="socialbtn" href="https://github.com/Praneeth-Gandodi" target="_blank" rel="noopener" aria-label="GitHub profile">gh</a>
+              </div>
+              <div class="idcard__foot">
+                <span>DS LAB · 2026</span>
+                <span class="idcard__sig">Praneeth</span>
+              </div>
+            </article>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experiments">
+      <div class="wrap">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow">Experiments</p>
+            <h2 class="section__title">Five labs, completed.</h2>
+            <p class="section__sub">Each card is one experiment. Pick a part — A, B, C — and it opens as a notebook where you can edit the code and run it to see the saved result.</p>
+          </div>
+          <a class="section__link" href="experiments.html">All details</a>
+        </div>
+        <div class="expgrid" id="exp-grid"></div>
+      </div>
+    </section>
+
+    <section class="section" style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+      <div class="wrap">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow">Modules</p>
+            <h2 class="section__title">What each lab covers</h2>
+            <p class="section__sub">The course modules behind the experiments — each with a syllabus sheet PDF on the Modules page.</p>
+          </div>
+          <a class="section__link" href="modules.html">All modules</a>
+        </div>
+        <div class="modgrid" id="mod-grid"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="cta">
+          <div>
+            <h2 class="cta__title">Ready to open the notebooks?</h2>
+            <p class="cta__sub">Every part opens as a Jupyter-style notebook — edit cells, run, see the saved outputs.</p>
+          </div>
+          <div class="cta__actions">
+            <a class="btn btn--primary" href="experiments.html">Open experiments</a>
+            <a class="btn btn--ghost" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.2);color:var(--card-ink)" href="tools.html">See the toolkit</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-foot"></footer>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="data/labs.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>

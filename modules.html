@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modules — DS Lab</title>
+  <meta name="description" content="Data Science Lab course modules with syllabus PDFs." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230e7a63'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EDS%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+  <header id="site-nav"></header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <span class="hero__eyebrow">Course modules</span>
+        <h1 class="hero__title">Five modules, <em>one record</em>.</h1>
+        <p class="hero__desc">Each module maps to one experiment. Open a syllabus sheet as a PDF — it lists the topics that lab covers, ready for revision or submission.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:10px">
+      <div class="wrap">
+        <div class="pdfhero">
+          <div class="pdfhero__panel">
+            <div class="section__head" style="margin-bottom:14px">
+              <div>
+                <p class="eyebrow">PDF viewer</p>
+                <h2 class="section__title" style="font-size:22px">Syllabus sheets</h2>
+              </div>
+            </div>
+            <iframe id="pdf-frame" class="pdfhero__frame" src="assets/pdf/lab-record.pdf" title="PDF viewer"></iframe>
+          </div>
+          <aside class="pdfhero__side">
+            <p class="labnav__title" style="margin-bottom:2px">Documents</p>
+            <button class="filecard filecard--on" data-src="assets/pdf/lab-record.pdf">
+              <span class="filecard__icon">PDF</span>
+              <span><span class="filecard__t">Lab record</span><span class="filecard__s">Full experiment index</span></span>
+            </button>
+            <button class="filecard" data-src="assets/pdf/module-1.pdf">
+              <span class="filecard__icon">PDF</span>
+              <span><span class="filecard__t">Module 1 — Data Acquisition &amp; I/O</span><span class="filecard__s">EXP-1 · syllabus sheet</span></span>
+            </button>
+            <button class="filecard" data-src="assets/pdf/module-2.pdf">
+              <span class="filecard__icon">PDF</span>
+              <span><span class="filecard__t">Module 2 — Web &amp; Database Data</span><span class="filecard__s">EXP-2 · syllabus sheet</span></span>
+            </button>
+            <button class="filecard" data-src="assets/pdf/module-3.pdf">
+              <span class="filecard__icon">PDF</span>
+              <span><span class="filecard__t">Module 3 — Cleaning &amp; Preprocessing</span><span class="filecard__s">EXP-3 · syllabus sheet</span></span>
+            </button>
+            <button class="filecard" data-src="assets/pdf/module-4.pdf">
+              <span class="filecard__icon">PDF</span>
+              <span><span class="filecard__t">Module 4 — Hierarchical Indexing</span><span class="filecard__s">EXP-4 · syllabus sheet</span></span>
+            </button>
+            <button class="filecard" data-src="assets/pdf/module-5.pdf">
+              <span class="filecard__icon">PDF</span>
+              <span><span class="filecard__t">Module 5 — Data Visualization</span><span class="filecard__s">EXP-5 · syllabus sheet</span></span>
+            </button>
+          </aside>
+        </div>
+
+        <div class="section__head" style="margin-top:44px">
+          <div>
+            <p class="eyebrow">Modules</p>
+            <h2 class="section__title">What each lab covers</h2>
+            <p class="section__sub">Every module maps to one experiment — open its PDF or jump straight to the notebook.</p>
+          </div>
+          <a class="section__link" href="experiments.html">Experiments</a>
+        </div>
+        <div class="modgrid" id="mod-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-foot"></footer>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="data/labs.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/modules.js"></script>
+</body>
+</html>

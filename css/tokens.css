@@ -1,0 +1,116 @@
+/* ============================================================
+   DS Lab — design tokens
+   Light academic paper theme + dark companion.
+   ============================================================ */
+
+:root {
+  /* type */
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+
+  /* surfaces — cool paper, not cream */
+  --paper: #f5f7f9;
+  --surface: #ffffff;
+  --surface-2: #edf1f5;
+  --surface-3: #e4eaf0;
+
+  /* ink */
+  --ink: #17222d;
+  --ink-2: #4e5f72;
+  --ink-3: #8794a3;
+
+  /* lines */
+  --line: #e1e7ee;
+  --line-strong: #ccd6e0;
+
+  /* accent — lab teal */
+  --accent: #0e7a63;
+  --accent-ink: #0a5c4b;
+  --accent-soft: #e2f0eb;
+  --accent-line: #b5d8cd;
+
+  /* status */
+  --danger: #b3372f;
+  --danger-soft: #f9eae8;
+  --danger-line: #e7c2be;
+
+  /* id card */
+  --card-bg: #101b26;
+  --card-bg-2: #1a2c3d;
+  --card-ink: #f2f6f9;
+  --card-ink-2: #9fb2c4;
+
+  /* code (light) */
+  --code-bg: #fbfcfe;
+  --code-ink: #24313f;
+  --code-kw: #7c3aed;
+  --code-st: #0e7490;
+  --code-nu: #b45309;
+  --code-cm: #94a1b0;
+  --code-fn: #0f5aa8;
+  --code-de: #b45309;
+  --out-bg: #ffffff;
+
+  /* geometry */
+  --r-s: 8px;
+  --r-m: 12px;
+  --r-l: 18px;
+
+  /* elevation */
+  --sh-s: 0 1px 2px rgba(23, 34, 45, 0.05);
+  --sh-m: 0 2px 6px rgba(23, 34, 45, 0.06), 0 12px 32px -18px rgba(23, 34, 45, 0.18);
+  --sh-l: 0 4px 12px rgba(23, 34, 45, 0.08), 0 32px 64px -32px rgba(23, 34, 45, 0.28);
+  --ring: 0 0 0 3px rgba(14, 122, 99, 0.28);
+
+  /* layout */
+  --nav-h: 64px;
+  --wrap: 1180px;
+
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --paper: #0c1218;
+  --surface: #121a23;
+  --surface-2: #1a2531;
+  --surface-3: #223040;
+
+  --ink: #e7edf4;
+  --ink-2: #a3b2c4;
+  --ink-3: #6d7d90;
+
+  --line: #223041;
+  --line-strong: #334559;
+
+  --accent: #38c39e;
+  --accent-ink: #5cd4b4;
+  --accent-soft: #12332c;
+  --accent-line: #1f4d41;
+
+  --danger: #e5766c;
+  --danger-soft: #341e1c;
+  --danger-line: #5c312c;
+
+  --card-bg: #16202c;
+  --card-bg-2: #1c2b3a;
+  --card-ink: #f2f6f9;
+  --card-ink-2: #9fb2c4;
+
+  --code-bg: #0e151d;
+  --code-ink: #d7e0ea;
+  --code-kw: #c398f0;
+  --code-st: #6fcab8;
+  --code-nu: #e0aa62;
+  --code-cm: #5d6f82;
+  --code-fn: #82aaff;
+  --code-de: #e0aa62;
+  --out-bg: #0e151d;
+
+  --sh-s: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --sh-m: 0 2px 6px rgba(0, 0, 0, 0.45), 0 12px 32px -18px rgba(0, 0, 0, 0.55);
+  --sh-l: 0 4px 12px rgba(0, 0, 0, 0.5), 0 32px 64px -32px rgba(0, 0, 0, 0.7);
+  --ring: 0 0 0 3px rgba(56, 195, 158, 0.3);
+
+  color-scheme: dark;
+}
