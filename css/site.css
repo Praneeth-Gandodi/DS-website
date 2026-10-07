@@ -618,12 +618,11 @@ body:not([data-theme="dark"]) .iconbtn--sun {
 
 .hero__title {
   font-family: var(--font-display);
-  font-size: clamp(26px, 3.4vw, 38px);
-  line-height: 1.14;
+  font-size: clamp(28px, 3.2vw, 40px);
+  line-height: 1.1;
   font-weight: 700;
   letter-spacing: -0.02em;
   margin-top: 16px;
-  max-width: 560px;
 }
 
 .hero__title em {
@@ -637,9 +636,17 @@ body:not([data-theme="dark"]) .iconbtn--sun {
 
 .hero__desc {
   margin-top: 12px;
-  max-width: 520px;
+  max-width: 540px;
   font-size: 15px;
+  line-height: 1.65;
   color: var(--ink-2);
+}
+
+.homehero__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+  flex-wrap: wrap;
 }
 
 /* home hero layout — compact identity band, card leads */
@@ -661,30 +668,26 @@ body:not([data-theme="dark"]) .iconbtn--sun {
 
 .homehero__stats {
   display: flex;
-  gap: 0;
-  margin-top: 22px;
-  border: 1px solid var(--line);
-  border-radius: var(--r-m);
-  background: var(--surface);
-  box-shadow: var(--sh-s);
-  overflow: hidden;
-  max-width: 560px;
+  gap: 28px;
+  margin-top: 24px;
 }
 
 .stat {
-  flex: 1;
-  padding: 11px 16px;
+  flex: none;
+  padding: 0;
 }
 
 .stat + .stat {
+  padding-left: 28px;
   border-left: 1px solid var(--line);
 }
 
 .stat__num {
   font-family: var(--font-mono);
-  font-size: 20px;
+  font-size: 21px;
   font-weight: 600;
   color: var(--ink);
+  line-height: 1.2;
 }
 
 .stat__label {
@@ -2199,11 +2202,11 @@ body:not([data-theme="dark"]) .iconbtn--sun {
   }
 
   .homehero__stats {
-    flex-wrap: wrap;
+    gap: 20px;
   }
 
-  .stat {
-    flex: 1 1 40%;
+  .stat + .stat {
+    padding-left: 20px;
   }
 }
 
