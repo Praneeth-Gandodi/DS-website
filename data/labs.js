@@ -14,9 +14,9 @@ window.DSLAB_DATA = {
    "github": "https://github.com/Praneeth-Gandodi"
   },
   "stats": {
-   "labs": 5,
-   "parts": 16,
-   "cells": 95,
+   "labs": 6,
+   "parts": 20,
+   "cells": 105,
    "charts": 13
   }
  },
@@ -1152,6 +1152,137 @@ window.DSLAB_DATA = {
           "assets/outputs/lab5-e-20-1.png"
          ],
          "text": "<Figure size 800x500 with 1 Axes>"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "code": "EXP-6",
+   "title": "Time Series Analysis",
+   "summary": "Build time series from dates, localize and convert time zones, work with Periods and frequencies, and resample / upsample / downsample data.",
+   "tags": [
+    "pandas",
+    "datetime",
+    "periods",
+    "resampling"
+   ],
+   "parts": [
+    {
+     "id": "a",
+     "label": "A",
+     "title": "Creating time series",
+     "desc": "Build a Series indexed by a DatetimeIndex from date strings and values, and generate date ranges.",
+     "cells": [
+      {
+       "src": "import pandas as pd",
+       "outputs": []
+      },
+      {
+       "src": "dates = pd.to_datetime([\n    '2001-08-03',\n    '2007-07-02',\n    '2008-03-08',\n    '2016-04-03',\n    '2015-06-02'\n])\ntemperature = [30, 40, 27, 30, 23]\ntime_series = pd.Series(\n    temperature,\n    index=dates\n)\nprint(\"Time Series:\")\nprint(time_series)\n\n",
+       "outputs": [
+        {
+         "kind": "stream",
+         "text": "Time Series:\n2001-08-03    30\n2007-07-02    40\n2008-03-08    27\n2016-04-03    30\n2015-06-02    23\ndtype: int64\n"
+        }
+       ]
+      },
+      {
+       "src": "date_index = pd.date_range(\n    start='2027-08-03',\n    periods=7,\n    freq='D'\n)\nprint(\"Generated DatetimeIndex:\")\nprint(date_index)\n",
+       "outputs": [
+        {
+         "kind": "stream",
+         "text": "Generated DatetimeIndex:\nDatetimeIndex(['2027-08-03', '2027-08-04', '2027-08-05', '2027-08-06',\n               '2027-08-07', '2027-08-08', '2027-08-09'],\n              dtype='datetime64[us]', freq='D')\n"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "b",
+     "label": "B",
+     "title": "Time zones",
+     "desc": "Localize naive timestamps to Asia/Kolkata and convert them to America/New_York.",
+     "cells": [
+      {
+       "src": "\nindia_dates = pd.date_range(\n    start='2007-08-03 09:00',\n    periods=3,\n    freq='h',\n    tz='Asia/Kolkata'\n)\nprint(\"1. Date Range with Asia/Kolkata Time Zone:\")\nprint(india_dates)\n",
+       "outputs": [
+        {
+         "kind": "stream",
+         "text": "1. Date Range with Asia/Kolkata Time Zone:\nDatetimeIndex(['2007-08-03 09:00:00+05:30', '2007-08-03 10:00:00+05:30',\n               '2007-08-03 11:00:00+05:30'],\n              dtype='datetime64[us, Asia/Kolkata]', freq='h')\n"
+        }
+       ]
+      },
+      {
+       "src": "\nlocalized_dates = dates.tz_localize('Asia/Kolkata')\n\nprint(\"\\n3. After Localizing to Asia/Kolkata:\")\nprint(localized_dates)\n",
+       "outputs": [
+        {
+         "kind": "stream",
+         "text": "\n3. After Localizing to Asia/Kolkata:\nDatetimeIndex(['2001-08-03 00:00:00+05:30', '2007-07-02 00:00:00+05:30',\n               '2008-03-08 00:00:00+05:30', '2016-04-03 00:00:00+05:30',\n               '2015-06-02 00:00:00+05:30'],\n              dtype='datetime64[us, Asia/Kolkata]', freq=None)\n"
+        }
+       ]
+      },
+      {
+       "src": "new_york_dates = localized_dates.tz_convert(\n    'America/New_York'\n)\n\nprint(\"\\n4. Converted to America/New_York:\")\nprint(new_york_dates)\n",
+       "outputs": [
+        {
+         "kind": "stream",
+         "text": "\n4. Converted to America/New_York:\nDatetimeIndex(['2001-08-02 14:30:00-04:00', '2007-07-01 14:30:00-04:00',\n               '2008-03-07 13:30:00-05:00', '2016-04-02 14:30:00-04:00',\n               '2015-06-01 14:30:00-04:00'],\n              dtype='datetime64[us, America/New_York]', freq=None)\n"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "c",
+     "label": "C",
+     "title": "Periods & frequencies",
+     "desc": "Period arithmetic, asfreq conversion between monthly and daily, and converting Series/DataFrames to periods.",
+     "cells": [
+      {
+       "src": "\np = pd.Period('2007-08', freq='M')\nprint(\"Original Period:\")\nprint(p)\nprint(\"\\nAfter adding 2:\")\nprint(p + 2)\nprint(\"\\nAfter adding 5:\")\nprint(p + 5)\nprint(\"\\nAfter subtracting 1:\")\nprint(p - 1)\nprint(\"\\nAfter subtracting 3:\")\nprint(p - 3)\nperiods = pd.period_range(\n    start='2026-01',\n    periods=6,\n    freq='M'\n)\nprint(\"\\nRange of Periods:\")\nprint(periods)",
+       "outputs": [
+        {
+         "kind": "stream",
+         "text": "Original Period:\n2007-08\n\nAfter adding 2:\n2007-10\n\nAfter adding 5:\n2008-01\n\nAfter subtracting 1:\n2007-07\n\nAfter subtracting 3:\n2007-05\n\nRange of Periods:\nPeriodIndex(['2026-01', '2026-02', '2026-03', '2026-04', '2026-05', '2026-06'], dtype='period[M]')\n"
+        }
+       ]
+      },
+      {
+       "src": "p = pd.Period('2007-08', freq='M')\nprint(\"Original Period:\")\nprint(p)\ndaily_start = p.asfreq('D', how='start')\nprint(\"\\nMonthly Period converted to Daily (Start):\")\nprint(daily_start)\ndaily_end = p.asfreq('D', how='end')\nprint(\"\\nMonthly Period converted to Daily (End):\")\nprint(daily_end)\nperiod_index = pd.period_range(\n    start='2007-08',\n    periods=3,\n    freq='M'\n)\nprint(\"\\nOriginal PeriodIndex:\")\nprint(period_index)\ndaily_period_index = period_index.asfreq(\n    'D',\n    how='start'\n)\nprint(\"\\nPeriodIndex converted to Daily Frequency:\")\nprint(daily_period_index)\ndaily_period_index_end = period_index.asfreq(\n    'D',\n    how='end'\n)\nprint(\"\\nPeriodIndex converted to Daily Frequency (End):\")\nprint(daily_period_index_end)\n",
+       "outputs": [
+        {
+         "kind": "stream",
+         "text": "Original Period:\n2007-08\n\nMonthly Period converted to Daily (Start):\n2007-08-01\n\nMonthly Period converted to Daily (End):\n2007-08-31\n\nOriginal PeriodIndex:\nPeriodIndex(['2007-08', '2007-09', '2007-10'], dtype='period[M]')\n\nPeriodIndex converted to Daily Frequency:\nPeriodIndex(['2007-08-01', '2007-09-01', '2007-10-01'], dtype='period[D]')\n\nPeriodIndex converted to Daily Frequency (End):\nPeriodIndex(['2007-08-31', '2007-09-30', '2007-10-31'], dtype='period[D]')\n"
+        }
+       ]
+      },
+      {
+       "src": "\ndates = pd.to_datetime([\n    '2007-01-8',\n    '2008-04-5',\n    '2009-06-3',\n    '2010-08-2'\n])\nsales = pd.Series(\n    [1000, 1500, 1800, 2200],\n    index=dates\n)\nprint(\"Original Series:\")\nprint(sales)\nperiod_series = sales.to_period('M')\nprint(\"\\nSeries converted to Monthly Periods:\")\nprint(period_series)\ndf = pd.DataFrame(\n    {\n        'Sales': [1000, 1500, 1800, 2200],\n        'Profit': [200, 300, 400, 500]\n    },\n    index=dates\n)\n\nprint(\"\\nOriginal DataFrame:\")\nprint(df)\nperiod_df = df.to_period('M')\nprint(\"\\nDataFrame converted to Monthly Periods:\")\nprint(period_df)\n",
+       "outputs": [
+        {
+         "kind": "stream",
+         "text": "Original Series:\n2007-01-08    1000\n2008-04-05    1500\n2009-06-03    1800\n2010-08-02    2200\ndtype: int64\n\nSeries converted to Monthly Periods:\n2007-01    1000\n2008-04    1500\n2009-06    1800\n2010-08    2200\nFreq: M, dtype: int64\n\nOriginal DataFrame:\n            Sales  Profit\n2007-01-08   1000     200\n2008-04-05   1500     300\n2009-06-03   1800     400\n2010-08-02   2200     500\n\nDataFrame converted to Monthly Periods:\n         Sales  Profit\n2007-01   1000     200\n2008-04   1500     300\n2009-06   1800     400\n2010-08   2200     500\n"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "d",
+     "label": "D",
+     "title": "Resampling",
+     "desc": "Resample hourly data to 3-hour and 4-hour aggregates, and upsample with forward fill.",
+     "cells": [
+      {
+       "src": "\ndates = pd.date_range(\n    start='2007-08-03 03:00',\n    periods=12,\n    freq='h'\n)\n\nvalues = [10, 12, 15, 14, 18, 20,\n          22, 21, 25, 28, 30, 32]\n\ntime_series = pd.Series(\n    values,\n    index=dates\n)\n\nprint(\"Original Hourly Time Series:\")\nprint(time_series)\n #2. Resampling - calculate 3-hourly mean\nresampled = time_series.resample('3h').mean()\nprint(\"\\nResampled Time Series - 3 Hour Mean:\")\nprint(resampled)\n #3. Downsampling - Hourly to 4-hourly\ndownsampled = time_series.resample('4h').sum()\nprint(\"\\nDownsampled Time Series - 4 Hour Sum:\")\nprint(downsampled)\n #4. Upsampling - Hourly to 30-minute intervals\nupsampled = time_series.resample('30min').asfreq()\nprint(\"\\nUpsampled Time Series - 30 Minute:\")\nprint(upsampled)\n# 5. Upsampling with Forward Fill\nupsampled_ffill = time_series.resample('30min').ffill()\nprint(\"\\nUpsampled Time Series using Forward Fill:\")\nprint(upsampled_ffill)\n",
+       "outputs": [
+        {
+         "kind": "stream",
+         "text": "Original Hourly Time Series:\n2007-08-03 03:00:00    10\n2007-08-03 04:00:00    12\n2007-08-03 05:00:00    15\n2007-08-03 06:00:00    14\n2007-08-03 07:00:00    18\n2007-08-03 08:00:00    20\n2007-08-03 09:00:00    22\n2007-08-03 10:00:00    21\n2007-08-03 11:00:00    25\n2007-08-03 12:00:00    28\n2007-08-03 13:00:00    30\n2007-08-03 14:00:00    32\nFreq: h, dtype: int64\n\nResampled Time Series - 3 Hour Mean:\n2007-08-03 03:00:00    12.333333\n2007-08-03 06:00:00    17.333333\n2007-08-03 09:00:00    22.666667\n2007-08-03 12:00:00    30.000000\nFreq: 3h, dtype: float64\n\nDownsampled Time Series - 4 Hour Sum:\n2007-08-03 00:00:00    10\n2007-08-03 04:00:00    59\n2007-08-03 08:00:00    88\n2007-08-03 12:00:00    90\nFreq: 4h, dtype: int64\n\nUpsampled Time Series - 30 Minute:\n2007-08-03 03:00:00    10.0\n2007-08-03 03:30:00     NaN\n2007-08-03 04:00:00    12.0\n2007-08-03 04:30:00     NaN\n2007-08-03 05:00:00    15.0\n2007-08-03 05:30:00     NaN\n2007-08-03 06:00:00    14.0\n2007-08-03 06:30:00     NaN\n2007-08-03 07:00:00    18.0\n2007-08-03 07:30:00     NaN\n2007-08-03 08:00:00    20.0\n2007-08-03 08:30:00     NaN\n2007-08-03 09:00:00    22.0\n2007-08-03 09:30:00     NaN\n2007-08-03 10:00:00    21.0\n2007-08-03 10:30:00     NaN\n2007-08-03 11:00:00    25.0\n2007-08-03 11:30:00     NaN\n2007-08-03 12:00:00    28.0\n2007-08-03 12:30:00     NaN\n2007-08-03 13:00:00    30.0\n2007-08-03 13:30:00     NaN\n2007-08-03 14:00:00    32.0\nFreq: 30min, dtype: float64\n\nUpsampled Time Series using Forward Fill:\n2007-08-03 03:00:00    10\n2007-08-03 03:30:00    10\n2007-08-03 04:00:00    12\n2007-08-03 04:30:00    12\n2007-08-03 05:00:00    15\n2007-08-03 05:30:00    15\n2007-08-03 06:00:00    14\n2007-08-03 06:30:00    14\n2007-08-03 07:00:00    18\n2007-08-03 07:30:00    18\n2007-08-03 08:00:00    20\n2007-08-03 08:30:00    20\n2007-08-03 09:00:00    22\n2007-08-03 09:30:00    22\n2007-08-03 10:00:00    21\n2007-08-03 10:30:00    21\n2007-08-03 11:00:00    25\n2007-08-03 11:30:00    25\n2007-08-03 12:00:00    28\n2007-08-03 12:30:00    28\n2007-08-03 13:00:00    30\n2007-08-03 13:30:00    30\n2007-08-03 14:00:00    32\nFreq: 30min, dtype: int64\n"
         }
        ]
       }

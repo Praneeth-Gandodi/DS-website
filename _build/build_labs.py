@@ -217,6 +217,33 @@ PLAN = [
             },
         ],
     },
+    {
+        "id": 6, "code": "EXP-6", "title": "Time Series Analysis",
+        "summary": "Build time series from dates, localize and convert time zones, work with Periods and frequencies, and resample / upsample / downsample data.",
+        "tags": ["pandas", "datetime", "periods", "resampling"],
+        "parts": [
+            {
+                "id": "a", "label": "A", "title": "Creating time series",
+                "desc": "Build a Series indexed by a DatetimeIndex from date strings and values, and generate date ranges.",
+                "file": "LAB_6/6all.ipynb", "rng": [0, 2],
+            },
+            {
+                "id": "b", "label": "B", "title": "Time zones",
+                "desc": "Localize naive timestamps to Asia/Kolkata and convert them to America/New_York.",
+                "file": "LAB_6/6all.ipynb", "rng": [3, 5],
+            },
+            {
+                "id": "c", "label": "C", "title": "Periods & frequencies",
+                "desc": "Period arithmetic, asfreq conversion between monthly and daily, and converting Series/DataFrames to periods.",
+                "file": "LAB_6/6all.ipynb", "rng": [6, 8],
+            },
+            {
+                "id": "d", "label": "D", "title": "Resampling",
+                "desc": "Resample hourly data to 3-hour and 4-hour aggregates, and upsample with forward fill.",
+                "file": "LAB_6/6all.ipynb", "rng": [9, 9],
+            },
+        ],
+    },
 ]
 
 MODULES = [

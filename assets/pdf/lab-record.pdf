@@ -15,7 +15,7 @@ endobj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
 endobj
 6 0 obj
-<< /Length 1324 >>
+<< /Length 1407 >>
 stream
 BT /F2 20 Tf 64 780 Td (Data Science Lab - Experiment Record) Tj ET
 BT /F1 11 Tf 64 754 Td (Student: GANDODI PRANEETH KUMAR - Roll 24102A030124 - Section DS2) Tj ET
@@ -26,13 +26,14 @@ BT /F1 10.5 Tf 64 678 Td (EXP-2  Data from APIs & SQL  \(parts A, B\)) Tj ET
 BT /F1 10.5 Tf 64 662 Td (EXP-3  Data Cleaning & Preprocessing  \(parts A, B, C\)) Tj ET
 BT /F1 10.5 Tf 64 646 Td (EXP-4  Hierarchical Indexing \(MultiIndex\)  \(parts A, B\)) Tj ET
 BT /F1 10.5 Tf 64 630 Td (EXP-5  Data Visualization with Matplotlib & Seaborn  \(parts EDA, A, B, C, D, E\)) Tj ET
-BT /F1 10.5 Tf 64 614 Td () Tj ET
-BT /F2 13 Tf 64 592 Td (How to read the record) Tj ET
-BT /F1 10.5 Tf 76 576 Td (-  Open the Experiments page and pick a part \(A, B, C, ...\).) Tj ET
-BT /F1 10.5 Tf 76 560 Td (-  Each part opens as a notebook: edit any cell, press Run to see) Tj ET
-BT /F1 10.5 Tf 64 544 Td (  the saved output from the real executed lab record.) Tj ET
-BT /F1 10.5 Tf 76 528 Td (-  Course modules and syllabus PDFs live on the Modules page.) Tj ET
-BT /F1 10.5 Tf 76 512 Td (-  The toolkit behind the record is listed on the Tools page.) Tj ET
+BT /F1 10.5 Tf 64 614 Td (EXP-6  Time Series Analysis  \(parts A, B, C, D\)) Tj ET
+BT /F1 10.5 Tf 64 598 Td () Tj ET
+BT /F2 13 Tf 64 576 Td (How to read the record) Tj ET
+BT /F1 10.5 Tf 76 560 Td (-  Open the Experiments page and pick a part \(A, B, C, ...\).) Tj ET
+BT /F1 10.5 Tf 76 544 Td (-  Each part opens as a notebook: edit any cell, press Run to see) Tj ET
+BT /F1 10.5 Tf 64 528 Td (  the saved output from the real executed lab record.) Tj ET
+BT /F1 10.5 Tf 76 512 Td (-  Course modules and syllabus PDFs live on the Modules page.) Tj ET
+BT /F1 10.5 Tf 76 496 Td (-  The toolkit behind the record is listed on the Tools page.) Tj ET
 BT /F1 9 Tf 64 46 Td (Mohan Babu University  -  Department of Data Science) Tj ET
 endstream
 endobj
@@ -48,5 +49,5 @@ xref
 trailer
 << /Size 7 /Root 1 0 R >>
 startxref
-1772
+1855
 %%EOF
