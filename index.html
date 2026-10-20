@@ -1,122 +1,770 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark" class="no-js">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DS Lab — GANDODI PRANEETH KUMAR · Mohan Babu University</title>
-  <meta name="description" content="Data Science Lab experiment record — 5 experiments, notebooks with saved outputs, modules and toolkit." />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230e7a63'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EDS%3C/text%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="css/tokens.css" />
-  <link rel="stylesheet" href="css/site.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DS Lab — GANDODI PRANEETH KUMAR · Data Science Laboratory</title>
+<meta name="description" content="The Data Science Lab experiment record for CSE (DS) — 6 experiments, 20 parts and 105 saved notebook cells, with course modules and the toolkit behind them.">
+<meta name="author" content="GANDODI PRANEETH KUMAR">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0a0a0c">
+<meta property="og:title" content="DS Lab — the experiment record">
+<meta property="og:description" content="Six experiments, twenty parts, saved outputs. Data Science Laboratory, CSE (DS) — 2.">
+<meta property="og:type" content="website">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0a0c'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23ff5a1f' text-anchor='middle'%3EDS%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&family=Inter+Tight:ital,wght@0,300..600;1,400&family=Instrument+Serif:ital@0;1&display=swap">
+
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/sections.css">
+
+<!-- Theme applied before first paint so there is never a flash. -->
+<script>
+  (function () {
+    document.documentElement.classList.remove('no-js');
+    try {
+      var saved = localStorage.getItem('dslab-theme');
+      var wantsLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (wantsLight ? 'light' : 'dark');
+    } catch (e) {}
+  })();
+</script>
 </head>
+
 <body>
-  <header id="site-nav"></header>
 
-  <main>
-    <section class="homehero">
-      <div class="wrap">
-        <div class="homehero__grid">
-          <aside class="homehero__aside">
-            <article class="idcard" aria-label="Student ID card">
-              <div class="idcard__uni">
-                <span>Mohan Babu University</span>
-                <span class="idcard__yr">2026</span>
+<!-- ======================================================================
+     ICON SPRITE — every glyph on the page, defined once.
+     ====================================================================== -->
+<svg class="sr-only" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.2 12 4l8 7.2V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v5.6L4.8 18a1 1 0 0 0 .9 1.5h12.6A1 1 0 0 0 19.2 18L14 8.6V3"/><path d="M7.4 14h9.2"/></symbol>
+  <symbol id="i-pdf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7z"/><path d="M14 3v4h4M8.5 13h7M8.5 16.5h4.5"/></symbol>
+  <symbol id="i-tools" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 8h6M14 8h6M4 16h10M18 16h2"/><circle cx="12" cy="8" r="2"/><circle cx="16" cy="16" r="2"/></symbol>
+  <symbol id="i-id" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><circle cx="8.5" cy="11" r="2.2"/><path d="M5.2 17c.7-1.8 1.9-2.6 3.3-2.6s2.6.8 3.3 2.6M14.5 10h4.5M14.5 13.5h4.5"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 6.5A2.5 2.5 0 0 0 12.5 4h-6A2.5 2.5 0 0 0 4 6.5v6A2.5 2.5 0 0 0 6.5 15"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 7h18M3 17h12"/></symbol>
+  <symbol id="i-top" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5S9.5 4.5 4 4.5v13c5.5 0 8 2 8 2s2.5-2 8-2v-13c-5.5 0-8 2-8 2Z"/><path d="M12 6.5v13"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 20.5 7v10L12 21 3.5 17V7z"/><path d="M12 12v9M12 12l8.5-5M12 12 3.5 7"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18h10a4 4 0 0 0 .5-7.97A6 6 0 0 0 6 9.5 3.5 3.5 0 0 0 7 18Z"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-5 6 5 6M16 6l5 6-5 6M14 4l-4 16"/></symbol>
+  <symbol id="i-table" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M9.5 9.5v10M3.5 14.5h17"/></symbol>
+  <symbol id="i-sigma" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4.5h12l-6 7.5 6 7.5H6"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 20V11M10 20V5M16 20v-6M22 20H2"/></symbol>
+  <symbol id="i-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-.9.8-1.7 1.7-1.7h1.7A4.8 4.8 0 0 0 21 10.4C21 6.3 16.9 3 12 3Z"/><circle cx="8" cy="10" r="1"/><circle cx="12" cy="7.5" r="1"/><circle cx="16" cy="10" r="1"/></symbol>
+  <symbol id="i-db" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><ellipse cx="12" cy="6" rx="7.5" ry="3"/><path d="M4.5 6v12c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V6"/><path d="M4.5 12c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3"/></symbol>
+  <symbol id="i-branch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="7" cy="6" r="2.2"/><circle cx="7" cy="18" r="2.2"/><circle cx="17" cy="9" r="2.2"/><path d="M7 8.2v7.6M17 11.2c0 3-4 3.8-7 4.2"/></symbol>
+</svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ======================================================================
+     PRELOADER
+     ====================================================================== -->
+<div class="preloader" id="preloader" role="status" aria-live="polite" aria-label="Loading">
+  <div class="preloader__panel"></div>
+  <div class="preloader__panel"></div>
+  <div class="preloader__panel"></div>
+  <div class="preloader__panel"></div>
+  <div class="preloader__panel"></div>
+  <div class="preloader__panel"></div>
+  <div class="preloader__ui">
+    <div class="preloader__row">
+      <span class="preloader__meta">Mohan Babu University · Dept. of Data Science</span>
+      <span class="preloader__meta">CSE (DS) — 2 · 2026</span>
+    </div>
+    <div>
+      <div class="preloader__word" aria-hidden="true">DS LAB</div>
+      <div class="preloader__row">
+        <span class="preloader__meta" id="preloader-status">Loading record</span>
+        <span class="preloader__num"><span id="preloader-count">000</span>%</span>
+      </div>
+      <div class="preloader__bar"><i id="preloader-bar"></i></div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================================
+     AMBIENCE
+     ====================================================================== -->
+<div class="aurora" aria-hidden="true">
+  <div class="aurora__orb aurora__orb--a"></div>
+  <div class="aurora__orb aurora__orb--b"></div>
+  <div class="aurora__orb aurora__orb--c"></div>
+</div>
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<div class="progress" aria-hidden="true"><div class="progress__bar" id="progress-bar"></div></div>
+
+<!-- ======================================================================
+     NAV
+     ====================================================================== -->
+<header class="nav" id="nav">
+  <div class="shell nav__inner">
+    <a class="nav__brand" href="index.html" aria-label="DS Lab home">
+      <span class="nav__mark" aria-hidden="true">DS</span>
+      DS LAB
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      <a class="nav__link" href="index.html" aria-current="page"><span>Home</span></a>
+      <a class="nav__link" href="modules.html"><span>Modules</span></a>
+      <a class="nav__link" href="experiments.html"><span>Experiments</span></a>
+      <a class="nav__link" href="tools.html"><span>Tools</span></a>
+    </nav>
+
+    <div class="nav__actions">
+      <button class="nav__search" type="button" data-palette-open aria-label="Search pages, sections and commands">
+        <svg width="15" height="15" aria-hidden="true"><use href="#i-search"/></svg>
+        <span>Search</span>
+        <span class="kbd" aria-hidden="true">⌘K</span>
+      </button>
+      <button class="icon-btn" type="button" id="theme-toggle" aria-label="Switch to light theme">
+        <svg width="17" height="17" aria-hidden="true" data-icon-dark><use href="#i-moon"/></svg>
+        <svg width="17" height="17" aria-hidden="true" data-icon-light hidden><use href="#i-sun"/></svg>
+      </button>
+      <button class="icon-btn nav__burger" type="button" id="menu-open" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+        <svg width="18" height="18" aria-hidden="true"><use href="#i-menu"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ======================================================================
+     MOBILE MENU
+     ====================================================================== -->
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Main menu" hidden>
+  <div class="menu__top">
+    <span class="eyebrow">Navigate</span>
+    <button class="icon-btn" type="button" id="menu-close" aria-label="Close menu">
+      <svg width="18" height="18" aria-hidden="true"><use href="#i-close"/></svg>
+    </button>
+  </div>
+  <nav class="menu__list" aria-label="Menu">
+    <a class="menu__link" href="index.html" style="--i:0"><i>01</i> Home</a>
+    <a class="menu__link" href="modules.html" style="--i:1"><i>02</i> Modules</a>
+    <a class="menu__link" href="experiments.html" style="--i:2"><i>03</i> Experiments</a>
+    <a class="menu__link" href="tools.html" style="--i:3"><i>04</i> Tools</a>
+  </nav>
+  <div class="menu__meta">
+    <a href="https://github.com/Praneeth-Gandodi" target="_blank" rel="noopener">GitHub</a>
+    <button type="button" data-palette-open style="display:inline-flex;align-items:center;gap:.5rem">
+      <svg width="14" height="14" aria-hidden="true"><use href="#i-search"/></svg> Search
+    </button>
+    <span>CSE (DS) — 2</span>
+  </div>
+</div>
+
+<!-- ======================================================================
+     COMMAND PALETTE
+     ====================================================================== -->
+<div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command palette" hidden>
+  <div class="palette__dialog">
+    <div class="palette__search">
+      <svg width="17" height="17" aria-hidden="true"><use href="#i-search"/></svg>
+      <input class="palette__input" id="palette-input" type="text" placeholder="Jump to a page or section, or run a command…"
+             role="combobox" aria-expanded="true" aria-controls="palette-list" aria-autocomplete="list" autocomplete="off" spellcheck="false">
+      <span class="kbd">ESC</span>
+    </div>
+    <div class="palette__list" id="palette-list" role="listbox" aria-label="Results"></div>
+    <div class="palette__foot">
+      <span><span class="kbd">↑↓</span> Navigate</span>
+      <span><span class="kbd">↵</span> Select</span>
+      <span><span class="kbd">ESC</span> Close</span>
+    </div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
+
+<!-- ======================================================================
+     MAIN
+     ====================================================================== -->
+<main id="main">
+
+  <!-- ------------------------------------------------------------------
+       HERO
+       ------------------------------------------------------------------ -->
+  <section class="section hero">
+    <canvas class="hero__canvas" id="dotgrid" aria-hidden="true"></canvas>
+
+    <div class="shell hero__grid">
+      <div class="hero__copy">
+        <span class="hero__badge" data-reveal="fade">
+          <span class="hero__pulse" aria-hidden="true"><i></i></span>
+          Data Science Laboratory · CSE (DS) — 2 · 2026
+        </span>
+
+        <h1 class="hero__title">
+          <span class="hero__line"><span style="--d:.05s">Six experiments,</span></span>
+          <span class="hero__line"><span style="--d:.15s">one <i class="serif">honest</i> record.</span></span>
+        </h1>
+
+        <p class="lede hero__sub" data-reveal="fade" style="--d:.5s">
+          Every cell of this lab is on the record: the imports, the cleaning,
+          the plots — and the errors that came before any of it worked.
+          <strong>Six experiments, twenty parts</strong>, each with the outputs
+          exactly as they were produced.
+        </p>
+
+        <div class="hero__cta" data-reveal="fade" style="--d:.62s">
+          <a class="btn btn--primary" href="experiments.html" data-magnetic>
+            <span class="btn__label">Read the experiments
+              <svg class="btn__glyph" width="15" height="15" aria-hidden="true"><use href="#i-right"/></svg>
+            </span>
+          </a>
+          <a class="btn btn--ghost" href="assets/pdf/lab-record.pdf" target="_blank" rel="noopener">
+            <span class="btn__label">Lab record PDF
+              <svg class="btn__glyph" width="15" height="15" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </span>
+          </a>
+        </div>
+
+        <dl class="hero__facts" data-reveal="fade" style="--d:.74s">
+          <div class="fact"><dt>Experiments</dt><dd><span data-count="6">0</span></dd></div>
+          <div class="fact"><dt>Parts</dt><dd><span data-count="20">0</span></dd></div>
+          <div class="fact"><dt>Notebook cells</dt><dd><span data-count="105">0</span></dd></div>
+          <div class="fact"><dt>Saved charts</dt><dd><span data-count="13">0</span></dd></div>
+        </dl>
+      </div>
+
+      <!-- The student record, as a physical card. -->
+      <div class="hero__cardwrap" id="card" data-jump="the ID card" data-jump-icon="i-id" data-reveal="scale" style="--d:.3s">
+        <article class="idcard" data-tilt aria-label="Student identity card">
+          <span class="idcard__stripe" aria-hidden="true"></span>
+          <span class="idcard__holo" aria-hidden="true"></span>
+          <span class="idcard__glare" aria-hidden="true"></span>
+
+          <div class="idcard__inner">
+            <header class="idcard__top">
+              <span class="idcard__uni">Mohan Babu University</span>
+              <span class="idcard__chip"><i aria-hidden="true"></i>DS Lab</span>
+            </header>
+
+            <div class="idcard__who">
+              <span class="idcard__avatar" aria-hidden="true">GPK</span>
+              <div class="idcard__names">
+                <h2 class="idcard__name">Gandodi Praneeth Kumar</h2>
+                <span class="idcard__sub">Data Science Laboratory</span>
               </div>
-              <div class="idcard__head">
-                <div class="idcard__photoWrap">
-                  <div class="idcard__photo">GPK</div>
-                </div>
-                <div>
-                  <h2 class="idcard__uname">Gandodi Praneeth Kumar</h2>
-                  <span class="idcard__uroll">24102A030124</span>
-                </div>
-              </div>
-              <div class="idcard__rows">
-                <div class="idcard__row"><p class="idcard__k">Section</p><p class="idcard__v">DS2</p></div>
-                <div class="idcard__row"><p class="idcard__k">Subject</p><p class="idcard__v">Data Science Lab</p></div>
-                <div class="idcard__row"><p class="idcard__k">Faculty</p><p class="idcard__v">Bosubabu</p></div>
-                <div class="idcard__row"><p class="idcard__k">Designation</p><p class="idcard__v">Assistant Professor</p></div>
-              </div>
-              <div class="idcard__social">
-                <div class="idcard__handles">
-                  <a class="socialbtn" href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener" aria-label="LinkedIn profile">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6Z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                  </a>
-                  <a class="socialbtn" href="https://github.com/Praneeth-Gandodi" target="_blank" rel="noopener" aria-label="GitHub profile">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
-                  </a>
-                </div>
-                <span class="idcard__sig">DS LAB · 2026</span>
-              </div>
-            </article>
-          </aside>
-          <div class="homehero__copy">
-            <span class="hero__eyebrow">Experiment record · 2026</span>
-            <h1 class="hero__title">Data Science <em>Laboratory</em></h1>
-            <p class="hero__desc">The complete experiment record for Section DS2 — five experiments, each part openable as an interactive notebook with the exact saved outputs from execution.</p>
-            <div class="homehero__actions">
-              <a class="btn btn--primary" href="experiments.html">Browse experiments</a>
-              <a class="btn btn--ghost" href="assets/pdf/lab-record.pdf" target="_blank" rel="noopener">Lab record PDF</a>
             </div>
-            <div class="homehero__stats">
-              <div class="stat"><p class="stat__num" id="stat-labs">—</p><p class="stat__label">experiments</p></div>
-              <div class="stat"><p class="stat__num" id="stat-parts">—</p><p class="stat__label">parts</p></div>
-              <div class="stat"><p class="stat__num" id="stat-charts">13</p><p class="stat__label">saved charts</p></div>
-            </div>
+
+            <dl class="idcard__rows">
+              <div class="idcard__row">
+                <dt>Roll no</dt>
+                <dd class="is-key">24102A030124</dd>
+              </div>
+              <div class="idcard__row">
+                <dt>Class</dt>
+                <dd>CSE (DS) — 2</dd>
+              </div>
+              <div class="idcard__row">
+                <dt>Faculty</dt>
+                <dd>S Bosu Babu</dd>
+              </div>
+              <div class="idcard__row">
+                <dt>Designation</dt>
+                <dd>Assistant Professor</dd>
+              </div>
+            </dl>
+
+            <footer class="idcard__foot">
+              <span class="idcard__bars" aria-hidden="true"></span>
+              <span class="idcard__dept">Dept. of Data Science</span>
+            </footer>
           </div>
+        </article>
+
+        <span class="hero__cardtag"><i aria-hidden="true"></i>Record holder · 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------------------
+       BAND
+       ------------------------------------------------------------------ -->
+  <div class="band marquee" aria-label="Libraries and tools used across the lab">
+    <div class="marquee__track">
+      <div class="marquee__group">
+        <div class="marquee__item">pandas</div>
+        <div class="marquee__item">NumPy</div>
+        <div class="marquee__item">Matplotlib</div>
+        <div class="marquee__item">Seaborn</div>
+        <div class="marquee__item">Jupyter</div>
+        <div class="marquee__item">SQLite</div>
+        <div class="marquee__item">openpyxl</div>
+        <div class="marquee__item">requests</div>
+        <div class="marquee__item">Git</div>
+      </div>
+      <div class="marquee__group" aria-hidden="true">
+        <div class="marquee__item">pandas</div>
+        <div class="marquee__item">NumPy</div>
+        <div class="marquee__item">Matplotlib</div>
+        <div class="marquee__item">Seaborn</div>
+        <div class="marquee__item">Jupyter</div>
+        <div class="marquee__item">SQLite</div>
+        <div class="marquee__item">openpyxl</div>
+        <div class="marquee__item">requests</div>
+        <div class="marquee__item">Git</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ------------------------------------------------------------------
+       EXPERIMENTS
+       ------------------------------------------------------------------ -->
+  <section class="section" id="experiments" data-jump="experiments" data-jump-icon="i-flask">
+    <div class="shell">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow" data-reveal="fade">01 — Experiments</span>
+          <h2 class="section__title" data-split>Six labs, twenty parts, all recorded.</h2>
+        </div>
+        <div class="section__aside">
+          <p class="lede" data-reveal="fade" style="--d:.15s">
+            Each experiment splits into parts. Open one and it reads as a
+            notebook — code, output and the corrections in between.
+          </p>
+          <a class="btn btn--ghost btn--sm" href="experiments.html" data-reveal="fade" style="--d:.25s">
+            <span class="btn__label">Full index
+              <svg class="btn__glyph" width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </span>
+          </a>
         </div>
       </div>
-    </section>
 
-    <section class="section" id="experiments">
-      <div class="wrap">
-        <div class="section__head">
-          <div>
-            <p class="eyebrow">Experiments</p>
-            <h2 class="section__title">Five labs, completed.</h2>
-            <p class="section__sub">Each card is one experiment. Pick a part — A, B, C — and it opens as a notebook where you can edit the code and run it to see the saved result.</p>
-          </div>
-          <a class="section__link" href="experiments.html">All details</a>
-        </div>
-        <div class="expgrid" id="exp-grid"></div>
+      <div class="explist">
+        <a class="exp-row" href="experiment-1.html" data-reveal="fade">
+          <span class="exp-row__code">EXP-1</span>
+          <span class="exp-row__main">
+            <span class="exp-row__title">Data Import &amp; Export</span>
+            <span class="exp-row__parts">
+              <span class="exp-row__part">A</span><span class="exp-row__part">B</span><span class="exp-row__part">C</span>
+            </span>
+          </span>
+          <span class="exp-row__meta">
+            <span class="exp-row__tags"><span class="tag">pandas</span><span class="tag">csv</span><span class="tag">openpyxl</span></span>
+            <span class="exp-row__count">3 parts</span>
+            <span class="exp-row__arrow" aria-hidden="true"><svg width="15" height="15"><use href="#i-arrow"/></svg></span>
+          </span>
+        </a>
+
+        <a class="exp-row" href="experiment-2.html" data-reveal="fade" style="--d:.05s">
+          <span class="exp-row__code">EXP-2</span>
+          <span class="exp-row__main">
+            <span class="exp-row__title">Data from APIs &amp; SQL</span>
+            <span class="exp-row__parts">
+              <span class="exp-row__part">A</span><span class="exp-row__part">B</span>
+            </span>
+          </span>
+          <span class="exp-row__meta">
+            <span class="exp-row__tags"><span class="tag">requests</span><span class="tag">sqlite3</span></span>
+            <span class="exp-row__count">2 parts</span>
+            <span class="exp-row__arrow" aria-hidden="true"><svg width="15" height="15"><use href="#i-arrow"/></svg></span>
+          </span>
+        </a>
+
+        <a class="exp-row" href="experiment-3.html" data-reveal="fade" style="--d:.1s">
+          <span class="exp-row__code">EXP-3</span>
+          <span class="exp-row__main">
+            <span class="exp-row__title">Data Cleaning &amp; Preprocessing</span>
+            <span class="exp-row__parts">
+              <span class="exp-row__part">A</span><span class="exp-row__part">B</span><span class="exp-row__part">C</span>
+            </span>
+          </span>
+          <span class="exp-row__meta">
+            <span class="exp-row__tags"><span class="tag">pandas</span><span class="tag">numpy</span></span>
+            <span class="exp-row__count">3 parts</span>
+            <span class="exp-row__arrow" aria-hidden="true"><svg width="15" height="15"><use href="#i-arrow"/></svg></span>
+          </span>
+        </a>
+
+        <a class="exp-row" href="experiment-4.html" data-reveal="fade" style="--d:.15s">
+          <span class="exp-row__code">EXP-4</span>
+          <span class="exp-row__main">
+            <span class="exp-row__title">Hierarchical Indexing (MultiIndex)</span>
+            <span class="exp-row__parts">
+              <span class="exp-row__part">A</span><span class="exp-row__part">B</span>
+            </span>
+          </span>
+          <span class="exp-row__meta">
+            <span class="exp-row__tags"><span class="tag">multiindex</span><span class="tag">reshape</span></span>
+            <span class="exp-row__count">2 parts</span>
+            <span class="exp-row__arrow" aria-hidden="true"><svg width="15" height="15"><use href="#i-arrow"/></svg></span>
+          </span>
+        </a>
+
+        <a class="exp-row" href="experiment-5.html" data-reveal="fade" style="--d:.2s">
+          <span class="exp-row__code">EXP-5</span>
+          <span class="exp-row__main">
+            <span class="exp-row__title">Data Visualization with Matplotlib &amp; Seaborn</span>
+            <span class="exp-row__parts">
+              <span class="exp-row__part">EDA</span><span class="exp-row__part">A</span><span class="exp-row__part">B</span>
+              <span class="exp-row__part">C</span><span class="exp-row__part">D</span><span class="exp-row__part">E</span>
+            </span>
+          </span>
+          <span class="exp-row__meta">
+            <span class="exp-row__tags"><span class="tag">matplotlib</span><span class="tag">seaborn</span></span>
+            <span class="exp-row__count">6 parts</span>
+            <span class="exp-row__arrow" aria-hidden="true"><svg width="15" height="15"><use href="#i-arrow"/></svg></span>
+          </span>
+        </a>
+
+        <a class="exp-row" href="experiment-6.html" data-reveal="fade" style="--d:.25s">
+          <span class="exp-row__code">EXP-6</span>
+          <span class="exp-row__main">
+            <span class="exp-row__title">Time Series Analysis</span>
+            <span class="exp-row__parts">
+              <span class="exp-row__part">A</span><span class="exp-row__part">B</span>
+              <span class="exp-row__part">C</span><span class="exp-row__part">D</span>
+            </span>
+          </span>
+          <span class="exp-row__meta">
+            <span class="exp-row__tags"><span class="tag">datetime</span><span class="tag">resampling</span></span>
+            <span class="exp-row__count">4 parts</span>
+            <span class="exp-row__arrow" aria-hidden="true"><svg width="15" height="15"><use href="#i-arrow"/></svg></span>
+          </span>
+        </a>
       </div>
-    </section>
 
-    <section class="section" style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
-      <div class="wrap">
-        <div class="section__head">
-          <div>
-            <p class="eyebrow">Modules</p>
-            <h2 class="section__title">What each lab covers</h2>
-            <p class="section__sub">The course modules behind the experiments — each with a syllabus sheet PDF on the Modules page.</p>
-          </div>
-          <a class="section__link" href="modules.html">All modules</a>
-        </div>
-        <div class="modgrid" id="mod-grid"></div>
+      <div class="strip" data-reveal="fade" style="margin-top:var(--s6)">
+        <span>105 notebook cells</span>
+        <span>13 saved charts</span>
+        <span>Real outputs, including errors</span>
       </div>
-    </section>
+    </div>
 
-    <section class="section">
-      <div class="wrap">
-        <div class="cta">
-          <div>
-            <h2 class="cta__title">Ready to open the notebooks?</h2>
-            <p class="cta__sub">Every part opens as a Jupyter-style notebook — edit cells, run, see the saved outputs.</p>
-          </div>
-          <div class="cta__actions">
-            <a class="btn btn--primary" href="experiments.html">Open experiments</a>
-            <a class="btn btn--ghost" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.2);color:var(--card-ink)" href="tools.html">See the toolkit</a>
-          </div>
+  </section>
+
+  <!-- ------------------------------------------------------------------
+       MODULES
+       ------------------------------------------------------------------ -->
+  <section class="section" id="modules" data-jump="modules" data-jump-icon="i-pdf">
+    <div class="shell">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow" data-reveal="fade">02 — Modules</span>
+          <h2 class="section__title" data-split>The syllabus behind each experiment.</h2>
+        </div>
+        <div class="section__aside">
+          <p class="lede" data-reveal="fade" style="--d:.15s">
+            Five course modules, each mapped to the experiment that covers it.
+            Every sheet opens as a PDF — ready for revision or submission.
+          </p>
+          <a class="btn btn--ghost btn--sm" href="modules.html" data-reveal="fade" style="--d:.25s">
+            <span class="btn__label">All modules
+              <svg class="btn__glyph" width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </span>
+          </a>
         </div>
       </div>
-    </section>
-  </main>
 
-  <footer id="site-foot"></footer>
-  <div class="toast" id="toast" role="status"></div>
+      <div class="modgrid">
+        <a class="modcard" href="assets/pdf/module-1.pdf" target="_blank" rel="noopener" data-spotlight data-reveal="fade">
+          <span class="modcard__num">Module 01 · EXP-1</span>
+          <h3 class="modcard__title">Data Acquisition &amp; I/O</h3>
+          <ul class="modcard__topics">
+            <li>CSV &amp; TSV files with pandas</li>
+            <li>JSON — files, strings, URLs</li>
+            <li>Excel workbooks &amp; openpyxl</li>
+            <li>DataFrames from Python dicts</li>
+          </ul>
+          <span class="modcard__cta">Syllabus sheet
+            <svg width="13" height="13" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </span>
+        </a>
 
-  <script src="data/labs.js"></script>
-  <script src="js/site.js"></script>
-  <script src="js/index.js"></script>
+        <a class="modcard" href="assets/pdf/module-2.pdf" target="_blank" rel="noopener" data-spotlight data-reveal="fade" style="--d:.05s">
+          <span class="modcard__num">Module 02 · EXP-2</span>
+          <h3 class="modcard__title">Web &amp; Database Data</h3>
+          <ul class="modcard__topics">
+            <li>The requests library &amp; REST APIs</li>
+            <li>SQLite basics with sqlite3</li>
+            <li>read_sql_query into DataFrames</li>
+          </ul>
+          <span class="modcard__cta">Syllabus sheet
+            <svg width="13" height="13" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </span>
+        </a>
+
+        <a class="modcard" href="assets/pdf/module-3.pdf" target="_blank" rel="noopener" data-spotlight data-reveal="fade" style="--d:.1s">
+          <span class="modcard__num">Module 03 · EXP-3</span>
+          <h3 class="modcard__title">Cleaning &amp; Preprocessing</h3>
+          <ul class="modcard__topics">
+            <li>isna, dropna &amp; fillna</li>
+            <li>Mapping categories to codes</li>
+            <li>Renaming columns</li>
+            <li>Flagging outliers</li>
+          </ul>
+          <span class="modcard__cta">Syllabus sheet
+            <svg width="13" height="13" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </span>
+        </a>
+
+        <a class="modcard" href="assets/pdf/module-4.pdf" target="_blank" rel="noopener" data-spotlight data-reveal="fade" style="--d:.15s">
+          <span class="modcard__num">Module 04 · EXP-4</span>
+          <h3 class="modcard__title">Hierarchical Indexing</h3>
+          <ul class="modcard__topics">
+            <li>MultiIndex from arrays &amp; tuples</li>
+            <li>Selecting across levels with .loc</li>
+            <li>Reshaping with stack &amp; unstack</li>
+          </ul>
+          <span class="modcard__cta">Syllabus sheet
+            <svg width="13" height="13" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </span>
+        </a>
+
+        <a class="modcard" href="assets/pdf/module-5.pdf" target="_blank" rel="noopener" data-spotlight data-reveal="fade" style="--d:.2s">
+          <span class="modcard__num">Module 05 · EXP-5</span>
+          <h3 class="modcard__title">Data Visualization</h3>
+          <ul class="modcard__topics">
+            <li>Matplotlib figures &amp; subplots</li>
+            <li>Seaborn statistical plots</li>
+            <li>Distributions: histogram &amp; KDE</li>
+            <li>Comparisons: bars &amp; box plots</li>
+          </ul>
+          <span class="modcard__cta">Syllabus sheet
+            <svg width="13" height="13" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------------------
+       TOOLKIT
+       ------------------------------------------------------------------ -->
+  <section class="section" id="toolkit" data-jump="toolkit" data-jump-icon="i-tools">
+    <div class="shell">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow" data-reveal="fade">03 — Toolkit</span>
+          <h2 class="section__title" data-split>What the lab actually runs on.</h2>
+        </div>
+        <div class="section__aside">
+          <p class="lede" data-reveal="fade" style="--d:.15s">
+            Ten tools, from the notebook environment down to the libraries
+            doing the work. Each one links to its official documentation.
+          </p>
+          <a class="btn btn--ghost btn--sm" href="tools.html" data-reveal="fade" style="--d:.25s">
+            <span class="btn__label">Toolkit page
+              <svg class="btn__glyph" width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <div class="toolgroup" data-reveal="fade">
+        <div class="toolgroup__head">
+          <span class="toolgroup__title">Environments</span>
+          <span class="toolgroup__line" aria-hidden="true"></span>
+        </div>
+        <div class="toolgrid">
+          <a class="toolcard" href="https://jupyter.org" target="_blank" rel="noopener">
+            <span class="toolcard__top">
+              <span class="toolcard__icon" aria-hidden="true"><svg width="19" height="19"><use href="#i-book"/></svg></span>
+              <svg class="toolcard__out" width="15" height="15" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </span>
+            <span class="toolcard__name">Jupyter Notebook</span>
+            <span class="toolcard__desc">Where these experiments were written and executed — cells of code with inline output.</span>
+          </a>
+          <a class="toolcard" href="https://www.anaconda.com/download" target="_blank" rel="noopener">
+            <span class="toolcard__top">
+              <span class="toolcard__icon" aria-hidden="true"><svg width="19" height="19"><use href="#i-box"/></svg></span>
+              <svg class="toolcard__out" width="15" height="15" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </span>
+            <span class="toolcard__name">Anaconda</span>
+            <span class="toolcard__desc">Python distribution that ships pandas, NumPy and matplotlib pre-installed.</span>
+          </a>
+          <a class="toolcard" href="https://colab.research.google.com" target="_blank" rel="noopener">
+            <span class="toolcard__top">
+              <span class="toolcard__icon" aria-hidden="true"><svg width="19" height="19"><use href="#i-cloud"/></svg></span>
+              <svg class="toolcard__out" width="15" height="15" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </span>
+            <span class="toolcard__name">Google Colab</span>
+            <span class="toolcard__desc">Cloud notebooks with nothing to install — handy for running these labs anywhere.</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="toolgroup" data-reveal="fade">
+        <div class="toolgroup__head">
+          <span class="toolgroup__title">Editors</span>
+          <span class="toolgroup__line" aria-hidden="true"></span>
+        </div>
+        <div class="toolgrid">
+          <a class="toolcard" href="https://code.visualstudio.com" target="_blank" rel="noopener">
+            <span class="toolcard__top">
+              <span class="toolcard__icon" aria-hidden="true"><svg width="19" height="19"><use href="#i-code"/></svg></span>
+              <svg class="toolcard__out" width="15" height="15" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </span>
+            <span class="toolcard__name">VS Code</span>
+            <span class="toolcard__desc">Editor with first-class Jupyter and Python support, plus a built-in terminal.</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="toolgroup" data-reveal="fade">
+        <div class="toolgroup__head">
+          <span class="toolgroup__title">Libraries</span>
+          <span class="toolgroup__line" aria-hidden="true"></span>
+        </div>
+        <div class="toolgrid">
+          <a class="toolcard" href="https://pandas.pydata.org/docs/" target="_blank" rel="noopener">
+            <span class="toolcard__top">
+              <span class="toolcard__icon" aria-hidden="true"><svg width="19" height="19"><use href="#i-table"/></svg></span>
+              <svg class="toolcard__out" width="15" height="15" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </span>
+            <span class="toolcard__name">pandas</span>
+            <span class="toolcard__desc">The backbone of every experiment here — DataFrames, I/O, cleaning and reshaping.</span>
+          </a>
+          <a class="toolcard" href="https://numpy.org/doc/stable/" target="_blank" rel="noopener">
+            <span class="toolcard__top">
+              <span class="toolcard__icon" aria-hidden="true"><svg width="19" height="19"><use href="#i-sigma"/></svg></span>
+              <svg class="toolcard__out" width="15" height="15" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </span>
+            <span class="toolcard__name">NumPy</span>
+            <span class="toolcard__desc">Arrays, NaN handling and the random data behind the outlier work.</span>
+          </a>
+          <a class="toolcard" href="https://matplotlib.org/stable/" target="_blank" rel="noopener">
+            <span class="toolcard__top">
+              <span class="toolcard__icon" aria-hidden="true"><svg width="19" height="19"><use href="#i-chart"/></svg></span>
+              <svg class="toolcard__out" width="15" height="15" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </span>
+            <span class="toolcard__name">Matplotlib</span>
+            <span class="toolcard__desc">Figures, subplots and every base chart in EXP-5.</span>
+          </a>
+          <a class="toolcard" href="https://seaborn.pydata.org/" target="_blank" rel="noopener">
+            <span class="toolcard__top">
+              <span class="toolcard__icon" aria-hidden="true"><svg width="19" height="19"><use href="#i-palette"/></svg></span>
+              <svg class="toolcard__out" width="15" height="15" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </span>
+            <span class="toolcard__name">Seaborn</span>
+            <span class="toolcard__desc">Statistical plots in one line — histograms, KDE curves, box plots.</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="toolgroup" data-reveal="fade">
+        <div class="toolgroup__head">
+          <span class="toolgroup__title">Data &amp; versioning</span>
+          <span class="toolgroup__line" aria-hidden="true"></span>
+        </div>
+        <div class="toolgrid">
+          <a class="toolcard" href="https://sqlitebrowser.org" target="_blank" rel="noopener">
+            <span class="toolcard__top">
+              <span class="toolcard__icon" aria-hidden="true"><svg width="19" height="19"><use href="#i-db"/></svg></span>
+              <svg class="toolcard__out" width="15" height="15" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </span>
+            <span class="toolcard__name">DB Browser for SQLite</span>
+            <span class="toolcard__desc">Open students.db from EXP-2 and inspect the tables outside the notebook.</span>
+          </a>
+          <a class="toolcard" href="https://git-scm.com" target="_blank" rel="noopener">
+            <span class="toolcard__top">
+              <span class="toolcard__icon" aria-hidden="true"><svg width="19" height="19"><use href="#i-branch"/></svg></span>
+              <svg class="toolcard__out" width="15" height="15" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </span>
+            <span class="toolcard__name">Git &amp; GitHub</span>
+            <span class="toolcard__desc">Version control for the record — notebooks, datasets and this site live in a repo.</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------------------
+       CTA
+       ------------------------------------------------------------------ -->
+  <section class="section">
+    <div class="shell">
+      <div class="cta" data-reveal="fade">
+        <span class="eyebrow">04 — Open the record</span>
+        <h2 class="cta__title" data-split>Start with the <span class="serif">notebooks</span>.</h2>
+        <p class="cta__sub">
+          Pick any experiment and read it the way it ran — the code, the output,
+          and the mistakes that got corrected along the way.
+        </p>
+        <div class="cta__actions">
+          <a class="btn btn--primary" href="experiments.html" data-magnetic>
+            <span class="btn__label">Browse experiments
+              <svg class="btn__glyph" width="15" height="15" aria-hidden="true"><use href="#i-right"/></svg>
+            </span>
+          </a>
+          <a class="btn btn--ghost" href="assets/pdf/lab-record.pdf" target="_blank" rel="noopener">
+            <span class="btn__label">Lab record PDF
+              <svg class="btn__glyph" width="15" height="15" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </span>
+          </a>
+        </div>
+        <p class="cta__note">Mohan Babu University · Department of Data Science · 2026</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ======================================================================
+     FOOTER
+     ====================================================================== -->
+<footer class="footer">
+  <div class="shell">
+    <div class="footer__grid">
+      <div>
+        <p class="footer__brand">DS Lab — the experiment record.</p>
+      </div>
+
+      <div class="footer__col">
+        <h4>Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="experiments.html">Experiments</a>
+        <a href="modules.html">Modules</a>
+        <a href="tools.html">Tools</a>
+      </div>
+
+      <div class="footer__col">
+        <h4>Documents</h4>
+        <a href="assets/pdf/lab-record.pdf" target="_blank" rel="noopener">Lab record</a>
+        <a href="assets/pdf/module-1.pdf" target="_blank" rel="noopener">Module 01</a>
+        <a href="assets/pdf/module-2.pdf" target="_blank" rel="noopener">Module 02</a>
+        <a href="assets/pdf/module-3.pdf" target="_blank" rel="noopener">Module 03</a>
+        <a href="assets/pdf/module-4.pdf" target="_blank" rel="noopener">Module 04</a>
+        <a href="assets/pdf/module-5.pdf" target="_blank" rel="noopener">Module 05</a>
+      </div>
+
+      <div class="footer__col">
+        <h4>Record holder</h4>
+        <span>GANDODI PRANEETH KUMAR</span>
+        <span>24102A030124 · CSE (DS) — 2</span>
+        <span>Faculty: S Bosu Babu</span>
+        <a href="https://github.com/Praneeth-Gandodi" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© <span id="year">2026</span> GANDODI PRANEETH KUMAR · Mohan Babu University</span>
+      <span>Local time <span id="clock">--:--:--</span></span>
+      <span>Hand-built · semantic HTML, CSS &amp; vanilla JS · 0 dependencies</span>
+    </div>
+  </div>
+</footer>
+
+<button class="icon-btn totop" id="totop" type="button" aria-label="Back to top">
+  <svg width="17" height="17" aria-hidden="true"><use href="#i-top"/></svg>
+</button>
+
+<script src="assets/js/main.js" defer></script>
 </body>
 </html>

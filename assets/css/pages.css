@@ -1,0 +1,870 @@
+/* ==========================================================================
+   PAGES — the composition layer for experiments.html, modules.html and
+   tools.html. Nothing here invents a new look: every block leans on the same
+   tokens, the same --gutter and the same row rhythm as the home page, so the
+   four documents read as one record.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   PAGE HEADER — mirrors .hero's top offset so the nav never overlaps text.
+   -------------------------------------------------------------------------- */
+.pagehead {
+  position: relative;
+  padding-top: 8.5rem;
+  padding-bottom: clamp(1.75rem, 3.5vw, 2.75rem);
+}
+.pagehead__inner { display: grid; gap: var(--s5); }
+
+.crumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.crumbs a { color: inherit; transition: color var(--dur) var(--ease-out); }
+.crumbs a:hover { color: var(--text); }
+.crumbs span[aria-hidden] { opacity: 0.5; }
+
+.pagehead__title {
+  font-size: var(--fs-display);
+  max-width: 24ch;
+}
+.pagehead__title em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  letter-spacing: 0;
+  color: var(--accent);
+}
+
+.pagehead__lede { max-width: 60ch; }
+
+.pagehead__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s5) clamp(1.75rem, 5vw, 4rem);
+  padding-top: var(--s5);
+  border-top: 1px solid var(--line);
+}
+.pagehead__stat { display: grid; gap: 0.2rem; }
+.pagehead__stat b {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.6vw, 2.15rem);
+  font-weight: 500;
+  letter-spacing: var(--ls-tight);
+  line-height: 1;
+}
+.pagehead__stat span {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.pagehead__actions { display: flex; flex-wrap: wrap; gap: var(--s3); }
+
+/* Shared vertical rhythm for the body of a sub-page. */
+.pagelist { padding-top: clamp(1.5rem, 3vw, 2.5rem); padding-bottom: clamp(2rem, 4vw, 3rem); }
+
+@media (max-width: 620px) {
+  .pagehead { padding-top: 7rem; }
+  .pagehead__meta { gap: var(--s4) var(--s5); }
+}
+
+/* --------------------------------------------------------------------------
+   INDEX BAR — in-page contents. Deliberately not sticky: the nav already
+   occupies that space and a second sticky layer fights it on small screens.
+   -------------------------------------------------------------------------- */
+.indexbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  padding-block: var(--s5);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.indexbar a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-xs);
+  color: var(--text-dim);
+  transition: color var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out),
+              background var(--dur) var(--ease-out);
+}
+.indexbar a:hover,
+.indexbar a:focus-visible {
+  color: var(--text);
+  border-color: var(--line-strong);
+  background: var(--surface-2);
+}
+.indexbar i {
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: var(--fs-micro);
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   EXPERIMENT — one article per lab, same 5.5rem code column as .exp-row.
+   -------------------------------------------------------------------------- */
+.lab {
+  padding-block: clamp(2.25rem, 4.5vw, 3.5rem);
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 6rem;
+}
+.lab:first-of-type { border-top: 0; }
+
+.lab__head {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: var(--s2) var(--s5);
+  align-items: start;
+}
+.lab__code {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  padding-top: 0.6rem;
+}
+.lab__title { font-size: var(--fs-h2); max-width: 26ch; }
+.lab__summary {
+  margin-top: var(--s3);
+  color: var(--text-dim);
+  font-size: var(--fs-body);
+  line-height: 1.62;
+  max-width: 66ch;
+}
+
+.lab__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s3) var(--s6);
+  margin-top: var(--s5);
+}
+.lab__meta div { display: grid; gap: 0.1rem; }
+.lab__meta b {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1;
+}
+.lab__meta span {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.lab__meta .is-accent b { color: var(--accent); }
+
+/* Parts — a sub-list, so the indent matches the title column above it exactly:
+   5.5rem code column + the same --s5 gap. */
+.lab__parts {
+  margin-top: var(--s6);
+  margin-left: calc(5.5rem + var(--s5));
+  border-top: 1px solid var(--line);
+}
+.part {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr) auto;
+  gap: var(--s4);
+  padding-block: var(--s4);
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+}
+.part__code {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.1em;
+  color: var(--text-faint);
+  padding-top: 0.28rem;
+  text-transform: uppercase;
+}
+.part__title { font-size: 1.02rem; font-weight: 500; letter-spacing: var(--ls-tight); }
+.part__desc {
+  margin-top: 0.3rem;
+  color: var(--text-dim);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  max-width: 70ch;
+}
+.part__cells {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+  padding-top: 0.3rem;
+  white-space: nowrap;
+}
+/* The lab's own top border already separates blocks; a second rule under the
+   final part reads as a stray double line. */
+.part:last-child { border-bottom: 0; }
+
+@media (max-width: 880px) {
+  .lab__head { grid-template-columns: 1fr; }
+  .lab__code { padding-top: 0; }
+  .lab__parts { margin-left: 0; }
+}
+@media (max-width: 560px) {
+  .part { grid-template-columns: 2rem minmax(0, 1fr); }
+  .part__cells { grid-column: 2; padding-top: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   GALLERY — the saved matplotlib figures, exactly as the notebook wrote them.
+   -------------------------------------------------------------------------- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s4);
+  margin-top: var(--s6);
+  margin-left: calc(5.5rem + var(--s5));
+}
+.shot {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #fff;
+  transition: border-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+}
+.shot:hover { border-color: var(--line-strong); transform: translateY(-2px); }
+/* contain, not cover: cropping a chart cuts the axis labels off, and the labels
+   are the point of the figure. */
+.shot img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  background: #fff;
+}
+.shot figcaption {
+  padding: 0.55rem 0.7rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.05em;
+  line-height: 1.45;
+  color: var(--text-faint);
+}
+
+@media (max-width: 1180px) { .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 880px)  { .gallery { margin-left: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px)  { .gallery { grid-template-columns: 1fr; } }
+
+/* --------------------------------------------------------------------------
+   MODULE ROW — number, syllabus topics, PDF actions.
+   -------------------------------------------------------------------------- */
+.modrow {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr) auto;
+  gap: var(--s5);
+  padding-block: clamp(1.6rem, 3vw, 2.4rem);
+  border-top: 1px solid var(--line);
+  align-items: start;
+  scroll-margin-top: 6rem;
+}
+.modrow__num {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+.modrow__title { font-size: var(--fs-h3); max-width: 30ch; }
+.modrow__lede {
+  margin-top: var(--s2);
+  color: var(--text-dim);
+  font-size: var(--fs-sm);
+  line-height: 1.62;
+  max-width: 62ch;
+}
+.modrow__topics { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: var(--s4); }
+.modrow__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  justify-content: flex-end;
+}
+
+@media (max-width: 880px) {
+  .modrow { grid-template-columns: 1fr; gap: var(--s4); }
+  .modrow__num { font-size: 1.4rem; }
+  .modrow__actions { justify-content: flex-start; }
+}
+
+/* --------------------------------------------------------------------------
+   TOOL GROUP — heading rail plus rows, same grid logic as .modrow.
+   -------------------------------------------------------------------------- */
+.toolgroup { padding-top: clamp(2rem, 3.5vw, 3rem); }
+.toolgroup__head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2) var(--s5);
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: var(--s3);
+  border-bottom: 1px solid var(--line-strong);
+}
+.toolgroup__head h2 { font-size: var(--fs-h3); }
+.toolgroup__head span {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.toolrow {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.35fr) auto;
+  gap: var(--s4) var(--s5);
+  padding-block: var(--s4);
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+}
+.toolrow__name {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 500;
+  letter-spacing: var(--ls-tight);
+}
+.toolrow__name svg { color: var(--accent); flex: none; }
+.toolrow__desc {
+  color: var(--text-dim);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  max-width: 66ch;
+}
+.toolrow__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  justify-content: flex-end;
+}
+
+@media (max-width: 880px) {
+  .toolrow { grid-template-columns: 1fr; gap: var(--s3); }
+  .toolrow__links { justify-content: flex-start; }
+}
+
+/* --------------------------------------------------------------------------
+   COMMAND CHIP — monospace line with its own copy control.
+   -------------------------------------------------------------------------- */
+.cmd {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s3);
+  max-width: 100%;
+  padding: 0.4rem 0.45rem 0.4rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text);
+}
+.cmd code { white-space: nowrap; overflow-x: auto; scrollbar-width: none; }
+.cmd code::-webkit-scrollbar { display: none; }
+.cmd button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  flex: none;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius-md) - 4px);
+  color: var(--text-dim);
+  transition: color var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out),
+              background var(--dur) var(--ease-out);
+}
+.cmd button:hover { color: var(--text); border-color: var(--line-strong); background: var(--surface); }
+.cmd button.is-done { color: var(--mint); border-color: color-mix(in srgb, var(--mint) 45%, transparent); }
+
+.cmd-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  align-items: flex-start;
+  margin-top: var(--s4);
+}
+
+/* --------------------------------------------------------------------------
+   CALLOUT / NOTE — the honest asides (kept errors, scope, sources).
+   -------------------------------------------------------------------------- */
+.callout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s3);
+  padding: var(--s5);
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--accent);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  scroll-margin-top: 6rem;
+}
+.callout__label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.callout p { color: var(--text-dim); font-size: var(--fs-sm); line-height: 1.65; max-width: 74ch; }
+.callout p + p { margin-top: var(--s2); }
+
+.note {
+  padding-top: var(--s5);
+  color: var(--text-faint);
+  font-size: var(--fs-xs);
+  line-height: 1.6;
+  max-width: 72ch;
+}
+.note strong { color: var(--text-dim); font-weight: 500; }
+
+/* Two-column footer band used at the end of each sub-page. */
+.nextup {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s4);
+  padding-block: clamp(2.5rem, 5vw, 4rem);
+  border-top: 1px solid var(--line);
+}
+.nextup a {
+  display: grid;
+  gap: var(--s2);
+  padding: var(--s5);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  transition: border-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+}
+.nextup a:hover { border-color: var(--line-strong); transform: translateY(-2px); }
+.nextup span {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.nextup b {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 500;
+  letter-spacing: var(--ls-tight);
+}
+@media (max-width: 680px) { .nextup { grid-template-columns: 1fr; } }
+
+/* --------------------------------------------------------------------------
+   NOTEBOOK — one editable code cell per experiment. Run replays the saved
+   output that ships with the markup; nothing is executed in the browser.
+   -------------------------------------------------------------------------- */
+.nb {
+  margin-top: var(--s6);
+  margin-left: calc(5.5rem + var(--s5));
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  overflow: hidden;
+}
+.nb__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  padding: 0.6rem 0.7rem 0.6rem 0.85rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-2);
+}
+.nb__label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.nb__note {
+  margin-left: auto;
+  font-size: var(--fs-micro);
+  color: var(--text-faint);
+}
+.nb__run {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.34rem 0.7rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--text);
+  font-size: var(--fs-xs);
+  transition: background var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out),
+              color var(--dur) var(--ease-out);
+}
+.nb__run:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+.nb__run.is-running { opacity: 0.55; pointer-events: none; }
+
+.cell {
+  display: grid;
+  grid-template-columns: 4.2rem minmax(0, 1fr);
+  align-items: start;
+}
+.cell__prompt {
+  padding: 0.85rem 0 0 0.85rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+.cell__prompt--out { padding: 0 0 0.4rem; color: var(--text-faint); }
+.cell__body { min-width: 0; padding-right: 0.5rem; }
+.cell__code {
+  display: block;
+  width: 100%;
+  padding: 0.8rem 0.6rem 0.85rem 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.81rem;
+  line-height: 1.62;
+  resize: none;
+  outline: none;
+  tab-size: 4;
+}
+.cell__code:focus-visible { box-shadow: inset 2px 0 0 var(--accent); }
+.cell__out { border-top: 1px dashed var(--line); padding: 0.55rem 0 0.7rem; }
+.cell__text {
+  margin: 0;
+  padding-right: 0.6rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.79rem;
+  line-height: 1.55;
+  color: var(--text-dim);
+  white-space: pre;
+}
+
+/* --------------------------------------------------------------------------
+   VIDEO — click-to-load facade. The thumbnail is the only third-party asset
+   on the page, and the iframe is created only after a click.
+   -------------------------------------------------------------------------- */
+.video {
+  margin-top: var(--s6);
+  margin-left: calc(5.5rem + var(--s5));
+}
+.video__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s4);
+  margin-bottom: var(--s3);
+}
+.video__label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.video__head a {
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--line);
+  transition: color var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
+}
+.video__head a:hover { color: var(--text); border-color: var(--line-strong); }
+
+.video__facade {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--surface-2);
+}
+.video__facade img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.7;
+  transition: opacity var(--dur) var(--ease-out), transform 900ms var(--ease-out);
+}
+.video__facade:hover img { opacity: 0.92; transform: scale(1.03); }
+.video__play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 3.2rem;
+  height: 3.2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  pointer-events: none;
+  box-shadow: 0 18px 50px -14px var(--accent-soft), 0 0 0 8px color-mix(in srgb, var(--accent) 12%, transparent);
+  transition: transform var(--dur) var(--ease-out);
+}
+.video__facade:hover .video__play { transform: scale(1.08); }
+.video__meta {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: grid;
+  gap: 0.15rem;
+  padding: 1.6rem 1rem 0.85rem;
+  text-align: left;
+  background: linear-gradient(transparent, rgba(6, 6, 8, 0.82));
+}
+.video__meta b { font-size: var(--fs-sm); font-weight: 500; color: #fff; }
+.video__meta em { font-style: normal; font-size: var(--fs-micro); color: rgba(255, 255, 255, 0.68); }
+.video iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: var(--radius-lg);
+}
+
+@media (max-width: 880px) {
+  .nb, .video { margin-left: 0; }
+  .nb__note { display: none; }
+}
+
+/* Keep code and video at a readable measure instead of spanning the shell. */
+.nb { max-width: 56rem; }
+.video { max-width: 46rem; }
+
+/* --------------------------------------------------------------------------
+   NOTEBOOK TOOLBAR + per-cell run rail (6 experiment pages).
+   -------------------------------------------------------------------------- */
+.nbtool {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  max-width: 56rem;
+  margin-top: var(--s6);
+  padding: 0.5rem 0.6rem 0.5rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+}
+.nbtool__label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.nbtool__note {
+  margin-left: auto;
+  font-size: var(--fs-micro);
+  color: var(--text-faint);
+}
+
+.cell__rail {
+  display: grid;
+  gap: 0.45rem;
+  justify-items: start;
+  padding: 0.75rem 0 0.75rem 0.8rem;
+}
+.cell__rail .cell__prompt { padding: 0; }
+.cell__run {
+  width: 1.55rem;
+  height: 1.55rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text-dim);
+  transition: background var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out),
+              color var(--dur) var(--ease-out);
+}
+.cell__run:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+.cell__run.is-running { opacity: 0.45; }
+.cell__figure {
+  display: block;
+  width: 100%;
+  max-width: 620px;
+  margin: 0.15rem 0 0.4rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: #fff;
+}
+.cell__text.is-error { color: var(--accent); }
+
+@media (max-width: 880px) {
+  .nbtool__note { display: none; }
+}
+
+/* ==========================================================================
+   Editor layer — syntax highlighting + the simulated language server.
+   The textarea keeps the caret and selection; a <pre> underneath paints the
+   tokens and the diagnostic underlines. Both must share typography exactly,
+   or the caret drifts from the glyphs it is supposed to sit between.
+   ========================================================================== */
+
+.cell__ed { position: relative; }
+
+.cell__hl,
+.cell__code {
+  font-family: var(--font-mono);
+  font-size: 0.81rem;
+  line-height: 1.62;
+  tab-size: 4;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  margin: 0;
+  border: 0;
+  padding: 0.8rem 0.6rem 0.85rem 0;
+}
+
+.cell__hl {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+  color: var(--text);
+}
+
+.cell__code {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  color: transparent;
+  caret-color: var(--accent);
+  -webkit-text-fill-color: transparent;
+}
+.cell__code::selection { background: color-mix(in srgb, var(--accent) 34%, transparent); }
+.cell__code:focus-visible { box-shadow: inset 2px 0 0 var(--accent); }
+
+/* tokens */
+.tk-kw { color: var(--tk-kw); }
+.tk-str { color: var(--tk-str); }
+.tk-com { color: var(--tk-com); font-style: italic; }
+.tk-num { color: var(--tk-num); }
+.tk-fn { color: var(--tk-fn); }
+.tk-bi { color: var(--tk-bi); }
+.tk-cls { color: var(--tk-cls); }
+.tk-op { color: var(--tk-op); }
+
+/* diagnostics */
+.cell__hl .diag { pointer-events: auto; }
+
+.diag {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  pointer-events: auto;
+  cursor: help;
+  border-radius: 2px;
+}
+.diag--error { text-decoration-color: var(--diag-error); }
+.diag--warning { text-decoration-color: var(--diag-warning); }
+.diag--info { text-decoration-color: var(--diag-info); }
+.diag--hint { text-decoration-color: var(--text-dim); text-decoration-style: dotted; }
+.diag:hover, .diag:focus-visible { background: color-mix(in srgb, currentColor 12%, transparent); outline: none; }
+
+/* hover card */
+.lsp-tip {
+  position: fixed;
+  z-index: 120;
+  max-width: 22rem;
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.6rem 0.75rem 0.55rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 0.6rem;
+  background: var(--surface-2, var(--surface));
+  box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.65);
+  pointer-events: none;
+}
+.lsp-tip[hidden] { display: none; }
+.lsp-tip__sev {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--diag-error);
+}
+.lsp-tip__msg { font-size: 0.82rem; line-height: 1.45; color: var(--text); }
+.lsp-tip__src {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  color: var(--text-faint, var(--text-dim));
+}
+
+/* gutter dot per cell */
+.cell__diag {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  transition: background 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+}
+.cell__diag.is-error { background: var(--diag-error); border-color: var(--diag-error); }
+.cell__diag.is-warning { background: var(--diag-warning); border-color: var(--diag-warning); }
+.cell__diag.is-info { background: var(--diag-info); border-color: var(--diag-info); }
+
+/* toolbar pill */
+.lsp-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.22rem 0.6rem 0.22rem 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+.lsp-pill__dot {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: var(--mint);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--mint) 18%, transparent);
+}
+.lsp-pill.has-errors { color: var(--diag-error); border-color: color-mix(in srgb, var(--diag-error) 45%, transparent); }
+.lsp-pill.has-errors .lsp-pill__dot { background: var(--diag-error); box-shadow: 0 0 0 3px color-mix(in srgb, var(--diag-error) 18%, transparent); }
+.lsp-pill.has-warnings { color: var(--diag-warning); border-color: color-mix(in srgb, var(--diag-warning) 40%, transparent); }
+.lsp-pill.has-warnings .lsp-pill__dot { background: var(--diag-warning); box-shadow: 0 0 0 3px color-mix(in srgb, var(--diag-warning) 18%, transparent); }
+.lsp-pill.has-hints { color: var(--diag-info); border-color: color-mix(in srgb, var(--diag-info) 35%, transparent); }
+.lsp-pill.has-hints .lsp-pill__dot { background: var(--diag-info); box-shadow: 0 0 0 3px color-mix(in srgb, var(--diag-info) 16%, transparent); }
+.lsp-pill__meta { color: var(--text-faint, var(--text-dim)); opacity: 0.75; padding-left: 0.35rem; border-left: 1px solid var(--line); }
+
+.nb__run { white-space: nowrap; }
+
+.nb__run--ghost {
+  background: transparent;
+  color: var(--text-dim);
+  border-color: var(--line-strong);
+}
+.nb__run--ghost:hover { color: var(--text); border-color: var(--text-dim); }
+
+@media (max-width: 640px) {
+  .lsp-pill__meta { display: none; }
+  .nbtool .nbtool__note { display: none; }
+}

@@ -1,0 +1,221 @@
+/* ==========================================================================
+   SECTIONS — page-specific composition for the DS Lab home page.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   SECTION HEADER — label + title left, supporting copy right.
+   -------------------------------------------------------------------------- */
+.section__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: var(--s6) var(--s8);
+  align-items: end;
+  margin-bottom: clamp(2.25rem, 5vw, 4rem);
+}
+.section__head .eyebrow { margin-bottom: var(--s4); }
+.section__title { font-size: var(--fs-h2); max-width: 22ch; }
+.section__aside { display: grid; gap: var(--s5); justify-items: start; }
+@media (max-width: 880px) {
+  .section__head { grid-template-columns: 1fr; align-items: start; }
+}
+
+/* --------------------------------------------------------------------------
+   HERO
+   -------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-top: 8.5rem;
+  padding-bottom: clamp(3rem, 8vh, 6rem);
+  overflow: clip;
+}
+
+/* Pointer-reactive dot field: above the aurora, below the vignette. */
+.hero__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.8;
+  -webkit-mask-image: radial-gradient(120% 85% at 30% 40%, #000 30%, transparent 76%);
+  mask-image: radial-gradient(120% 85% at 30% 40%, #000 30%, transparent 76%);
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: var(--s8) clamp(2rem, 6vw, 5rem);
+}
+
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s3);
+  padding: 0.42rem 0.95rem 0.42rem 0.45rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  backdrop-filter: blur(10px);
+  font-size: var(--fs-xs);
+  color: var(--text-dim);
+  margin-bottom: var(--s5);
+}
+.hero__pulse {
+  width: 22px; height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent-soft);
+}
+.hero__pulse i {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2.4s var(--ease-in-out) infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.9); opacity: 0.35; }
+}
+
+/* Headline: each line rides its own mask, released by the loader. */
+.hero__title {
+  font-size: clamp(2.6rem, 6.1vw, 5rem);
+  line-height: 0.92;
+  letter-spacing: var(--ls-mega);
+  font-weight: 500;
+  margin-bottom: var(--s5);
+}
+.hero__line { display: block; overflow: hidden; padding-bottom: 0.06em; }
+.hero__line > span {
+  display: inline-block;
+  transform: translate3d(0, 108%, 0) rotate(2deg);
+  transition: transform 1.15s var(--ease-out);
+  transition-delay: var(--d, 0s);
+}
+body.is-ready .hero__line > span { transform: none; }
+.hero__line .serif { color: var(--accent); letter-spacing: -0.02em; }
+
+.hero__sub { max-width: 44ch; }
+
+.hero__cta { display: flex; gap: var(--s3); flex-wrap: wrap; margin-top: var(--s6); }
+
+/* The four numbers, set as a quiet bordered strip. */
+.hero__facts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: var(--s7);
+  border-top: 1px solid var(--line);
+  padding-top: var(--s5);
+  gap: var(--s4);
+}
+.fact dt {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 2px;
+}
+.fact dd {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  letter-spacing: var(--ls-tight);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- ID card column ------------------------------------------------------ */
+.hero__cardwrap {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  perspective: 1200px;
+}
+/* Soft glow pooled behind the card so it reads as a physical object. */
+.hero__cardwrap::before {
+  content: "";
+  position: absolute;
+  inset: -12% -6%;
+  background: var(--glow);
+  filter: blur(30px);
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero__cardtag {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  margin-top: var(--s5);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.hero__cardtag i { width: 22px; height: 1px; background: var(--line-strong); display: block; }
+
+@media (max-width: 1000px) {
+  .hero__grid { grid-template-columns: 1fr; gap: var(--s7); }
+  .hero__cardwrap { order: -1; justify-items: start; }
+  .hero { padding-top: 7rem; }
+}
+@media (max-width: 560px) {
+  .hero__facts { grid-template-columns: repeat(2, 1fr); gap: var(--s5) var(--s4); }
+}
+
+/* --------------------------------------------------------------------------
+   MARQUEE BAND
+   -------------------------------------------------------------------------- */
+.band { position: relative; z-index: 3; }
+
+/* --------------------------------------------------------------------------
+   CTA
+   -------------------------------------------------------------------------- */
+.cta {
+  position: relative;
+  text-align: center;
+  padding: clamp(2.75rem, 8vw, 6rem) var(--s5);
+  border: 1px solid var(--line);
+  border-radius: clamp(18px, 3vw, 32px);
+  background: var(--surface);
+  overflow: hidden;
+}
+.cta::before {
+  content: "";
+  position: absolute;
+  left: 50%; top: -40%;
+  width: 120%; aspect-ratio: 2 / 1;
+  transform: translateX(-50%);
+  background: var(--glow);
+  opacity: 0.8;
+  pointer-events: none;
+}
+.cta > * { position: relative; }
+.cta__title { font-size: var(--fs-display); letter-spacing: var(--ls-display); margin-top: var(--s5); }
+.cta__title .serif { color: var(--accent); }
+.cta__sub { max-width: 46ch; margin: var(--s5) auto 0; color: var(--text-dim); }
+.cta__actions { margin-top: var(--s6); display: flex; gap: var(--s3); justify-content: center; flex-wrap: wrap; }
+.cta__note { margin-top: var(--s5); font-family: var(--font-mono); font-size: var(--fs-micro); letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-faint); }
+
+/* --------------------------------------------------------------------------
+   RECORD STRIP — a thin fact row used under section headers.
+   -------------------------------------------------------------------------- */
+.strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s3) var(--s6);
+  padding-top: var(--s5);
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.strip span { display: inline-flex; align-items: center; gap: var(--s2); }
+.strip b { color: var(--text); font-weight: 400; }

@@ -1,0 +1,167 @@
+/* ==========================================================================
+   DS LAB — design tokens
+   Design language inherited from the AETHER reference system
+   (see docs/design-system.md). Values are the contract; components read
+   from here and never hardcode a colour, duration or easing.
+   ========================================================================== */
+
+:root {
+  /* ---- Type ------------------------------------------------------------
+     Display: Bricolage Grotesque (optical-size variable)
+     Body:    Inter Tight
+     Accent:  Instrument Serif — italic emphasis, one phrase at a time
+     Data:    system mono for anything numeric or code-shaped            */
+  --font-display: "Bricolage Grotesque", "Inter Tight", system-ui, sans-serif;
+  --font-body: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", "Cascadia Code", monospace;
+
+  --fs-mega: clamp(2.9rem, 8.6vw, 7.4rem);
+  --fs-display: clamp(2.2rem, 5.6vw, 4.6rem);
+  --fs-h2: clamp(1.8rem, 4vw, 3.1rem);
+  --fs-h3: clamp(1.2rem, 1.9vw, 1.5rem);
+  --fs-body: clamp(1rem, 1.05vw, 1.125rem);
+  --fs-sm: 0.875rem;
+  --fs-xs: 0.78rem;
+  --fs-micro: 0.6875rem;
+
+  --ls-mega: -0.045em;
+  --ls-display: -0.035em;
+  --ls-tight: -0.02em;
+  --ls-wide: 0.14em;
+
+  /* ---- Space (4px base) ------------------------------------------------ */
+  --s1: 0.25rem;
+  --s2: 0.5rem;
+  --s3: 0.75rem;
+  --s4: 1rem;
+  --s5: 1.5rem;
+  --s6: 2rem;
+  --s7: 3rem;
+  --s8: 4rem;
+  --s9: 6rem;
+  --s10: 9rem;
+
+  --gutter: clamp(1.25rem, 4vw, 4.5rem);
+  --radius: 4px;
+  --radius-md: 10px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  /* ---- Motion ---------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 180ms;
+  --dur: 420ms;
+  --dur-slow: 900ms;
+
+  /* ---- Depth ----------------------------------------------------------- */
+  --z-sticky: 50;
+  --z-preview: 60;
+  --z-nav: 100;
+  --z-menu: 1000;
+  --z-palette: 1100;
+  --z-preloader: 1200;
+}
+
+/* --------------------------------------------------------------------------
+   DARK — the default. Obsidian ground, warm ivory ink, solar accent.
+   -------------------------------------------------------------------------- */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #0a0a0c;
+  --bg-deep: #060608;
+  --surface: rgba(255, 255, 255, 0.028);
+  --surface-2: rgba(255, 255, 255, 0.055);
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.2);
+
+  --text: #f4f1ea;
+  --text-dim: #9c9aa6;
+  --text-faint: #5f5d68;
+
+  --accent: #ff5a1f;
+  --accent-soft: rgba(255, 90, 31, 0.14);
+  --violet: #7b61ff;
+  --mint: #24dfa4;
+  --on-accent: #0a0a0c;
+
+  --glass: rgba(12, 12, 15, 0.62);
+  --shadow: 0 24px 70px -30px rgba(0, 0, 0, 0.9);
+  --shadow-card: 0 40px 90px -40px rgba(0, 0, 0, 0.95);
+  --glow: radial-gradient(60% 60% at 50% 50%, rgba(255, 90, 31, 0.34), transparent 70%);
+  --orb-a: rgba(255, 90, 31, 0.42);
+  --orb-b: rgba(123, 97, 255, 0.4);
+  --orb-c: rgba(36, 223, 164, 0.24);
+  --film: 0.5;
+
+  /* Specular sheen used by the ID card. */
+  --sheen: rgba(255, 255, 255, 0.10);
+  --holo: conic-gradient(from 210deg, rgba(255, 90, 31, 0.30), rgba(123, 97, 255, 0.28), rgba(36, 223, 164, 0.24), rgba(255, 90, 31, 0.30));
+
+  /* Syntax + diagnostics (editor overlay). */
+  --tk-kw: #ff8a5c;
+  --tk-str: #6ee7b7;
+  --tk-com: #6b7280;
+  --tk-num: #fcd34d;
+  --tk-fn: #a78bfa;
+  --tk-bi: #7dd3fc;
+  --tk-cls: #f9fafb;
+  --tk-op: #9ca3af;
+  --diag-error: #f87171;
+  --diag-warning: #fbbf24;
+  --diag-info: #60a5fa;
+}
+
+/* --------------------------------------------------------------------------
+   LIGHT — warm paper. Same skeleton, swapped values.
+   -------------------------------------------------------------------------- */
+
+[data-theme="light"] {
+
+  --tk-kw: #c2410c;
+  --tk-str: #0f766e;
+  --tk-com: #8a8578;
+  --tk-num: #a16207;
+  --tk-fn: #6d28d9;
+  --tk-bi: #0369a1;
+  --tk-cls: #1c1917;
+  --tk-op: #78716c;
+  --diag-error: #d3273e;
+  --diag-warning: #b45309;
+  --diag-info: #1d4ed8;
+
+  color-scheme: light;
+
+  --bg: #f3f0e9;
+  --bg-deep: #e9e5db;
+  --surface: rgba(255, 255, 255, 0.55);
+  --surface-2: rgba(12, 12, 14, 0.045);
+  --line: rgba(12, 12, 14, 0.12);
+  --line-strong: rgba(12, 12, 14, 0.28);
+
+  --text: #100f12;
+  --text-dim: #56545c;
+  --text-faint: #8b8890;
+
+  --accent: #e0430a;
+  --accent-soft: rgba(224, 67, 10, 0.1);
+  --violet: #5c3ff0;
+  --mint: #0f9c72;
+  --on-accent: #fffaf5;
+
+  --glass: rgba(243, 240, 233, 0.75);
+  --shadow: 0 24px 60px -34px rgba(30, 20, 10, 0.4);
+  --shadow-card: 0 40px 80px -44px rgba(30, 20, 10, 0.45);
+  --glow: radial-gradient(60% 60% at 50% 50%, rgba(224, 67, 10, 0.2), transparent 70%);
+  --orb-a: rgba(255, 120, 60, 0.5);
+  --orb-b: rgba(123, 97, 255, 0.32);
+  --orb-c: rgba(36, 223, 164, 0.34);
+  --film: 0.2;
+
+  --sheen: rgba(255, 255, 255, 0.6);
+  --holo: conic-gradient(from 210deg, rgba(224, 67, 10, 0.22), rgba(92, 63, 240, 0.2), rgba(15, 156, 114, 0.18), rgba(224, 67, 10, 0.22));
+}

@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EXP-5 · Data Visualization with Matplotlib & Seaborn — DS Lab</title>
+<meta name="description" content="Explore the iris dataset, then answer questions A–E with line plots, bar charts, histograms, KDE curves, scatter and box plots.">
+<meta name="author" content="GANDODI PRANEETH KUMAR">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0a0a0c">
+<meta property="og:title" content="EXP-5 · Data Visualization with Matplotlib & Seaborn — DS Lab">
+<meta property="og:description" content="Explore the iris dataset, then answer questions A–E with line plots, bar charts, histograms, KDE curves, scatter and box plots.">
+<meta property="og:type" content="website">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0a0c'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23ff5a1f' text-anchor='middle'%3EDS%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&family=Inter+Tight:ital,wght@0,300..600;1,400&family=Instrument+Serif:ital@0;1&display=swap">
+
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/sections.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+
+<script>
+  (function () {
+    document.documentElement.classList.remove('no-js');
+    try {
+      var saved = localStorage.getItem('dslab-theme');
+      var wantsLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (wantsLight ? 'light' : 'dark');
+    } catch (e) {}
+  })();
+</script>
+</head>
+
+<body>
+
+<svg class="sr-only" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.2 12 4l8 7.2V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v5.6L4.8 18a1 1 0 0 0 .9 1.5h12.6A1 1 0 0 0 19.2 18L14 8.6V3"/><path d="M7.4 14h9.2"/></symbol>
+  <symbol id="i-pdf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7z"/><path d="M14 3v4h4M8.5 13h7M8.5 16.5h4.5"/></symbol>
+  <symbol id="i-tools" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 8h6M14 8h6M4 16h10M18 16h2"/><circle cx="12" cy="8" r="2"/><circle cx="16" cy="16" r="2"/></symbol>
+  <symbol id="i-id" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><circle cx="8.5" cy="11" r="2.2"/><path d="M5.2 17c.7-1.8 1.9-2.6 3.3-2.6s2.6.8 3.3 2.6M14.5 10h4.5M14.5 13.5h4.5"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 6.5A2.5 2.5 0 0 0 12.5 4h-6A2.5 2.5 0 0 0 4 6.5v6A2.5 2.5 0 0 0 6.5 15"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 7h18M3 17h12"/></symbol>
+  <symbol id="i-top" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 20V11M10 20V5M16 20v-6M22 20H2"/></symbol>
+  <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1"/><path d="M3 4.5V10h5.5"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M8 5.5v13l10-6.5z"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5S9.5 4.5 4 4.5v13c5.5 0 8 2 8 2s2.5-2 8-2v-13c-5.5 0-8 2-8 2Z"/><path d="M12 6.5v13"/></symbol>
+  <symbol id="i-table" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M9.5 9.5v10M3.5 14.5h17"/></symbol>
+</svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="preloader" id="preloader" role="status" aria-live="polite" aria-label="Loading">
+  <div class="preloader__panel"></div>
+  <div class="preloader__panel"></div>
+  <div class="preloader__panel"></div>
+  <div class="preloader__panel"></div>
+  <div class="preloader__panel"></div>
+  <div class="preloader__panel"></div>
+  <div class="preloader__ui">
+    <div class="preloader__row">
+      <span class="preloader__meta">Mohan Babu University · Dept. of Data Science</span>
+      <span class="preloader__meta">CSE (DS) — 2 · 2026</span>
+    </div>
+    <div>
+      <div class="preloader__word" aria-hidden="true">EXP-5</div>
+      <div class="preloader__row">
+        <span class="preloader__meta" id="preloader-status">Loading index</span>
+        <span class="preloader__num"><span id="preloader-count">000</span>%</span>
+      </div>
+      <div class="preloader__bar"><i id="preloader-bar"></i></div>
+    </div>
+  </div>
+</div>
+
+<div class="aurora" aria-hidden="true">
+  <div class="aurora__orb aurora__orb--a"></div>
+  <div class="aurora__orb aurora__orb--b"></div>
+  <div class="aurora__orb aurora__orb--c"></div>
+</div>
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<div class="progress" aria-hidden="true"><div class="progress__bar" id="progress-bar"></div></div>
+
+<header class="nav" id="nav">
+  <div class="shell nav__inner">
+    <a class="nav__brand" href="index.html" aria-label="DS Lab home">
+      <span class="nav__mark" aria-hidden="true">DS</span>
+      DS LAB
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      <a class="nav__link" href="index.html"><span>Home</span></a>
+      <a class="nav__link" href="modules.html"><span>Modules</span></a>
+      <a class="nav__link" href="experiments.html" aria-current="page"><span>Experiments</span></a>
+      <a class="nav__link" href="tools.html"><span>Tools</span></a>
+    </nav>
+
+    <div class="nav__actions">
+      <button class="nav__search" type="button" data-palette-open aria-label="Search pages, sections and commands">
+        <svg width="15" height="15" aria-hidden="true"><use href="#i-search"/></svg>
+        <span>Search</span>
+        <span class="kbd" aria-hidden="true">⌘K</span>
+      </button>
+      <button class="icon-btn" type="button" id="theme-toggle" aria-label="Switch to light theme">
+        <svg width="17" height="17" aria-hidden="true" data-icon-dark><use href="#i-moon"/></svg>
+        <svg width="17" height="17" aria-hidden="true" data-icon-light hidden><use href="#i-sun"/></svg>
+      </button>
+      <button class="icon-btn nav__burger" type="button" id="menu-open" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+        <svg width="18" height="18" aria-hidden="true"><use href="#i-menu"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Main menu" hidden>
+  <div class="menu__top">
+    <span class="eyebrow">Navigate</span>
+    <button class="icon-btn" type="button" id="menu-close" aria-label="Close menu">
+      <svg width="18" height="18" aria-hidden="true"><use href="#i-close"/></svg>
+    </button>
+  </div>
+  <nav class="menu__list" aria-label="Menu">
+    <a class="menu__link" href="index.html" style="--i:0"><i>01</i> Home</a>
+    <a class="menu__link" href="modules.html" style="--i:1"><i>02</i> Modules</a>
+    <a class="menu__link" href="experiments.html" style="--i:2"><i>03</i> Experiments</a>
+    <a class="menu__link" href="tools.html" style="--i:3"><i>04</i> Tools</a>
+  </nav>
+  <div class="menu__meta">
+    <a href="https://github.com/Praneeth-Gandodi" target="_blank" rel="noopener">GitHub</a>
+    <button type="button" data-palette-open style="display:inline-flex;align-items:center;gap:.5rem">
+      <svg width="14" height="14" aria-hidden="true"><use href="#i-search"/></svg> Search
+    </button>
+    <span>CSE (DS) — 2</span>
+  </div>
+</div>
+
+<div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command palette" hidden>
+  <div class="palette__dialog">
+    <div class="palette__search">
+      <svg width="17" height="17" aria-hidden="true"><use href="#i-search"/></svg>
+      <input class="palette__input" id="palette-input" type="text" placeholder="Jump to a page or section, or run a command…"
+             role="combobox" aria-expanded="true" aria-controls="palette-list" aria-autocomplete="list" autocomplete="off" spellcheck="false">
+      <span class="kbd">ESC</span>
+    </div>
+    <div class="palette__list" id="palette-list" role="listbox" aria-label="Results"></div>
+    <div class="palette__foot">
+      <span><span class="kbd">↑↓</span> Navigate</span>
+      <span><span class="kbd">↵</span> Select</span>
+      <span><span class="kbd">ESC</span> Close</span>
+    </div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
+
+<main id="main">
+  <section class="pagehead">
+    <div class="shell pagehead__inner">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="index.html">DS Lab</a>
+        <span aria-hidden="true">/</span>
+        <a href="experiments.html">Experiments</a>
+        <span aria-hidden="true">/</span>
+        <span>EXP-5</span>
+      </nav>
+
+      <div>
+        <span class="eyebrow" data-reveal="fade">Experiment 05</span>
+        <h1 class="pagehead__title" data-split>Data Visualization with Matplotlib &amp; Seaborn</h1>
+      </div>
+
+      <p class="lede" data-reveal="fade" style="--d:.15s">Explore the iris dataset, then answer questions A–E with line plots, bar charts, histograms, KDE curves, scatter and box plots.</p>
+
+      <div class="pagehead__meta" data-reveal="fade" style="--d:.2s">
+        <div class="pagehead__stat"><b data-count="6">0</b><span>Parts</span></div>
+        <div class="pagehead__stat"><b data-count="14">0</b><span>Notebook cells</span></div>
+        <div class="pagehead__stat"><b data-count="13">0</b><span>Saved charts</span></div>
+      </div>
+
+      <div class="pagehead__actions" data-reveal="fade" style="--d:.25s">
+        <a class="btn btn--ghost btn--sm" href="experiments.html">
+          <span class="btn__label">All experiments</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="shell">
+    <nav class="indexbar" aria-label="Parts of this experiment" data-reveal="fade">
+      <a href="#part-warmup"><i>WARMUP</i> Iris dataset</a>
+      <a href="#part-a"><i>A</i> Subplots</a>
+      <a href="#part-b"><i>B</i> Bar plots</a>
+      <a href="#part-c"><i>C</i> Histogram &amp; KDE</a>
+      <a href="#part-d"><i>D</i> Scatter</a>
+      <a href="#part-e"><i>E</i> Box plot</a>
+    </nav>
+  </div>
+
+  <div class="shell pagelist">
+
+    <div class="nbtool">
+      <span class="nbtool__label">Notebook · EXP-5</span>
+      <span class="lsp-pill" id="lsp-status" role="status" aria-live="polite">
+        <span class="lsp-pill__dot" aria-hidden="true"></span>
+        <span>Checking…</span>
+        <span class="lsp-pill__meta">python 3.12</span>
+      </span>
+      <span class="nbtool__note">Run replays the saved output</span>
+      <button class="nb__run nb__run--ghost" type="button" data-reset>
+        <svg width="11" height="11" aria-hidden="true"><use href="#i-reset"/></svg>
+        <span>Reset</span>
+      </button>
+      <button class="nb__run" type="button" data-run-all>
+        <svg width="11" height="11" aria-hidden="true"><use href="#i-play"/></svg>
+        <span>Run all</span>
+      </button>
+    </div>
+
+      <section class="lab" id="part-warmup" data-jump="Part WARMUP · Iris dataset — quick EDA">
+        <div class="lab__head">
+          <span class="lab__code">WARMUP</span>
+          <div>
+            <h2 class="lab__title">Iris dataset — quick EDA</h2>
+            <p class="lab__summary">Load iris from a URL and sketch line, scatter, histogram, box and pair plots of every measurement.</p>
+            <div class="lab__meta"><div><b>8</b><span>Cells</span></div></div>
+          </div>
+        </div>
+        <div class="nb">
+            <div class="cell">
+              <div class="cell__rail">
+                <span class="cell__prompt">In&nbsp;[1]</span>
+                <button class="cell__run" type="button" data-nb-run aria-label="Run cell 1" title="Run">
+                  <svg width="9" height="9" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+              </div>
+              <div class="cell__body">
+                <textarea class="cell__code" rows="1" spellcheck="false" aria-label="Code cell 1">import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns</textarea>
+                <div class="cell__out" hidden>
+                  <span class="cell__prompt cell__prompt--out">Out&nbsp;[1]</span>
+                  
+                </div>
+              </div>
+            </div>
+            <div class="cell">
+              <div class="cell__rail">
+                <span class="cell__prompt">In&nbsp;[2]</span>
+                <button class="cell__run" type="button" data-nb-run aria-label="Run cell 2" title="Run">
+                  <svg width="9" height="9" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+              </div>
+              <div class="cell__body">
+                <textarea class="cell__code" rows="1" spellcheck="false" aria-label="Code cell 2">URL=&quot;https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv&quot;
+df=pd.read_csv(URL)</textarea>
+                <div class="cell__out" hidden>
+                  <span class="cell__prompt cell__prompt--out">Out&nbsp;[2]</span>
+                  
+                </div>
+              </div>
+            </div>
+            <div class="cell">
+              <div class="cell__rail">
+                <span class="cell__prompt">In&nbsp;[3]</span>
+                <button class="cell__run" type="button" data-nb-run aria-label="Run cell 3" title="Run">
+                  <svg width="9" height="9" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+              </div>
+              <div class="cell__body">
+                <textarea class="cell__code" rows="1" spellcheck="false" aria-label="Code cell 3">print(&quot;First Five records:&quot;)
+print(df.head())
+print(&quot;\nData information:&quot;)
+print(df.info())
+print(&quot;\nStatistical information:&quot;)
+print(df.describe())</textarea>
+                <div class="cell__out" hidden>
+                  <span class="cell__prompt cell__prompt--out">Out&nbsp;[3]</span>
+                  <pre class="cell__text">First Five records:
+   sepal_length  sepal_width  petal_length  petal_width species
+0           5.1          3.5           1.4          0.2  setosa
+1           4.9          3.0           1.4          0.2  setosa
+2           4.7          3.2           1.3          0.2  setosa
+3           4.6          3.1           1.5          0.2  setosa
+4           5.0          3.6           1.4          0.2  setosa
+
+Data information:
+&lt;class 'pandas.DataFrame'&gt;
+RangeIndex: 150 entries, 0 to 149
+Data columns (total 5 columns):
+ #   Column        Non-Null Count  Dtype
+---  ------        --------------  -----
+ 0   sepal_length  150 non-null    float64
+ 1   sepal_width   150 non-null    float64
+…</pre>
+                </div>
+              </div>
+            </div>
+            <div class="cell">
+              <div class="cell__rail">
+                <span class="cell__prompt">In&nbsp;[4]</span>
+                <button class="cell__run" type="button" data-nb-run aria-label="Run cell 4" title="Run">
+                  <svg width="9" height="9" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+              </div>
+              <div class="cell__body">
+                <textarea class="cell__code" rows="1" spellcheck="false" aria-label="Code cell 4">plt.figure(figsize=(8,5))
+plt.plot(df.index,df[&quot;sepal_length&quot;],label=&quot;sepal_length&quot;)
+plt.plot(df.index,df[&quot;petal_length&quot;],label=&quot;petal_length&quot;)
+plt.xlabel(&quot;Smaple index&quot;)
+plt.ylabel(&quot;Length&quot;)
+plt.legend()
+plt.grid()
+plt.show()</textarea>
+                <div class="cell__out" hidden>
+                  <span class="cell__prompt cell__prompt--out">Out&nbsp;[4]</span>
+                  <img class="cell__figure" src="assets/outputs/lab5-warmup-4-0.png" alt="Figure produced by cell 4" loading="lazy" decoding="async">
+                </div>
+              </div>
+            </div>
+            <div class="cell">
+              <div class="cell__rail">
+                <span class="cell__prompt">In&nbsp;[5]</span>
+                <button class="cell__run" type="button" data-nb-run aria-label="Run cell 5" title="Run">
+                  <svg width="9" height="9" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+              </div>
+              <div class="cell__body">
+                <textarea class="cell__code" rows="1" spellcheck="false" aria-label="Code cell 5">plt.figure(figsize=(9,4))
+sns.scatterplot(data=df,x=&quot;sepal_length&quot;,y=&quot;petal_length&quot;,hue=&quot;species&quot;)
+plt.title(&quot;Sepal length vs petal length&quot;)
+plt.show()</textarea>
+                <div class="cell__out" hidden>
+                  <span class="cell__prompt cell__prompt--out">Out&nbsp;[5]</span>
+                  <img class="cell__figure" src="assets/outputs/lab5-warmup-5-0.png" alt="Figure produced by cell 5" loading="lazy" decoding="async">
+                </div>
+              </div>
+            </div>
+            <div class="cell">
+              <div class="cell__rail">
+                <span class="cell__prompt">In&nbsp;[6]</span>
+                <button class="cell__run" type="button" data-nb-run aria-label="Run cell 6" title="Run">
+                  <svg width="9" height="9" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+              </div>
+              <div class="cell__body">
+                <textarea class="cell__code" rows="1" spellcheck="false" aria-label="Code cell 6">plt.figure(figsize=(8,5))
+sns.histplot(data=df,x=&quot;sepal_length&quot;,hue=&quot;species&quot;,kde=True)
+plt.title(&quot;Distribution of of sepal length&quot;)
+plt.xlabel(&quot;Sepal Length&quot;)
+plt.ylabel(&quot;Frequency&quot;)
+plt.show()</textarea>
+                <div class="cell__out" hidden>
+                  <span class="cell__prompt cell__prompt--out">Out&nbsp;[6]</span>
+                  <img class="cell__figure" src="assets/outputs/lab5-warmup-6-0.png" alt="Figure produced by cell 6" loading="lazy" decoding="async">
+                </div>
+              </div>
+            </div>
+            <div class="cell">
+              <div class="cell__rail">
+                <span class="cell__prompt">In&nbsp;[7]</span>
+                <button class="cell__run" type="button" data-nb-run aria-label="Run cell 7" title="Run">
+                  <svg width="9" height="9" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+              </div>
+              <div class="cell__body">
+                <textarea class="cell__code" rows="1" spellcheck="false" aria-label="Code cell 7">plt.figure(figsize=(8,5))
+sns.boxplot(data=df,x=&quot;species&quot;,y=&quot;petal_length&quot;)
+plt.title(&quot;Petal length by species&quot;)
+plt.show()</textarea>
+                <div class="cell__out" hidden>
+                  <span class="cell__prompt cell__prompt--out">Out&nbsp;[7]</span>
+                  <img class="cell__figure" src="assets/outputs/lab5-warmup-7-0.png" alt="Figure produced by cell 7" loading="lazy" decoding="async">
+                </div>
+              </div>
+            </div>
+            <div class="cell">
+              <div class="cell__rail">
+                <span class="cell__prompt">In&nbsp;[8]</span>
+                <button class="cell__run" type="button" data-nb-run aria-label="Run cell 8" title="Run">
+                  <svg width="9" height="9" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+              </div>
+              <div class="cell__body">
+                <textarea class="cell__code" rows="1" spellcheck="false" aria-label="Code cell 8">sns.pairplot(df,hue=&quot;species&quot;)
+plt.show()</textarea>
+                <div class="cell__out" hidden>
+                  <span class="cell__prompt cell__prompt--out">Out&nbsp;[8]</span>
+                  <img class="cell__figure" src="assets/outputs/lab5-warmup-8-0.png" alt="Figure produced by cell 8" loading="lazy" decoding="async">
+                </div>
+              </div>
+            </div>
+        </div>
+      </section>
+      <section class="lab" id="part-a" data-jump="Part A · Subplots — monthly sales &amp; expenses">
+        <div class="lab__head">
+          <span class="lab__code">A</span>
+          <div>
+            <h2 class="lab__title">Subplots — monthly sales &amp; expenses</h2>
+            <p class="lab__summary">Two stacked line subplots comparing six months of sales against expenses.</p>
+            <div class="lab__meta"><div><b>1</b><span>Cells</span></div></div>
+          </div>
+        </div>
+        <div class="nb">
+            <div class="cell">
+              <div class="cell__rail">
+                <span class="cell__prompt">In&nbsp;[9]</span>
+                <button class="cell__run" type="button" data-nb-run aria-label="Run cell 9" title="Run">
+                  <svg width="9" height="9" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+              </div>
+              <div class="cell__body">
+                <textarea class="cell__code" rows="1" spellcheck="false" aria-label="Code cell 9">months = [&quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;]
+sales = [120, 150, 180, 160, 220, 250]
+expenses = [80, 100, 120, 110, 140, 160]
+fig, ax = plt.subplots(2, 1, figsize=(10, 8))
+ax[0].plot(months,sales,marker=&quot;o&quot;,linewidth=2,label=&quot;Sales&quot;)
+ax[0].set_title(&quot;Monthly Sales&quot;)
+ax[0].set_xlabel(&quot;Month&quot;)
+ax[0].set_ylabel(&quot;Sales&quot;)
+ax[0].set_xticks(range(len(months)))
+ax[0].set_xticklabels(months)
+ax[0].annotate(&quot;Highest Sales&quot;,xy=(5, 250),xytext=(3, 270),arrowprops=dict(arrowstyle=&quot;-&gt;&quot;))
+ax[0].legend()
+ax[0].grid(True)
+
+ax[1].plot(months,expenses,marker=&quot;s&quot;,linewidth=2,label=&quot;Expenses&quot;)
+ax[1].set_title(&quot;Monthly Expenses&quot;)
+ax[1].set_xlabel(&quot;Month&quot;)
+ax[1].set_ylabel(&quot;Expenses&quot;)
+ax[1].set_xticks(range(len(months)))
+ax[1].set_xticklabels(months)
+ax[1].annotate(&quot;Highest Expense&quot;,xy=(5, 160),xytext=(3.5, 180),arrowprops=dict(arrowstyle=&quot;-&gt;&quot;))
+ax[1].legend()
+ax[1].grid(True)
+
+fig.suptitle(&quot;Monthly Sales and Expenses Analysis&quot;, fontsize=16)
+plt.tight_layout()
+plt.savefig(&quot;monthly_sales_expenses.png&quot;,dpi=300,bbox_inches=&quot;tight&quot;)
+plt.show()</textarea>
+                <div class="cell__out" hidden>
+                  <span class="cell__prompt cell__prompt--out">Out&nbsp;[9]</span>
+                  <img class="cell__figure" src="assets/outputs/lab5-a-10-0.png" alt="Figure produced by cell 9" loading="lazy" decoding="async">
+                </div>
+              </div>
+            </div>
+        </div>
+      </section>
+      <section class="lab" id="part-b" data-jump="Part B · Bar plots — grouped &amp; stacked">
+        <div class="lab__head">
+          <span class="lab__code">B</span>
+          <div>
+            <h2 class="lab__title">Bar plots — grouped &amp; stacked</h2>
+            <p class="lab__summary">Student marks per language as a grouped bar chart, then as a stacked one.</p>
+            <div class="lab__meta"><div><b>2</b><span>Cells</span></div></div>
+          </div>
+        </div>
+        <div class="nb">
+            <div class="cell">
+              <div class="cell__rail">
+                <span class="cell__prompt">In&nbsp;[10]</span>
+                <button class="cell__run" type="button" data-nb-run aria-label="Run cell 10" title="Run">
+                  <svg width="9" height="9" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+              </div>
+              <div class="cell__body">
+                <textarea class="cell__code" rows="1" spellcheck="false" aria-label="Code cell 10">import numpy as np
+data = {'Pandas': [87, 94, 66, 99],'numpy': [65, 59, 80, 85],'html': [88, 76, 90, 90]}
+df = pd.DataFrame(data,index=['Student1', 'Student2', 'Student3', 'Student4'])
+print(&quot;DataFrame:&quot;)
+print(df)
+df.plot(kind='bar',figsize=(8, 5))
+plt.title(&quot;Student Marks in Different Programming Languages&quot;)
+plt.xlabel(&quot;Students&quot;)
+plt.ylabel(&quot;Marks&quot;)
+plt.xticks(rotation=0)
+plt.legend(title=&quot;Subjects&quot;)
+plt.tight_layout()
+plt.show()
+
+x=np.arange(len(df.index))
+plt.bar(x-0.25,df['Pandas'],0.25,label=&quot;Pandas&quot;)
+plt.bar(x,df['numpy'],0.25,label=&quot;numpy&quot;)
+plt.bar(x+0.25,df['html'],0.25,label=&quot;html&quot;)
+plt.xticks(x,df.index)
+plt.legend()
+plt.show()</textarea>
+                <div class="cell__out" hidden>
+                  <span class="cell__prompt cell__prompt--out">Out&nbsp;[10]</span>
+                  <img class="cell__figure" src="assets/outputs/lab5-b-12-1.png" alt="Figure produced by cell 10" loading="lazy" decoding="async">
+                </div>
+              </div>
+            </div>
+            <div class="cell">
+              <div class="cell__rail">
+                <span class="cell__prompt">In&nbsp;[11]</span>
+                <button class="cell__run" type="button" data-nb-run aria-label="Run cell 11" title="Run">
+                  <svg width="9" height="9" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+              </div>
+              <div class="cell__body">
+                <textarea class="cell__code" rows="1" spellcheck="false" aria-label="Code cell 11">data = { 'Pandas': [87, 94, 66, 99],'numpy': [65, 59, 80, 85],'html': [88, 76, 90, 90]}
+df = pd.DataFrame(data,index=['Student1', 'Student2', 'Student3', 'Student4'])
+print(&quot;DataFrame:&quot;)
+print(df)
+df.plot(kind='bar',stacked=True,figsize=(8, 5))
+plt.title(&quot;Stacked Bar Plot of Student Marks&quot;)
+plt.xlabel(&quot;Students&quot;)
+plt.ylabel(&quot;Total Marks&quot;)
+plt.xticks(rotation=0)
+plt.legend(title=&quot;Subjects&quot;)
+plt.tight_layout()
+plt.show()</textarea>
+                <div class="cell__out" hidden>
+                  <span class="cell__prompt cell__prompt--out">Out&nbsp;[11]</span>
+                  <img class="cell__figure" src="assets/outputs/lab5-b-14-1.png" alt="Figure produced by cell 11" loading="lazy" decoding="async">
+                </div>
+              </div>
+            </div>
+        </div>
+      </section>
+      <section class="lab" id="part-c" data-jump="Part C · Histogram &amp; KDE">
+        <div class="lab__head">
+          <span class="lab__code">C</span>
+          <div>
+            <h2 class="lab__title">Histogram &amp; KDE</h2>
+            <p class="lab__summary">Distribution of 20 recorded marks, raw and smoothed with a KDE curve.</p>
+            <div class="lab__meta"><div><b>1</b><span>Cells</span></div></div>
+          </div>
+        </div>
+        <div class="nb">
+            <div class="cell">
+              <div class="cell__rail">
+                <span class="cell__prompt">In&nbsp;[12]</span>
+                <button class="cell__run" type="button" data-nb-run aria-label="Run cell 12" title="Run">
+                  <svg width="9" height="9" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+              </div>
+              <div class="cell__body">
+                <textarea class="cell__code" rows="1" spellcheck="false" aria-label="Code cell 12">data = [54, 57, 67, 55, 58, 99, 62, 98, 68, 85,
+        72, 77, 67, 80, 90, 85, 57, 90, 75, 95]
+df = pd.DataFrame({'Marks': data})
+print(&quot;Observed Data:&quot;)
+print(df)
+plt.figure(figsize=(8, 5))
+sns.histplot(df['Marks'], bins=6, kde=False)
+plt.title(&quot;Histogram of Marks&quot;)
+plt.xlabel(&quot;Marks&quot;)
+plt.ylabel(&quot;Frequency&quot;)
+plt.tight_layout()
+plt.show()
+plt.figure(figsize=(8, 5))
+sns.kdeplot(df['Marks'], fill=True)
+plt.title(&quot;Density Plot of Marks&quot;)
+plt.xlabel(&quot;Marks&quot;)
+plt.ylabel(&quot;Density&quot;)
+plt.tight_layout()
+plt.show()</textarea>
+                <div class="cell__out" hidden>
+                  <span class="cell__prompt cell__prompt--out">Out&nbsp;[12]</span>
+                  <img class="cell__figure" src="assets/outputs/lab5-c-16-1.png" alt="Figure produced by cell 12" loading="lazy" decoding="async">
+                </div>
+              </div>
+            </div>
+        </div>
+      </section>
+      <section class="lab" id="part-d" data-jump="Part D · Scatter — study hours vs marks">
+        <div class="lab__head">
+          <span class="lab__code">D</span>
+          <div>
+            <h2 class="lab__title">Scatter — study hours vs marks</h2>
+            <p class="lab__summary">Relationship between hours studied and marks scored across ten students.</p>
+            <div class="lab__meta"><div><b>1</b><span>Cells</span></div></div>
+          </div>
+        </div>
+        <div class="nb">
+            <div class="cell">
+              <div class="cell__rail">
+                <span class="cell__prompt">In&nbsp;[13]</span>
+                <button class="cell__run" type="button" data-nb-run aria-label="Run cell 13" title="Run">
+                  <svg width="9" height="9" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+              </div>
+              <div class="cell__body">
+                <textarea class="cell__code" rows="1" spellcheck="false" aria-label="Code cell 13">study_hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+marks = [54, 57, 67, 55, 58, 99, 62, 98, 68, 85]
+df = pd.DataFrame({'Study_Hours': study_hours,'Marks': marks})
+print(&quot;Data:&quot;)
+print(df)
+plt.figure(figsize=(8, 5))
+plt.scatter(df['Study_Hours'], df['Marks'])
+plt.title(&quot;Relationship Between Study Hours and Marks&quot;)
+plt.xlabel(&quot;Study Hours&quot;)
+plt.ylabel(&quot;Marks&quot;)
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+correlation = df['Study_Hours'].corr(df['Marks'])
+print(&quot;\nCorrelation Coefficient:&quot;, round(correlation, 2))</textarea>
+                <div class="cell__out" hidden>
+                  <span class="cell__prompt cell__prompt--out">Out&nbsp;[13]</span>
+                  <img class="cell__figure" src="assets/outputs/lab5-d-18-1.png" alt="Figure produced by cell 13" loading="lazy" decoding="async">
+                </div>
+              </div>
+            </div>
+        </div>
+      </section>
+      <section class="lab" id="part-e" data-jump="Part E · Box plot — marks by department">
+        <div class="lab__head">
+          <span class="lab__code">E</span>
+          <div>
+            <h2 class="lab__title">Box plot — marks by department</h2>
+            <p class="lab__summary">Compare mark distributions across departments at a glance.</p>
+            <div class="lab__meta"><div><b>1</b><span>Cells</span></div></div>
+          </div>
+        </div>
+        <div class="nb">
+            <div class="cell">
+              <div class="cell__rail">
+                <span class="cell__prompt">In&nbsp;[14]</span>
+                <button class="cell__run" type="button" data-nb-run aria-label="Run cell 14" title="Run">
+                  <svg width="9" height="9" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+              </div>
+              <div class="cell__body">
+                <textarea class="cell__code" rows="1" spellcheck="false" aria-label="Code cell 14"># Create sample data
+data = {
+    'Department': ['CS', 'CS','DS', 'ECE', 'DS', 'ECE','EEE', 'EEE', 'IT', 'EEE', 'EEE'],
+    'Marks': [78, 85, 90, 72, 88,65,70,82,75,80,60]}
+df = pd.DataFrame(data)
+print(&quot;Data:&quot;)
+print(df)
+plt.figure(figsize=(8, 5))
+sns.boxplot(x='Department',y='Marks',data=df)
+plt.title(&quot;Marks Distribution by Department&quot;)
+plt.xlabel(&quot;Department&quot;)
+plt.ylabel(&quot;Marks&quot;)
+plt.grid(axis='y', linestyle='--', alpha=0.5)
+plt.tight_layout()
+plt.show()</textarea>
+                <div class="cell__out" hidden>
+                  <span class="cell__prompt cell__prompt--out">Out&nbsp;[14]</span>
+                  <img class="cell__figure" src="assets/outputs/lab5-e-20-1.png" alt="Figure produced by cell 14" loading="lazy" decoding="async">
+                </div>
+              </div>
+            </div>
+        </div>
+      </section>
+
+
+    <div class="video" data-video="6GUZXDef2U0">
+      <div class="video__head">
+        <span class="video__label">Watch · EXP-5</span>
+        <a href="https://www.youtube.com/watch?v=6GUZXDef2U0" target="_blank" rel="noopener">YouTube ↗</a>
+      </div>
+      <button class="video__facade" type="button" data-video-play aria-label="Play video: Seaborn full course">
+        <img src="https://i.ytimg.com/vi/6GUZXDef2U0/hqdefault.jpg" alt="" width="480" height="270" loading="lazy" decoding="async">
+        <span class="video__play" aria-hidden="true"><svg width="18" height="18"><use href="#i-play"/></svg></span>
+        <span class="video__meta"><em>Statistical plots on top of matplotlib</em></span>
+      </button>
+    </div>
+    <div class="nextup">
+      <a href="experiment-4.html"><span>Previous</span><b>← EXP-4</b></a>
+      <a href="experiment-6.html"><span>Next</span><b>EXP-6 →</b></a>
+    </div>
+
+  </div></main>
+
+<footer class="footer">
+  <div class="shell">
+    <div class="footer__grid">
+      <div>
+        <p class="footer__brand">DS Lab — the experiment record.</p>
+      </div>
+
+      <div class="footer__col">
+        <h4>Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="experiments.html">Experiments</a>
+        <a href="modules.html">Modules</a>
+        <a href="tools.html">Tools</a>
+      </div>
+
+      <div class="footer__col">
+        <h4>Documents</h4>
+        <a href="assets/pdf/lab-record.pdf" target="_blank" rel="noopener">Lab record</a>
+        <a href="assets/pdf/module-1.pdf" target="_blank" rel="noopener">Module 01</a>
+        <a href="assets/pdf/module-2.pdf" target="_blank" rel="noopener">Module 02</a>
+        <a href="assets/pdf/module-3.pdf" target="_blank" rel="noopener">Module 03</a>
+        <a href="assets/pdf/module-4.pdf" target="_blank" rel="noopener">Module 04</a>
+        <a href="assets/pdf/module-5.pdf" target="_blank" rel="noopener">Module 05</a>
+      </div>
+
+      <div class="footer__col">
+        <h4>Record holder</h4>
+        <span>GANDODI PRANEETH KUMAR</span>
+        <span>24102A030124 · CSE (DS) — 2</span>
+        <span>Faculty: S Bosu Babu</span>
+        <a href="https://github.com/Praneeth-Gandodi" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© <span id="year">2026</span> GANDODI PRANEETH KUMAR · Mohan Babu University</span>
+      <span>Local time <span id="clock">--:--:--</span></span>
+      <span>Hand-built · semantic HTML, CSS &amp; vanilla JS · 0 dependencies</span>
+    </div>
+  </div>
+</footer>
+
+<button class="icon-btn totop" id="totop" type="button" aria-label="Back to top">
+  <svg width="17" height="17" aria-hidden="true"><use href="#i-top"/></svg>
+</button>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

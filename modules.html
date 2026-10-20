@@ -1,85 +1,447 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark" class="no-js">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Modules — DS Lab</title>
-  <meta name="description" content="Data Science Lab course modules with syllabus PDFs." />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230e7a63'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EDS%3C/text%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="css/tokens.css" />
-  <link rel="stylesheet" href="css/site.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Modules — DS Lab · GANDODI PRANEETH KUMAR</title>
+<meta name="description" content="The five Data Science course modules behind the lab record, each with its syllabus PDF, mapped to the experiment that covers it.">
+<meta name="author" content="GANDODI PRANEETH KUMAR">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0a0a0c">
+<meta property="og:title" content="Modules — the syllabus behind each experiment">
+<meta property="og:description" content="Five course modules, five syllabus PDFs, mapped one-to-one to the experiments.">
+<meta property="og:type" content="website">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0a0c'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23ff5a1f' text-anchor='middle'%3EDS%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&family=Inter+Tight:ital,wght@0,300..600;1,400&family=Instrument+Serif:ital@0;1&display=swap">
+
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/sections.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+
+<script>
+  (function () {
+    document.documentElement.classList.remove('no-js');
+    try {
+      var saved = localStorage.getItem('dslab-theme');
+      var wantsLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (wantsLight ? 'light' : 'dark');
+    } catch (e) {}
+  })();
+</script>
 </head>
+
 <body>
-  <header id="site-nav"></header>
 
-  <main>
-    <section class="hero">
-      <div class="wrap">
-        <span class="hero__eyebrow">Course modules</span>
-        <h1 class="hero__title">Five modules, <em>one record</em>.</h1>
-        <p class="hero__desc">Each module maps to one experiment. Open a syllabus sheet as a PDF — it lists the topics that lab covers, ready for revision or submission.</p>
+<svg class="sr-only" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.2 12 4l8 7.2V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v5.6L4.8 18a1 1 0 0 0 .9 1.5h12.6A1 1 0 0 0 19.2 18L14 8.6V3"/><path d="M7.4 14h9.2"/></symbol>
+  <symbol id="i-pdf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7z"/><path d="M14 3v4h4M8.5 13h7M8.5 16.5h4.5"/></symbol>
+  <symbol id="i-tools" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 8h6M14 8h6M4 16h10M18 16h2"/><circle cx="12" cy="8" r="2"/><circle cx="16" cy="16" r="2"/></symbol>
+  <symbol id="i-id" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><circle cx="8.5" cy="11" r="2.2"/><path d="M5.2 17c.7-1.8 1.9-2.6 3.3-2.6s2.6.8 3.3 2.6M14.5 10h4.5M14.5 13.5h4.5"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 6.5A2.5 2.5 0 0 0 12.5 4h-6A2.5 2.5 0 0 0 4 6.5v6A2.5 2.5 0 0 0 6.5 15"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 7h18M3 17h12"/></symbol>
+  <symbol id="i-top" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5S9.5 4.5 4 4.5v13c5.5 0 8 2 8 2s2.5-2 8-2v-13c-5.5 0-8 2-8 2Z"/><path d="M12 6.5v13"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 20V11M10 20V5M16 20v-6M22 20H2"/></symbol>
+  <symbol id="i-table" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M9.5 9.5v10M3.5 14.5h17"/></symbol>
+  <symbol id="i-db" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><ellipse cx="12" cy="6" rx="7.5" ry="3"/><path d="M4.5 6v12c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V6"/><path d="M4.5 12c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3"/></symbol>
+</svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="preloader" id="preloader" role="status" aria-live="polite" aria-label="Loading">
+  <div class="preloader__panel"></div>
+  <div class="preloader__panel"></div>
+  <div class="preloader__panel"></div>
+  <div class="preloader__panel"></div>
+  <div class="preloader__panel"></div>
+  <div class="preloader__panel"></div>
+  <div class="preloader__ui">
+    <div class="preloader__row">
+      <span class="preloader__meta">Mohan Babu University · Dept. of Data Science</span>
+      <span class="preloader__meta">CSE (DS) — 2 · 2026</span>
+    </div>
+    <div>
+      <div class="preloader__word" aria-hidden="true">MODULES</div>
+      <div class="preloader__row">
+        <span class="preloader__meta" id="preloader-status">Loading syllabus</span>
+        <span class="preloader__num"><span id="preloader-count">000</span>%</span>
       </div>
-    </section>
+      <div class="preloader__bar"><i id="preloader-bar"></i></div>
+    </div>
+  </div>
+</div>
 
-    <section class="section" style="padding-top:10px">
-      <div class="wrap">
-        <div class="pdfhero">
-          <div class="pdfhero__panel">
-            <div class="section__head" style="margin-bottom:14px">
-              <div>
-                <p class="eyebrow">PDF viewer</p>
-                <h2 class="section__title" style="font-size:22px">Syllabus sheets</h2>
-              </div>
-            </div>
-            <iframe id="pdf-frame" class="pdfhero__frame" src="assets/pdf/lab-record.pdf" title="PDF viewer"></iframe>
-          </div>
-          <aside class="pdfhero__side">
-            <p class="labnav__title" style="margin-bottom:2px">Documents</p>
-            <button class="filecard filecard--on" data-src="assets/pdf/lab-record.pdf">
-              <span class="filecard__icon">PDF</span>
-              <span><span class="filecard__t">Lab record</span><span class="filecard__s">Full experiment index</span></span>
-            </button>
-            <button class="filecard" data-src="assets/pdf/module-1.pdf">
-              <span class="filecard__icon">PDF</span>
-              <span><span class="filecard__t">Module 1 — Data Acquisition &amp; I/O</span><span class="filecard__s">EXP-1 · syllabus sheet</span></span>
-            </button>
-            <button class="filecard" data-src="assets/pdf/module-2.pdf">
-              <span class="filecard__icon">PDF</span>
-              <span><span class="filecard__t">Module 2 — Web &amp; Database Data</span><span class="filecard__s">EXP-2 · syllabus sheet</span></span>
-            </button>
-            <button class="filecard" data-src="assets/pdf/module-3.pdf">
-              <span class="filecard__icon">PDF</span>
-              <span><span class="filecard__t">Module 3 — Cleaning &amp; Preprocessing</span><span class="filecard__s">EXP-3 · syllabus sheet</span></span>
-            </button>
-            <button class="filecard" data-src="assets/pdf/module-4.pdf">
-              <span class="filecard__icon">PDF</span>
-              <span><span class="filecard__t">Module 4 — Hierarchical Indexing</span><span class="filecard__s">EXP-4 · syllabus sheet</span></span>
-            </button>
-            <button class="filecard" data-src="assets/pdf/module-5.pdf">
-              <span class="filecard__icon">PDF</span>
-              <span><span class="filecard__t">Module 5 — Data Visualization</span><span class="filecard__s">EXP-5 · syllabus sheet</span></span>
-            </button>
-          </aside>
-        </div>
+<div class="aurora" aria-hidden="true">
+  <div class="aurora__orb aurora__orb--a"></div>
+  <div class="aurora__orb aurora__orb--b"></div>
+  <div class="aurora__orb aurora__orb--c"></div>
+</div>
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
 
-        <div class="section__head" style="margin-top:44px">
-          <div>
-            <p class="eyebrow">Modules</p>
-            <h2 class="section__title">What each lab covers</h2>
-            <p class="section__sub">Every module maps to one experiment — open its PDF or jump straight to the notebook.</p>
-          </div>
-          <a class="section__link" href="experiments.html">Experiments</a>
-        </div>
-        <div class="modgrid" id="mod-grid"></div>
+<div class="progress" aria-hidden="true"><div class="progress__bar" id="progress-bar"></div></div>
+
+<header class="nav" id="nav">
+  <div class="shell nav__inner">
+    <a class="nav__brand" href="index.html" aria-label="DS Lab home">
+      <span class="nav__mark" aria-hidden="true">DS</span>
+      DS LAB
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      <a class="nav__link" href="index.html"><span>Home</span></a>
+      <a class="nav__link" href="modules.html" aria-current="page"><span>Modules</span></a>
+      <a class="nav__link" href="experiments.html"><span>Experiments</span></a>
+      <a class="nav__link" href="tools.html"><span>Tools</span></a>
+    </nav>
+
+    <div class="nav__actions">
+      <button class="nav__search" type="button" data-palette-open aria-label="Search pages, sections and commands">
+        <svg width="15" height="15" aria-hidden="true"><use href="#i-search"/></svg>
+        <span>Search</span>
+        <span class="kbd" aria-hidden="true">⌘K</span>
+      </button>
+      <button class="icon-btn" type="button" id="theme-toggle" aria-label="Switch to light theme">
+        <svg width="17" height="17" aria-hidden="true" data-icon-dark><use href="#i-moon"/></svg>
+        <svg width="17" height="17" aria-hidden="true" data-icon-light hidden><use href="#i-sun"/></svg>
+      </button>
+      <button class="icon-btn nav__burger" type="button" id="menu-open" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+        <svg width="18" height="18" aria-hidden="true"><use href="#i-menu"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Main menu" hidden>
+  <div class="menu__top">
+    <span class="eyebrow">Navigate</span>
+    <button class="icon-btn" type="button" id="menu-close" aria-label="Close menu">
+      <svg width="18" height="18" aria-hidden="true"><use href="#i-close"/></svg>
+    </button>
+  </div>
+  <nav class="menu__list" aria-label="Menu">
+    <a class="menu__link" href="index.html" style="--i:0"><i>01</i> Home</a>
+    <a class="menu__link" href="modules.html" style="--i:1"><i>02</i> Modules</a>
+    <a class="menu__link" href="experiments.html" style="--i:2"><i>03</i> Experiments</a>
+    <a class="menu__link" href="tools.html" style="--i:3"><i>04</i> Tools</a>
+  </nav>
+  <div class="menu__meta">
+    <a href="https://github.com/Praneeth-Gandodi" target="_blank" rel="noopener">GitHub</a>
+    <button type="button" data-palette-open style="display:inline-flex;align-items:center;gap:.5rem">
+      <svg width="14" height="14" aria-hidden="true"><use href="#i-search"/></svg> Search
+    </button>
+    <span>CSE (DS) — 2</span>
+  </div>
+</div>
+
+<div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command palette" hidden>
+  <div class="palette__dialog">
+    <div class="palette__search">
+      <svg width="17" height="17" aria-hidden="true"><use href="#i-search"/></svg>
+      <input class="palette__input" id="palette-input" type="text" placeholder="Jump to a page or section, or run a command…"
+             role="combobox" aria-expanded="true" aria-controls="palette-list" aria-autocomplete="list" autocomplete="off" spellcheck="false">
+      <span class="kbd">ESC</span>
+    </div>
+    <div class="palette__list" id="palette-list" role="listbox" aria-label="Results"></div>
+    <div class="palette__foot">
+      <span><span class="kbd">↑↓</span> Navigate</span>
+      <span><span class="kbd">↵</span> Select</span>
+      <span><span class="kbd">ESC</span> Close</span>
+    </div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
+
+<main id="main">
+
+  <section class="pagehead">
+    <div class="shell pagehead__inner">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="index.html">DS Lab</a>
+        <span aria-hidden="true">/</span>
+        <span>Modules</span>
+      </nav>
+
+      <div>
+        <span class="eyebrow" data-reveal="fade">Course modules</span>
+        <h1 class="pagehead__title" data-split>The syllabus behind each <em>experiment</em>.</h1>
       </div>
-    </section>
-  </main>
 
-  <footer id="site-foot"></footer>
-  <div class="toast" id="toast" role="status"></div>
+      <p class="lede" data-reveal="fade" style="--d:.15s">
+        Five modules ran alongside the labs. Each one maps to the experiment it
+        produced, and each opens as a PDF — the same sheets used for revision
+        and submission.
+      </p>
 
-  <script src="data/labs.js"></script>
-  <script src="js/site.js"></script>
-  <script src="js/modules.js"></script>
+      <div class="pagehead__meta" data-reveal="fade" style="--d:.2s">
+        <div class="pagehead__stat"><b data-count="5">0</b><span>Modules</span></div>
+        <div class="pagehead__stat"><b data-count="5">0</b><span>PDFs</span></div>
+        <div class="pagehead__stat"><b data-count="20">0</b><span>Parts covered</span></div>
+        <div class="pagehead__stat"><b data-count="1">0</b><span>Lab record</span></div>
+      </div>
+
+      <div class="pagehead__actions" data-reveal="fade" style="--d:.25s">
+        <a class="btn btn--primary btn--sm" href="assets/pdf/lab-record.pdf" target="_blank" rel="noopener">
+          <span class="btn__label">Whole lab record
+            <svg class="btn__glyph" width="14" height="14" aria-hidden="true"><use href="#i-pdf"/></svg>
+          </span>
+        </a>
+        <a class="btn btn--ghost btn--sm" href="experiments.html">
+          <span class="btn__label">See the experiments
+            <svg class="btn__glyph" width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="shell">
+    <nav class="indexbar" aria-label="Modules on this page" data-reveal="fade">
+      <a href="#module-1"><i>01</i> Acquisition</a>
+      <a href="#module-2"><i>02</i> Web &amp; SQL</a>
+      <a href="#module-3"><i>03</i> Cleaning</a>
+      <a href="#module-4"><i>04</i> Indexing</a>
+      <a href="#module-5"><i>05</i> Visualization</a>
+    </nav>
+  </div>
+
+  <div class="shell pagelist">
+
+    <div class="modrow" id="module-1" data-jump="Module 01 · Data Acquisition" data-jump-icon="i-pdf">
+      <span class="modrow__num">01</span>
+      <div>
+        <h2 class="modrow__title">Data Acquisition &amp; I/O</h2>
+        <p class="modrow__lede">
+          Where data enters the record: flat files, JSON payloads and Excel
+          workbooks, plus frames built from plain Python objects when there is
+          no file to read at all.
+        </p>
+        <div class="modrow__topics">
+          <span class="tag">pandas</span>
+          <span class="tag">CSV &amp; TSV</span>
+          <span class="tag">JSON</span>
+          <span class="tag">openpyxl</span>
+          <span class="tag">read_sql</span>
+        </div>
+        <p class="note"><strong>Covered by</strong> · EXP-1 — Data Import &amp; Export, parts A, B and C.</p>
+      </div>
+      <div class="modrow__actions">
+        <a class="btn btn--ghost btn--sm" href="assets/pdf/module-1.pdf" target="_blank" rel="noopener">
+          <span class="btn__label">Open
+            <svg class="btn__glyph" width="14" height="14" aria-hidden="true"><use href="#i-pdf"/></svg>
+          </span>
+        </a>
+        <a class="btn btn--ghost btn--sm" href="assets/pdf/module-1.pdf" download>
+          <span class="btn__label">Download</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="modrow" id="module-2" data-jump="Module 02 · Web &amp; SQL" data-jump-icon="i-pdf">
+      <span class="modrow__num">02</span>
+      <div>
+        <h2 class="modrow__title">Web &amp; Database Data</h2>
+        <p class="modrow__lede">
+          Getting data from somewhere other than disk: a REST endpoint called
+          with <code>requests</code>, and a SQLite database queried straight into
+          a DataFrame.
+        </p>
+        <div class="modrow__topics">
+          <span class="tag">requests</span>
+          <span class="tag">REST</span>
+          <span class="tag">sqlite3</span>
+          <span class="tag">read_sql_query</span>
+          <span class="tag">SQL CRUD</span>
+        </div>
+        <p class="note"><strong>Covered by</strong> · EXP-2 — Data from APIs &amp; SQL, parts A and B.</p>
+      </div>
+      <div class="modrow__actions">
+        <a class="btn btn--ghost btn--sm" href="assets/pdf/module-2.pdf" target="_blank" rel="noopener">
+          <span class="btn__label">Open
+            <svg class="btn__glyph" width="14" height="14" aria-hidden="true"><use href="#i-pdf"/></svg>
+          </span>
+        </a>
+        <a class="btn btn--ghost btn--sm" href="assets/pdf/module-2.pdf" download>
+          <span class="btn__label">Download</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="modrow" id="module-3" data-jump="Module 03 · Cleaning" data-jump-icon="i-pdf">
+      <span class="modrow__num">03</span>
+      <div>
+        <h2 class="modrow__title">Cleaning &amp; Preprocessing</h2>
+        <p class="modrow__lede">
+          Missing values, category codes, column names and the outliers that
+          survive a first pass — the unglamorous work that decides whether the
+          later charts mean anything.
+        </p>
+        <div class="modrow__topics">
+          <span class="tag">isna · dropna · fillna</span>
+          <span class="tag">map</span>
+          <span class="tag">rename</span>
+          <span class="tag">outliers</span>
+        </div>
+        <p class="note"><strong>Covered by</strong> · EXP-3 — Data Cleaning &amp; Preprocessing, parts A, B and C.</p>
+      </div>
+      <div class="modrow__actions">
+        <a class="btn btn--ghost btn--sm" href="assets/pdf/module-3.pdf" target="_blank" rel="noopener">
+          <span class="btn__label">Open
+            <svg class="btn__glyph" width="14" height="14" aria-hidden="true"><use href="#i-pdf"/></svg>
+          </span>
+        </a>
+        <a class="btn btn--ghost btn--sm" href="assets/pdf/module-3.pdf" download>
+          <span class="btn__label">Download</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="modrow" id="module-4" data-jump="Module 04 · Hierarchical Indexing" data-jump-icon="i-pdf">
+      <span class="modrow__num">04</span>
+      <div>
+        <h2 class="modrow__title">Hierarchical Indexing</h2>
+        <p class="modrow__lede">
+          Multi-level indexes and everything they make possible: selecting
+          across levels, and reshaping a frame by moving levels between rows and
+          columns with stack and unstack.
+        </p>
+        <div class="modrow__topics">
+          <span class="tag">MultiIndex</span>
+          <span class="tag">.loc across levels</span>
+          <span class="tag">stack / unstack</span>
+        </div>
+        <p class="note"><strong>Covered by</strong> · EXP-4 — Hierarchical Indexing, parts A and B.</p>
+      </div>
+      <div class="modrow__actions">
+        <a class="btn btn--ghost btn--sm" href="assets/pdf/module-4.pdf" target="_blank" rel="noopener">
+          <span class="btn__label">Open
+            <svg class="btn__glyph" width="14" height="14" aria-hidden="true"><use href="#i-pdf"/></svg>
+          </span>
+        </a>
+        <a class="btn btn--ghost btn--sm" href="assets/pdf/module-4.pdf" download>
+          <span class="btn__label">Download</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="modrow" id="module-5" data-jump="Module 05 · Visualization" data-jump-icon="i-pdf">
+      <span class="modrow__num">05</span>
+      <div>
+        <h2 class="modrow__title">Data Visualization</h2>
+        <p class="modrow__lede">
+          Figures and subplots, distributions and comparisons, and the
+          statistical plots that answer a question in one line. This module is
+          answered question by question in EXP-5 — thirteen saved charts.
+        </p>
+        <div class="modrow__topics">
+          <span class="tag">Matplotlib</span>
+          <span class="tag">Seaborn</span>
+          <span class="tag">subplots</span>
+          <span class="tag">KDE</span>
+          <span class="tag">box plots</span>
+        </div>
+        <p class="note"><strong>Covered by</strong> · EXP-5 — Data Visualization, the warm-up and parts A–E.</p>
+      </div>
+      <div class="modrow__actions">
+        <a class="btn btn--ghost btn--sm" href="assets/pdf/module-5.pdf" target="_blank" rel="noopener">
+          <span class="btn__label">Open
+            <svg class="btn__glyph" width="14" height="14" aria-hidden="true"><use href="#i-pdf"/></svg>
+          </span>
+        </a>
+        <a class="btn btn--ghost btn--sm" href="assets/pdf/module-5.pdf" download>
+          <span class="btn__label">Download</span>
+        </a>
+      </div>
+    </div>
+
+    <aside class="callout" style="margin-top: clamp(2rem, 4vw, 3rem)">
+      <span class="callout__label">One honest note</span>
+      <p>
+        The five module PDFs stop at visualization, so EXP-6 — time series — has
+        no module of its own. It was run from the same syllabus material and is
+        kept in the record rather than quietly dropped.
+      </p>
+      <p>
+        Each module opens in a new tab. The whole record, all six experiments
+        bound together, is the <a href="assets/pdf/lab-record.pdf" target="_blank" rel="noopener" style="color:var(--accent)">lab record PDF</a>.
+      </p>
+    </aside>
+
+    <div class="nextup">
+      <a href="experiments.html">
+        <span>Previous</span>
+        <b>← The experiments</b>
+      </a>
+      <a href="tools.html">
+        <span>Next</span>
+        <b>The toolkit →</b>
+      </a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="shell">
+    <div class="footer__grid">
+      <div>
+        <p class="footer__brand">DS Lab — the experiment record.</p>
+      </div>
+
+      <div class="footer__col">
+        <h4>Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="experiments.html">Experiments</a>
+        <a href="modules.html">Modules</a>
+        <a href="tools.html">Tools</a>
+      </div>
+
+      <div class="footer__col">
+        <h4>Documents</h4>
+        <a href="assets/pdf/lab-record.pdf" target="_blank" rel="noopener">Lab record</a>
+        <a href="assets/pdf/module-1.pdf" target="_blank" rel="noopener">Module 01</a>
+        <a href="assets/pdf/module-2.pdf" target="_blank" rel="noopener">Module 02</a>
+        <a href="assets/pdf/module-3.pdf" target="_blank" rel="noopener">Module 03</a>
+        <a href="assets/pdf/module-4.pdf" target="_blank" rel="noopener">Module 04</a>
+        <a href="assets/pdf/module-5.pdf" target="_blank" rel="noopener">Module 05</a>
+      </div>
+
+      <div class="footer__col">
+        <h4>Record holder</h4>
+        <span>GANDODI PRANEETH KUMAR</span>
+        <span>24102A030124 · CSE (DS) — 2</span>
+        <span>Faculty: S Bosu Babu</span>
+        <a href="https://github.com/Praneeth-Gandodi" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© <span id="year">2026</span> GANDODI PRANEETH KUMAR · Mohan Babu University</span>
+      <span>Local time <span id="clock">--:--:--</span></span>
+      <span>Hand-built · semantic HTML, CSS &amp; vanilla JS · 0 dependencies</span>
+    </div>
+  </div>
+</footer>
+
+<button class="icon-btn totop" id="totop" type="button" aria-label="Back to top">
+  <svg width="17" height="17" aria-hidden="true"><use href="#i-top"/></svg>
+</button>
+
+<script src="assets/js/main.js" defer></script>
 </body>
 </html>

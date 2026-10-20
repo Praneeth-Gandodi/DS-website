@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EXP-6 · Time Series Analysis — DS Lab</title>
+<meta name="description" content="Build time series from dates, localize and convert time zones, work with Periods and frequencies, and resample / upsample / downsample data.">
+<meta name="author" content="GANDODI PRANEETH KUMAR">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0a0a0c">
+<meta property="og:title" content="EXP-6 · Time Series Analysis — DS Lab">
+<meta property="og:description" content="Build time series from dates, localize and convert time zones, work with Periods and frequencies, and resample / upsample / downsample data.">
+<meta property="og:type" content="website">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0a0c'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23ff5a1f' text-anchor='middle'%3EDS%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&family=Inter+Tight:ital,wght@0,300..600;1,400&family=Instrument+Serif:ital@0;1&display=swap">
+
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/sections.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+
+<script>
+  (function () {
+    document.documentElement.classList.remove('no-js');
+    try {
+      var saved = localStorage.getItem('dslab-theme');
+      var wantsLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (wantsLight ? 'light' : 'dark');
+    } catch (e) {}
+  })();
+</script>
+</head>
+
+<body>
+
+<svg class="sr-only" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.2 12 4l8 7.2V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v5.6L4.8 18a1 1 0 0 0 .9 1.5h12.6A1 1 0 0 0 19.2 18L14 8.6V3"/><path d="M7.4 14h9.2"/></symbol>
+  <symbol id="i-pdf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7z"/><path d="M14 3v4h4M8.5 13h7M8.5 16.5h4.5"/></symbol>
+  <symbol id="i-tools" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 8h6M14 8h6M4 16h10M18 16h2"/><circle cx="12" cy="8" r="2"/><circle cx="16" cy="16" r="2"/></symbol>
+  <symbol id="i-id" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><circle cx="8.5" cy="11" r="2.2"/><path d="M5.2 17c.7-1.8 1.9-2.6 3.3-2.6s2.6.8 3.3 2.6M14.5 10h4.5M14.5 13.5h4.5"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 6.5A2.5 2.5 0 0 0 12.5 4h-6A2.5 2.5 0 0 0 4 6.5v6A2.5 2.5 0 0 0 6.5 15"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 7h18M3 17h12"/></symbol>
+  <symbol id="i-top" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 20V11M10 20V5M16 20v-6M22 20H2"/></symbol>
+  <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1"/><path d="M3 4.5V10h5.5"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M8 5.5v13l10-6.5z"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5S9.5 4.5 4 4.5v13c5.5 0 8 2 8 2s2.5-2 8-2v-13c-5.5 0-8 2-8 2Z"/><path d="M12 6.5v13"/></symbol>
+  <symbol id="i-table" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M9.5 9.5v10M3.5 14.5h17"/></symbol>
+</svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="preloader" id="preloader" role="status" aria-live="polite" aria-label="Loading">
+  <div class="preloader__panel"></div>
+  <div class="preloader__panel"></div>
+  <div class="preloader__panel"></div>
+  <div class="preloader__panel"></div>
+  <div class="preloader__panel"></div>
+  <div class="preloader__panel"></div>
+  <div class="preloader__ui">
+    <div class="preloader__row">
+      <span class="preloader__meta">Mohan Babu University · Dept. of Data Science</span>
+      <span class="preloader__meta">CSE (DS) — 2 · 2026</span>
+    </div>
+    <div>
+      <div class="preloader__word" aria-hidden="true">EXP-6</div>
+      <div class="preloader__row">
+        <span class="preloader__meta" id="preloader-status">Loading index</span>
+        <span class="preloader__num"><span id="preloader-count">000</span>%</span>
+      </div>
+      <div class="preloader__bar"><i id="preloader-bar"></i></div>
+    </div>
+  </div>
+</div>
+
+<div class="aurora" aria-hidden="true">
+  <div class="aurora__orb aurora__orb--a"></div>
+  <div class="aurora__orb aurora__orb--b"></div>
+  <div class="aurora__orb aurora__orb--c"></div>
+</div>
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<div class="progress" aria-hidden="true"><div class="progress__bar" id="progress-bar"></div></div>
+
+<header class="nav" id="nav">
+  <div class="shell nav__inner">
+    <a class="nav__brand" href="index.html" aria-label="DS Lab home">
+      <span class="nav__mark" aria-hidden="true">DS</span>
+      DS LAB
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      <a class="nav__link" href="index.html"><span>Home</span></a>
+      <a class="nav__link" href="modules.html"><span>Modules</span></a>
+      <a class="nav__link" href="experiments.html" aria-current="page"><span>Experiments</span></a>
+      <a class="nav__link" href="tools.html"><span>Tools</span></a>
+    </nav>
+
+    <div class="nav__actions">
+      <button class="nav__search" type="button" data-palette-open aria-label="Search pages, sections and commands">
+        <svg width="15" height="15" aria-hidden="true"><use href="#i-search"/></svg>
+        <span>Search</span>
+        <span class="kbd" aria-hidden="true">⌘K</span>
+      </button>
+      <button class="icon-btn" type="button" id="theme-toggle" aria-label="Switch to light theme">
+        <svg width="17" height="17" aria-hidden="true" data-icon-dark><use href="#i-moon"/></svg>
+        <svg width="17" height="17" aria-hidden="true" data-icon-light hidden><use href="#i-sun"/></svg>
+      </button>
+      <button class="icon-btn nav__burger" type="button" id="menu-open" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+        <svg width="18" height="18" aria-hidden="true"><use href="#i-menu"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Main menu" hidden>
+  <div class="menu__top">
+    <span class="eyebrow">Navigate</span>
+    <button class="icon-btn" type="button" id="menu-close" aria-label="Close menu">
+      <svg width="18" height="18" aria-hidden="true"><use href="#i-close"/></svg>
+    </button>
+  </div>
+  <nav class="menu__list" aria-label="Menu">
+    <a class="menu__link" href="index.html" style="--i:0"><i>01</i> Home</a>
+    <a class="menu__link" href="modules.html" style="--i:1"><i>02</i> Modules</a>
+    <a class="menu__link" href="experiments.html" style="--i:2"><i>03</i> Experiments</a>
+    <a class="menu__link" href="tools.html" style="--i:3"><i>04</i> Tools</a>
+  </nav>
+  <div class="menu__meta">
+    <a href="https://github.com/Praneeth-Gandodi" target="_blank" rel="noopener">GitHub</a>
+    <button type="button" data-palette-open style="display:inline-flex;align-items:center;gap:.5rem">
+      <svg width="14" height="14" aria-hidden="true"><use href="#i-search"/></svg> Search
+    </button>
+    <span>CSE (DS) — 2</span>
+  </div>
+</div>
+
+<div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command palette" hidden>
+  <div class="palette__dialog">
+    <div class="palette__search">
+      <svg width="17" height="17" aria-hidden="true"><use href="#i-search"/></svg>
+      <input class="palette__input" id="palette-input" type="text" placeholder="Jump to a page or section, or run a command…"
+             role="combobox" aria-expanded="true" aria-controls="palette-list" aria-autocomplete="list" autocomplete="off" spellcheck="false">
+      <span class="kbd">ESC</span>
+    </div>
+    <div class="palette__list" id="palette-list" role="listbox" aria-label="Results"></div>
+    <div class="palette__foot">
+      <span><span class="kbd">↑↓</span> Navigate</span>
+      <span><span class="kbd">↵</span> Select</span>
+      <span><span class="kbd">ESC</span> Close</span>
+    </div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
+
+<main id="main">
+  <section class="pagehead">
+    <div class="shell pagehead__inner">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="index.html">DS Lab</a>
+        <span aria-hidden="true">/</span>
+        <a href="experiments.html">Experiments</a>
+        <span aria-hidden="true">/</span>
+        <span>EXP-6</span>
+      </nav>
+
+      <div>
+        <span class="eyebrow" data-reveal="fade">Experiment 06</span>
+        <h1 class="pagehead__title" data-split>Time Series Analysis</h1>
+      </div>
+
+      <p class="lede" data-reveal="fade" style="--d:.15s">Build time series from dates, localize and convert time zones, work with Periods and frequencies, and resample / upsample / downsample data.</p>
+
+      <div class="pagehead__meta" data-reveal="fade" style="--d:.2s">
+        <div class="pagehead__stat"><b data-count="4">0</b><span>Parts</span></div>
+        <div class="pagehead__stat"><b data-count="10">0</b><span>Notebook cells</span></div>
+      </div>
+
+      <div class="pagehead__actions" data-reveal="fade" style="--d:.25s">
+        <a class="btn btn--ghost btn--sm" href="experiments.html">
+          <span class="btn__label">All experiments</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="shell">
+    <nav class="indexbar" aria-label="Parts of this experiment" data-reveal="fade">
+      <a href="#part-a"><i>A</i> Creating time series</a>
+      <a href="#part-b"><i>B</i> Time zones</a>
+      <a href="#part-c"><i>C</i> Periods &amp; frequencies</a>
+      <a href="#part-d"><i>D</i> Resampling</a>
+    </nav>
+  </div>
+
+  <div class="shell pagelist">
+
+    <div class="nbtool">
+      <span class="nbtool__label">Notebook · EXP-6</span>
+      <span class="lsp-pill" id="lsp-status" role="status" aria-live="polite">
+        <span class="lsp-pill__dot" aria-hidden="true"></span>
+        <span>Checking…</span>
+        <span class="lsp-pill__meta">python 3.12</span>
+      </span>
+      <span class="nbtool__note">Run replays the saved output</span>
+      <button class="nb__run nb__run--ghost" type="button" data-reset>
+        <svg width="11" height="11" aria-hidden="true"><use href="#i-reset"/></svg>
+        <span>Reset</span>
+      </button>
+      <button class="nb__run" type="button" data-run-all>
+        <svg width="11" height="11" aria-hidden="true"><use href="#i-play"/></svg>
+        <span>Run all</span>
+      </button>
+    </div>
+
+      <section class="lab" id="part-a" data-jump="Part A · Creating time series">
+        <div class="lab__head">
+          <span class="lab__code">A</span>
+          <div>
+            <h2 class="lab__title">Creating time series</h2>
+            <p class="lab__summary">Build a Series indexed by a DatetimeIndex from date strings and values, and generate date ranges.</p>
+            <div class="lab__meta"><div><b>3</b><span>Cells</span></div></div>
+          </div>
+        </div>
+        <div class="nb">
+            <div class="cell">
+              <div class="cell__rail">
+                <span class="cell__prompt">In&nbsp;[1]</span>
+                <button class="cell__run" type="button" data-nb-run aria-label="Run cell 1" title="Run">
+                  <svg width="9" height="9" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+              </div>
+              <div class="cell__body">
+                <textarea class="cell__code" rows="1" spellcheck="false" aria-label="Code cell 1">import pandas as pd</textarea>
+                <div class="cell__out" hidden>
+                  <span class="cell__prompt cell__prompt--out">Out&nbsp;[1]</span>
+                  
+                </div>
+              </div>
+            </div>
+            <div class="cell">
+              <div class="cell__rail">
+                <span class="cell__prompt">In&nbsp;[2]</span>
+                <button class="cell__run" type="button" data-nb-run aria-label="Run cell 2" title="Run">
+                  <svg width="9" height="9" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+              </div>
+              <div class="cell__body">
+                <textarea class="cell__code" rows="1" spellcheck="false" aria-label="Code cell 2">dates = pd.to_datetime([
+    '2001-08-03',
+    '2007-07-02',
+    '2008-03-08',
+    '2016-04-03',
+    '2015-06-02'
+])
+temperature = [30, 40, 27, 30, 23]
+time_series = pd.Series(
+    temperature,
+    index=dates
+)
+print(&quot;Time Series:&quot;)
+print(time_series)</textarea>
+                <div class="cell__out" hidden>
+                  <span class="cell__prompt cell__prompt--out">Out&nbsp;[2]</span>
+                  <pre class="cell__text">Time Series:
+2001-08-03    30
+2007-07-02    40
+2008-03-08    27
+2016-04-03    30
+2015-06-02    23
+dtype: int64</pre>
+                </div>
+              </div>
+            </div>
+            <div class="cell">
+              <div class="cell__rail">
+                <span class="cell__prompt">In&nbsp;[3]</span>
+                <button class="cell__run" type="button" data-nb-run aria-label="Run cell 3" title="Run">
+                  <svg width="9" height="9" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+              </div>
+              <div class="cell__body">
+                <textarea class="cell__code" rows="1" spellcheck="false" aria-label="Code cell 3">date_index = pd.date_range(
+    start='2027-08-03',
+    periods=7,
+    freq='D'
+)
+print(&quot;Generated DatetimeIndex:&quot;)
+print(date_index)</textarea>
+                <div class="cell__out" hidden>
+                  <span class="cell__prompt cell__prompt--out">Out&nbsp;[3]</span>
+                  <pre class="cell__text">Generated DatetimeIndex:
+DatetimeIndex(['2027-08-03', '2027-08-04', '2027-08-05', '2027-08-06',
+               '2027-08-07', '2027-08-08', '2027-08-09'],
+              dtype='datetime64[us]', freq='D')</pre>
+                </div>
+              </div>
+            </div>
+        </div>
+      </section>
+      <section class="lab" id="part-b" data-jump="Part B · Time zones">
+        <div class="lab__head">
+          <span class="lab__code">B</span>
+          <div>
+            <h2 class="lab__title">Time zones</h2>
+            <p class="lab__summary">Localize naive timestamps to Asia/Kolkata and convert them to America/New_York.</p>
+            <div class="lab__meta"><div><b>3</b><span>Cells</span></div></div>
+          </div>
+        </div>
+        <div class="nb">
+            <div class="cell">
+              <div class="cell__rail">
+                <span class="cell__prompt">In&nbsp;[4]</span>
+                <button class="cell__run" type="button" data-nb-run aria-label="Run cell 4" title="Run">
+                  <svg width="9" height="9" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+              </div>
+              <div class="cell__body">
+                <textarea class="cell__code" rows="1" spellcheck="false" aria-label="Code cell 4">india_dates = pd.date_range(
+    start='2007-08-03 09:00',
+    periods=3,
+    freq='h',
+    tz='Asia/Kolkata'
+)
+print(&quot;1. Date Range with Asia/Kolkata Time Zone:&quot;)
+print(india_dates)</textarea>
+                <div class="cell__out" hidden>
+                  <span class="cell__prompt cell__prompt--out">Out&nbsp;[4]</span>
+                  <pre class="cell__text">1. Date Range with Asia/Kolkata Time Zone:
+DatetimeIndex(['2007-08-03 09:00:00+05:30', '2007-08-03 10:00:00+05:30',
+               '2007-08-03 11:00:00+05:30'],
+              dtype='datetime64[us, Asia/Kolkata]', freq='h')</pre>
+                </div>
+              </div>
+            </div>
+            <div class="cell">
+              <div class="cell__rail">
+                <span class="cell__prompt">In&nbsp;[5]</span>
+                <button class="cell__run" type="button" data-nb-run aria-label="Run cell 5" title="Run">
+                  <svg width="9" height="9" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+              </div>
+              <div class="cell__body">
+                <textarea class="cell__code" rows="1" spellcheck="false" aria-label="Code cell 5">localized_dates = dates.tz_localize('Asia/Kolkata')
+
+print(&quot;\n3. After Localizing to Asia/Kolkata:&quot;)
+print(localized_dates)</textarea>
+                <div class="cell__out" hidden>
+                  <span class="cell__prompt cell__prompt--out">Out&nbsp;[5]</span>
+                  <pre class="cell__text">3. After Localizing to Asia/Kolkata:
+DatetimeIndex(['2001-08-03 00:00:00+05:30', '2007-07-02 00:00:00+05:30',
+               '2008-03-08 00:00:00+05:30', '2016-04-03 00:00:00+05:30',
+               '2015-06-02 00:00:00+05:30'],
+              dtype='datetime64[us, Asia/Kolkata]', freq=None)</pre>
+                </div>
+              </div>
+            </div>
+            <div class="cell">
+              <div class="cell__rail">
+                <span class="cell__prompt">In&nbsp;[6]</span>
+                <button class="cell__run" type="button" data-nb-run aria-label="Run cell 6" title="Run">
+                  <svg width="9" height="9" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+              </div>
+              <div class="cell__body">
+                <textarea class="cell__code" rows="1" spellcheck="false" aria-label="Code cell 6">new_york_dates = localized_dates.tz_convert(
+    'America/New_York'
+)
+
+print(&quot;\n4. Converted to America/New_York:&quot;)
+print(new_york_dates)</textarea>
+                <div class="cell__out" hidden>
+                  <span class="cell__prompt cell__prompt--out">Out&nbsp;[6]</span>
+                  <pre class="cell__text">4. Converted to America/New_York:
+DatetimeIndex(['2001-08-02 14:30:00-04:00', '2007-07-01 14:30:00-04:00',
+               '2008-03-07 13:30:00-05:00', '2016-04-02 14:30:00-04:00',
+               '2015-06-01 14:30:00-04:00'],
+              dtype='datetime64[us, America/New_York]', freq=None)</pre>
+                </div>
+              </div>
+            </div>
+        </div>
+      </section>
+      <section class="lab" id="part-c" data-jump="Part C · Periods &amp; frequencies">
+        <div class="lab__head">
+          <span class="lab__code">C</span>
+          <div>
+            <h2 class="lab__title">Periods &amp; frequencies</h2>
+            <p class="lab__summary">Period arithmetic, asfreq conversion between monthly and daily, and converting Series/DataFrames to periods.</p>
+            <div class="lab__meta"><div><b>3</b><span>Cells</span></div></div>
+          </div>
+        </div>
+        <div class="nb">
+            <div class="cell">
+              <div class="cell__rail">
+                <span class="cell__prompt">In&nbsp;[7]</span>
+                <button class="cell__run" type="button" data-nb-run aria-label="Run cell 7" title="Run">
+                  <svg width="9" height="9" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+              </div>
+              <div class="cell__body">
+                <textarea class="cell__code" rows="1" spellcheck="false" aria-label="Code cell 7">p = pd.Period('2007-08', freq='M')
+print(&quot;Original Period:&quot;)
+print(p)
+print(&quot;\nAfter adding 2:&quot;)
+print(p + 2)
+print(&quot;\nAfter adding 5:&quot;)
+print(p + 5)
+print(&quot;\nAfter subtracting 1:&quot;)
+print(p - 1)
+print(&quot;\nAfter subtracting 3:&quot;)
+print(p - 3)
+periods = pd.period_range(
+    start='2026-01',
+    periods=6,
+    freq='M'
+)
+print(&quot;\nRange of Periods:&quot;)
+print(periods)</textarea>
+                <div class="cell__out" hidden>
+                  <span class="cell__prompt cell__prompt--out">Out&nbsp;[7]</span>
+                  <pre class="cell__text">Original Period:
+2007-08
+
+After adding 2:
+2007-10
+
+After adding 5:
+2008-01
+
+After subtracting 1:
+2007-07
+
+After subtracting 3:
+2007-05
+
+Range of Periods:
+…</pre>
+                </div>
+              </div>
+            </div>
+            <div class="cell">
+              <div class="cell__rail">
+                <span class="cell__prompt">In&nbsp;[8]</span>
+                <button class="cell__run" type="button" data-nb-run aria-label="Run cell 8" title="Run">
+                  <svg width="9" height="9" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+              </div>
+              <div class="cell__body">
+                <textarea class="cell__code" rows="1" spellcheck="false" aria-label="Code cell 8">p = pd.Period('2007-08', freq='M')
+print(&quot;Original Period:&quot;)
+print(p)
+daily_start = p.asfreq('D', how='start')
+print(&quot;\nMonthly Period converted to Daily (Start):&quot;)
+print(daily_start)
+daily_end = p.asfreq('D', how='end')
+print(&quot;\nMonthly Period converted to Daily (End):&quot;)
+print(daily_end)
+period_index = pd.period_range(
+    start='2007-08',
+    periods=3,
+    freq='M'
+)
+print(&quot;\nOriginal PeriodIndex:&quot;)
+print(period_index)
+daily_period_index = period_index.asfreq(
+    'D',
+    how='start'
+)
+print(&quot;\nPeriodIndex converted to Daily Frequency:&quot;)
+print(daily_period_index)
+daily_period_index_end = period_index.asfreq(
+    'D',
+    how='end'
+)
+print(&quot;\nPeriodIndex converted to Daily Frequency (End):&quot;)
+print(daily_period_index_end)</textarea>
+                <div class="cell__out" hidden>
+                  <span class="cell__prompt cell__prompt--out">Out&nbsp;[8]</span>
+                  <pre class="cell__text">Original Period:
+2007-08
+
+Monthly Period converted to Daily (Start):
+2007-08-01
+
+Monthly Period converted to Daily (End):
+2007-08-31
+
+Original PeriodIndex:
+PeriodIndex(['2007-08', '2007-09', '2007-10'], dtype='period[M]')
+
+PeriodIndex converted to Daily Frequency:
+PeriodIndex(['2007-08-01', '2007-09-01', '2007-10-01'], dtype='period[D]')
+
+PeriodIndex converted to Daily Frequency (End):
+…</pre>
+                </div>
+              </div>
+            </div>
+            <div class="cell">
+              <div class="cell__rail">
+                <span class="cell__prompt">In&nbsp;[9]</span>
+                <button class="cell__run" type="button" data-nb-run aria-label="Run cell 9" title="Run">
+                  <svg width="9" height="9" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+              </div>
+              <div class="cell__body">
+                <textarea class="cell__code" rows="1" spellcheck="false" aria-label="Code cell 9">dates = pd.to_datetime([
+    '2007-01-8',
+    '2008-04-5',
+    '2009-06-3',
+    '2010-08-2'
+])
+sales = pd.Series(
+    [1000, 1500, 1800, 2200],
+    index=dates
+)
+print(&quot;Original Series:&quot;)
+print(sales)
+period_series = sales.to_period('M')
+print(&quot;\nSeries converted to Monthly Periods:&quot;)
+print(period_series)
+df = pd.DataFrame(
+    {
+        'Sales': [1000, 1500, 1800, 2200],
+        'Profit': [200, 300, 400, 500]
+    },
+    index=dates
+)
+
+print(&quot;\nOriginal DataFrame:&quot;)
+print(df)
+period_df = df.to_period('M')
+print(&quot;\nDataFrame converted to Monthly Periods:&quot;)
+print(period_df)</textarea>
+                <div class="cell__out" hidden>
+                  <span class="cell__prompt cell__prompt--out">Out&nbsp;[9]</span>
+                  <pre class="cell__text">Original Series:
+2007-01-08    1000
+2008-04-05    1500
+2009-06-03    1800
+2010-08-02    2200
+dtype: int64
+
+Series converted to Monthly Periods:
+2007-01    1000
+2008-04    1500
+2009-06    1800
+2010-08    2200
+Freq: M, dtype: int64
+
+Original DataFrame:
+            Sales  Profit
+…</pre>
+                </div>
+              </div>
+            </div>
+        </div>
+      </section>
+      <section class="lab" id="part-d" data-jump="Part D · Resampling">
+        <div class="lab__head">
+          <span class="lab__code">D</span>
+          <div>
+            <h2 class="lab__title">Resampling</h2>
+            <p class="lab__summary">Resample hourly data to 3-hour and 4-hour aggregates, and upsample with forward fill.</p>
+            <div class="lab__meta"><div><b>1</b><span>Cells</span></div></div>
+          </div>
+        </div>
+        <div class="nb">
+            <div class="cell">
+              <div class="cell__rail">
+                <span class="cell__prompt">In&nbsp;[10]</span>
+                <button class="cell__run" type="button" data-nb-run aria-label="Run cell 10" title="Run">
+                  <svg width="9" height="9" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+              </div>
+              <div class="cell__body">
+                <textarea class="cell__code" rows="1" spellcheck="false" aria-label="Code cell 10">dates = pd.date_range(
+    start='2007-08-03 03:00',
+    periods=12,
+    freq='h'
+)
+
+values = [10, 12, 15, 14, 18, 20,
+          22, 21, 25, 28, 30, 32]
+
+time_series = pd.Series(
+    values,
+    index=dates
+)
+
+print(&quot;Original Hourly Time Series:&quot;)
+print(time_series)
+ #2. Resampling - calculate 3-hourly mean
+resampled = time_series.resample('3h').mean()
+print(&quot;\nResampled Time Series - 3 Hour Mean:&quot;)
+print(resampled)
+ #3. Downsampling - Hourly to 4-hourly
+downsampled = time_series.resample('4h').sum()
+print(&quot;\nDownsampled Time Series - 4 Hour Sum:&quot;)
+print(downsampled)
+ #4. Upsampling - Hourly to 30-minute intervals
+upsampled = time_series.resample('30min').asfreq()
+print(&quot;\nUpsampled Time Series - 30 Minute:&quot;)
+print(upsampled)
+# 5. Upsampling with Forward Fill
+upsampled_ffill = time_series.resample('30min').ffill()
+print(&quot;\nUpsampled Time Series using Forward Fill:&quot;)
+print(upsampled_ffill)</textarea>
+                <div class="cell__out" hidden>
+                  <span class="cell__prompt cell__prompt--out">Out&nbsp;[10]</span>
+                  <pre class="cell__text">Original Hourly Time Series:
+2007-08-03 03:00:00    10
+2007-08-03 04:00:00    12
+2007-08-03 05:00:00    15
+2007-08-03 06:00:00    14
+2007-08-03 07:00:00    18
+2007-08-03 08:00:00    20
+2007-08-03 09:00:00    22
+2007-08-03 10:00:00    21
+2007-08-03 11:00:00    25
+2007-08-03 12:00:00    28
+2007-08-03 13:00:00    30
+2007-08-03 14:00:00    32
+Freq: h, dtype: int64
+
+Resampled Time Series - 3 Hour Mean:
+…</pre>
+                </div>
+              </div>
+            </div>
+        </div>
+      </section>
+
+
+    <div class="video" data-video="r0s4slGHwzE">
+      <div class="video__head">
+        <span class="video__label">Watch · EXP-6</span>
+        <a href="https://www.youtube.com/watch?v=r0s4slGHwzE" target="_blank" rel="noopener">YouTube ↗</a>
+      </div>
+      <button class="video__facade" type="button" data-video-play aria-label="Play video: Pandas time series · DatetimeIndex &amp; resample">
+        <img src="https://i.ytimg.com/vi/r0s4slGHwzE/hqdefault.jpg" alt="" width="480" height="270" loading="lazy" decoding="async">
+        <span class="video__play" aria-hidden="true"><svg width="18" height="18"><use href="#i-play"/></svg></span>
+        <span class="video__meta"><em>The same resample calls used here</em></span>
+      </button>
+    </div>
+    <div class="nextup">
+      <a href="experiment-5.html"><span>Previous</span><b>← EXP-5</b></a>
+      <a href="experiments.html"><span>Back</span><b>All experiments →</b></a>
+    </div>
+
+  </div></main>
+
+<footer class="footer">
+  <div class="shell">
+    <div class="footer__grid">
+      <div>
+        <p class="footer__brand">DS Lab — the experiment record.</p>
+      </div>
+
+      <div class="footer__col">
+        <h4>Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="experiments.html">Experiments</a>
+        <a href="modules.html">Modules</a>
+        <a href="tools.html">Tools</a>
+      </div>
+
+      <div class="footer__col">
+        <h4>Documents</h4>
+        <a href="assets/pdf/lab-record.pdf" target="_blank" rel="noopener">Lab record</a>
+        <a href="assets/pdf/module-1.pdf" target="_blank" rel="noopener">Module 01</a>
+        <a href="assets/pdf/module-2.pdf" target="_blank" rel="noopener">Module 02</a>
+        <a href="assets/pdf/module-3.pdf" target="_blank" rel="noopener">Module 03</a>
+        <a href="assets/pdf/module-4.pdf" target="_blank" rel="noopener">Module 04</a>
+        <a href="assets/pdf/module-5.pdf" target="_blank" rel="noopener">Module 05</a>
+      </div>
+
+      <div class="footer__col">
+        <h4>Record holder</h4>
+        <span>GANDODI PRANEETH KUMAR</span>
+        <span>24102A030124 · CSE (DS) — 2</span>
+        <span>Faculty: S Bosu Babu</span>
+        <a href="https://github.com/Praneeth-Gandodi" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© <span id="year">2026</span> GANDODI PRANEETH KUMAR · Mohan Babu University</span>
+      <span>Local time <span id="clock">--:--:--</span></span>
+      <span>Hand-built · semantic HTML, CSS &amp; vanilla JS · 0 dependencies</span>
+    </div>
+  </div>
+</footer>
+
+<button class="icon-btn totop" id="totop" type="button" aria-label="Back to top">
+  <svg width="17" height="17" aria-hidden="true"><use href="#i-top"/></svg>
+</button>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
